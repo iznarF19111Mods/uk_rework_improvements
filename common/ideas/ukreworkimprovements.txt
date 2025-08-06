@@ -1,0 +1,87 @@
+ideas = {
+	country = {
+		victoria_ii = {
+			allowed = {
+				OR = {
+					original_tag = GER
+					original_tag = ENG
+				}
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			picture = victoria_ii
+			
+			removal_cost = -1
+			
+			traits = { victoria_louise kaiserin_of_the_british_and_german_people }
+		}
+
+		BAY_rupprecht_of_bavaria = {
+			allowed = {
+				OR = {
+					original_tag = GER
+					original_tag = ENG
+					original_tag = BAY
+				}
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			#picture = BAY_rupprecht_of_bavaria
+			
+			removal_cost = -1
+			
+			traits = { popular_figurehead2 }
+		}
+
+		ENG_democracy_rules = {
+			allowed = {
+				always = no
+			}
+			modifier = {
+				political_power_factor = 0.1
+				compliance_gain = 0.05
+				compliance_growth = 0.15
+				democratic_drift = 0.06
+				communism_drift = -0.01
+				fascism_drift = -0.03
+				neutrality_drift = -0.02
+				air_chief_cost_factor = 0.1
+				army_chief_cost_factor = 0.1
+				navy_chief_cost_factor = 0.1
+				high_command_cost_factor = 0.1
+			}
+
+			picture = generic_pp_unity_bonus
+			
+			removal_cost = -1
+		}
+	}
+}

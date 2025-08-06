@@ -1,0 +1,14 @@
+﻿l_german:
+  # New Decisions
+  UK_integrate_austria: "Stelle das §HKönigreich Österreich§! wieder her"
+
+  # Character Traits
+  victoria_louise: "Kaiserin Victoria Louise"
+  kaiserin_of_the_british_and_german_people: "Kaiserin des britisch-deutschen Volkes"
+  victoria_ii: "Kaiserin Victoria Louise"
+
+  # Events
+  ukrework_improvements.1:0 "Victorias Krönung"
+  ukrework_improvements.1.t:0 "Die Krönung von Kaiserin Victoria"
+  ukrework_improvements.1.desc:0 "Heute, nach der Wiederherstellung aller deutschen Königreiche, wurde Kaiserin Victoria in Berlin zur Kaiserin von Großbritannien und Deutschland gekrönt, um ihre Herrschaft über Deutschland zu zementieren.\nDiese Zeremonie stellt nur den ersten Schritt hin zu einer formalen Union von Großbritannien und Deutschland dar, über die in näherer Zukunft diskutiert wird."
+  ukrework_improvements.1.a:0 "Lang lebe Kaiserin Victoria II!"
