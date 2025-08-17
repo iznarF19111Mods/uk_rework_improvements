@@ -2180,12 +2180,12 @@ country_event = {
 			base = 80
 		}
 		create_wargoal = {
-			target = PREV
+			target = GER
 			type = annex_everything
 		}
 		every_state = {
 			limit = {
-				is_core_of = PREV
+				is_core_of = GER
 			}
 			add_claim_by = ROOT
 		}

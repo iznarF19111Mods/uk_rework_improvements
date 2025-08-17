@@ -22,7 +22,10 @@ country_event = {
 				remove = popular_figurehead2
 				add = victoria_louise
 			}
-			add_country_leader_trait = kaiserin_of_the_british_and_german_people
+			swap_country_leader_traits = {
+				remove = kaiserin_of_the_people
+				add = kaiserin_of_the_british_and_german_people
+			}
 		}
 		set_character_name = {
 			character = GER_victoria

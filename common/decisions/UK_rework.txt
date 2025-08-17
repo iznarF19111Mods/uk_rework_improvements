@@ -2408,7 +2408,7 @@ UK_integrate_the_german_kingdoms_decisions = {
 							is_owned_by = ENG
 						}
 					}
-					add_state_core = 39
+					add_state_core = 69
 				}
 				IF = {
 					limit = { # South Sudetenland
@@ -2417,7 +2417,7 @@ UK_integrate_the_german_kingdoms_decisions = {
 							is_owned_by = ENG
 						}
 					}
-					add_state_core = 39
+					add_state_core = 972
 				}
 				IF = {
 					limit = { # Eastern Sudetenland
@@ -2426,7 +2426,7 @@ UK_integrate_the_german_kingdoms_decisions = {
 							is_owned_by = ENG
 						}
 					}
-					add_state_core = 39
+					add_state_core = 74
 				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
