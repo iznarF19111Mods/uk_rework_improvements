@@ -31,7 +31,7 @@ ENG_alternate_democratic_plan = {
 		shadow_scheme_focus
 		air_defense_focus
 		radar_focus
-		uk_industrial_focus
+		ENG_industrial_legacy
 		ENG_steady_as_she_goes
 		ENG_global_defense
 		general_rearmament_focus
@@ -131,7 +131,7 @@ ENG_alternate_communist_plan = {
 		shadow_scheme_focus
 		air_defense_focus
 		radar_focus
-		uk_industrial_focus
+		ENG_industrial_legacy
 		ENG_a_change_in_course
 		ENG_concessions_to_the_trade_unions
 		general_rearmament_focus
@@ -148,7 +148,7 @@ ENG_alternate_communist_plan = {
 		ENG_self_government_for_africa
 		ENG_self_government_for_asia
 		ENG_foundations_for_an_indian_state
-		ENG_the_three_nation_solution
+		# ENG_the_three_nation_solution # only available without GoE
 		ENG_towards_indian_independence
 		ENG_decolonization
 		air_rearmament_focus
@@ -245,7 +245,7 @@ ENG_alternate_unaligned_plan = {
 		shadow_scheme_focus
 		air_defense_focus
 		radar_focus
-		uk_industrial_focus
+		ENG_industrial_legacy
 		ENG_a_change_in_course
 		ENG_the_kings_party
 		ENG_god_save_the_king
@@ -362,7 +362,7 @@ ENG_alternate_fascist_plan = {
 		shadow_scheme_focus
 		air_defense_focus
 		radar_focus
-		uk_industrial_focus
+		ENG_industrial_legacy
 		ENG_a_change_in_course
 		ENG_organize_the_blackshirts
 		general_rearmament_focus

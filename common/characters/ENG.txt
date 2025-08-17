@@ -1770,7 +1770,7 @@ characters={
 		name="Max Aitken"
 		portraits={
 			army={
-				small="ENG_max_aitken"
+				small="GFX_ENG_max_aitken"
 			}
 		}
 		#cost = 200		# only leads to error
@@ -1807,7 +1807,7 @@ characters={
 		name="Henry Channon"
 		portraits={
 			army={
-				small="ENG_henry_channon"
+				small="GFX_ENG_henry_channon"
 			}
 		}
 		advisor={
