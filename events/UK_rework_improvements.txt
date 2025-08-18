@@ -90,7 +90,7 @@ country_event = {
 					}
 				}
 				add_ideas = {
-					HOL_wilhelmina
+					ENG_wilhelmina
 				}
 			}
 		}
@@ -100,6 +100,29 @@ country_event = {
 		custom_effect_tooltip = generic_skip_one_line_tt
 		add_ideas = {
 			ENG_democracy_rules
+		}
+	}
+}
+
+country_event = {
+	id = ukrework_improvements.3
+	title = ukrework_improvements.3.t
+	desc = ukrework_improvements.3.desc
+	picture = GFX_report_event_german_speech
+	
+	is_triggered_only = yes
+
+	trigger = {
+	}
+	
+	option = { # Wonderful
+		name = ukrework_improvements.3.a
+		GER_victoria = {
+			add_country_leader_trait = kaiserin_of_the_people
+		}
+		set_character_name = {
+			character = GER_victoria
+			name = "Victoria II"
 		}
 	}
 }

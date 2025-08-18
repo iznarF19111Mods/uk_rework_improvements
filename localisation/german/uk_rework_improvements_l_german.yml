@@ -1,14 +1,28 @@
 ﻿l_german:
   # New Decisions
   UK_integrate_austria: "Stelle das §HKönigreich Österreich§! wieder her"
+  ENG_victoria_established_uk_german_democracy_tt: "Our Kaiserin Victoria established an Anglo-German democracy"
 
   # Character Traits
   victoria_louise: "Kaiserin Victoria Louise"
   kaiserin_of_the_british_and_german_people: "Kaiserin des britisch-deutschen Volkes"
   victoria_ii: "Kaiserin Victoria Louise"
 
+  # Ideas
+  ENG_democracy_rules: "Demokratie auf dem Vormarsch"
+
   # Events
   ukrework_improvements.1:0 "Victorias Krönung"
   ukrework_improvements.1.t:0 "Die Krönung von Kaiserin Victoria"
   ukrework_improvements.1.desc:0 "Heute, nach der Wiederherstellung aller deutschen Königreiche, wurde Kaiserin Victoria in Berlin zur Kaiserin von Großbritannien und Deutschland gekrönt, um ihre Herrschaft über Deutschland zu zementieren.\nDiese Zeremonie stellt nur den ersten Schritt hin zu einer formalen Union von Großbritannien und Deutschland dar, über die in näherer Zukunft diskutiert wird."
   ukrework_improvements.1.a:0 "Lang lebe Kaiserin Victoria II!"
+  ukrework_improvements.2:0 "Weg zur Demokratie"
+  ukrework_improvements.2.t:0 "Die Zukunft der britisch-deutschen Demokratie"
+  ukrework_improvements.2.desc:0 "Zusammen mit den Wahlen zum Parlament, die unsere Rückkehr zur Demokratie markieren, wird unser Volk darüber entscheiden, ob wir unseren bisherigen Monarchen als zeremonielles Staatsoberhaupt behalten wollen?"
+  ukrework_improvements.2.a:0 "Ja, lasst uns einen königlichen Repräsentanten behalten."
+	ukrework_improvements.2.a.tt: "Abhängig von unserem §Haktuellen Regenten§!, werden wir eine §Hkleine Verstärkung§! für unsere Nation erhalten."
+  ukrework_improvements.2.b:0 "Nein, lasst uns die Monarchie ganz abschaffen!"
+  ukrework_improvements.3:0 "Victorias Rückkehr"
+  ukrework_improvements.3.t:0 "Victoria Rückkehr nach Hause"
+  ukrework_improvements.3.desc:0 "Überall in Deutschland werden Rufe laut, dass Victoria das Deutsche Reich wiederherstellen soll, in denen ihre Leistungen angepriesen werden."
+  ukrework_improvements.3.a:0 "Das ist genau mein Plan."

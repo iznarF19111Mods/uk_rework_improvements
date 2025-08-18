@@ -2452,7 +2452,7 @@ focus_tree = {
 					free_building_slots = {
 						building = infrastructure
 						size > 1
-						include_locked = yes
+						#include_locked = yes
 					}
 					is_core_of = ROOT
 				}
@@ -2468,7 +2468,7 @@ focus_tree = {
 					free_building_slots = {
 						building = infrastructure
 						size > 2
-						include_locked = yes
+						#include_locked = yes
 					}
 					is_core_of = ROOT
 				}
@@ -2484,7 +2484,7 @@ focus_tree = {
 					free_building_slots = {
 						building = infrastructure
 						size > 3
-						include_locked = yes
+						#include_locked = yes
 					}
 					is_core_of = ROOT
 				}
@@ -2653,7 +2653,7 @@ focus_tree = {
 					free_building_slots = {
 						building = infrastructure
 						size > 3
-						include_locked = yes
+						#include_locked = yes
 					}
 					is_core_of = ROOT
 				}
@@ -2669,7 +2669,7 @@ focus_tree = {
 					free_building_slots = {
 						building = infrastructure
 						size > 2
-						include_locked = yes
+						#include_locked = yes
 					}
 					is_core_of = ROOT
 				}
@@ -2685,7 +2685,7 @@ focus_tree = {
 					free_building_slots = {
 						building = infrastructure
 						size > 1
-						include_locked = yes
+						#include_locked = yes
 					}
 					is_core_of = ROOT
 				}
@@ -2827,6 +2827,44 @@ focus_tree = {
 			air_experience = 25
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_ideas = ENG_service_overseas_idea
+		}
+	}
+
+	focus = {
+		id = ENG_establish_the_overseas_territories
+		prerequisite = { focus = uk_service_focus }
+		available = {
+			date > 1944.1.1
+		}
+		mutually_exclusive = {  }
+		icon = GFX_focus_ENG_overseas_territories
+		x = 1
+		y = 1
+		relative_position_id = uk_service_focus
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 696
+						state = 118
+						state = 710
+						state = 711
+						state = 712
+						state = 703
+						state = 704
+						state = 299
+						state = 720
+					}
+					is_controlled_by = ROOT
+					is_owned_by = ROOT
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 
@@ -16289,6 +16327,8 @@ focus_tree = {
 		}
 	}
 
+	### BRITANNIA FOR THE PEOPLE BRANCH ###
+
 	focus = {
 		id = ENG_britannia_for_people
 		prerequisite = { focus = ENG_secure_the_government }
@@ -16323,39 +16363,16 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_britannia_for_glory
-		prerequisite = { focus = ENG_secure_the_government }
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_mc_oppose_democracy_trigger_tt
-				has_country_flag = ENG_has_declined_democracy_flag
-			}
-		}
-		mutually_exclusive = { focus = ENG_britannia_for_people }
-		icon = GFX_focus_ENG_britannia_glory
-		x = -5
-		y = 2
-		relative_position_id = ENG_secure_the_government
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_ideas = ENG_glory_britannia_idea
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_war_support = 0.05
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_country_leader_trait = SWI_militaristic_nationalist
-		}
-	}
+	### DEMOCRACY PATH ###
 
 	focus = {
 		id = ENG_reopen_national_elections
 		prerequisite = { focus = ENG_britannia_for_people }
 		available = {
 			democratic > .2
+		}
+		bypass = {
+			has_government = democratic
 		}
 		mutually_exclusive = { focus = ENG_new_monarchy }
 		icon = GFX_focus_ENG_reopen_national_elections
@@ -16380,269 +16397,44 @@ focus_tree = {
 				last_election = "1935.11.14"
     			election_frequency = 60
 			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			country_event = ukrework.12
-			custom_effect_tooltip = generic_skip_one_line_tt
-			remove_ideas = ENG_uncertain_future_idea
-		}
-	}
-
-	focus = {
-		id = ENG_the_new_cromwell
-		prerequisite = { focus = ENG_britannia_for_glory }
-		available = {
-			neutrality > .7
-		}
-		mutually_exclusive = { focus = ENG_consolidate_the_BAF }
-		icon = GFX_focus_ENG_new_cromwell
-		x = -2
-		y = 1
-		relative_position_id = ENG_britannia_for_glory
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_popularity = {
-				popularity = 0.05
-				ideology = neutrality
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			remove_country_leader_trait = great_war_hero
-			add_country_leader_trait = ENG_the_protector
-			custom_effect_tooltip = generic_skip_one_line_tt
-			set_cosmetic_tag = ENG_COMMONWEALTH
-			custom_effect_tooltip = generic_skip_one_line_tt
-			remove_ideas = ENG_uncertain_future_idea
-		}
-	}
-
-	focus = {
-		id = ENG_consolidate_the_BAF
-		prerequisite = { focus = ENG_britannia_for_glory }
-		available = {
-			neutrality > .6
-		}
-		mutually_exclusive = { focus = ENG_the_new_cromwell }
-		icon = GFX_focus_ENG_officer_dictatorship
-		x = 2
-		y = 1
-		relative_position_id = ENG_britannia_for_glory
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_popularity = {
-				popularity = -0.05
-				ideology = neutrality
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			create_country_leader = {
-				name = "British Armed Forces High Command"
-				picture = GFX_Portrait_ENG_BAF_Command
-				expire = "1965.1.1"
-				ideology = oligarchism
-				traits = {
-					ENG_military_command
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			remove_ideas = ENG_uncertain_future_idea
-		}
-	}
-
-	focus = {
-		id = ENG_puppet_monarch
-		prerequisite = { focus = ENG_consolidate_the_BAF }
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_has_not_killed_monarchy_tt
-				has_country_flag = ENG_monarchy_exiled_to_canada_flag
-			}
-			NOT = {
-				has_war_with = CAN
-			}
-		}
-		mutually_exclusive = { focus = ENG_figurehead_presidency }
-		icon = GFX_focus_ENG_puppet_king
-		x = 1
-		y = 1
-		relative_position_id = ENG_consolidate_the_BAF
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			country_event = ukrework.55
-			CAN = {
-				country_event = ukrework.56
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_figurehead_presidency
-		prerequisite = { focus = ENG_consolidate_the_BAF }
-		available = {
-		}
-		mutually_exclusive = { focus = ENG_puppet_monarch }
-		icon = GFX_focus_ENG_figurehead_president
-		x = -1
-		y = 1
-		relative_position_id = ENG_consolidate_the_BAF
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_ideas = ENG_puppet_president
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.05
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_conscription_increase
-		prerequisite = { focus = ENG_figurehead_presidency focus = ENG_puppet_monarch }
-		available = {
-			OR = {
-				has_war_support > 0.4
-				has_war = yes
-			}
-		}
-		mutually_exclusive = {  }
-		icon = GFX_focus_chi_army_reform
-		x = 1
-		y = 1
-		relative_position_id = ENG_figurehead_presidency
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_ideas = ENG_expand_conscription_budget
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_war_support = -0.05
-		}
-	}
-
-	focus = {
-		id = ENG_military_school
-		prerequisite = { focus = ENG_conscription_increase }
-		available = {
-			has_army_manpower = {
-			    size > 1500000
-			}
-			OR = {
-				has_war = yes
-				threat > 0.9
-			}
-		}
-		mutually_exclusive = {  }
-		icon = GFX_focus_generic_military_academy
-		x = 0
-		y = 1
-		relative_position_id = ENG_conscription_increase
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_research_slot = 1
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_ideas = ENG_military_school_idea
-		}
-	}
-
-	focus = {
-		id = ENG_new_monarchy
-		prerequisite = { focus = ENG_britannia_for_people }
-		available = {
-			neutrality > .6
-		}
-		mutually_exclusive = { focus = ENG_reopen_national_elections }
-		icon = GFX_focus_ENG_new_monarchy
-		x = -4
-		y = 1
-		relative_position_id = ENG_britannia_for_people
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_popularity = {
-				popularity = 0.1
-				ideology = neutrality
-			}
-			add_popularity = {
-				popularity = 0.05
-				ideology = democratic
-			}
-			drop_cosmetic_tag = yes
-			custom_effect_tooltip = generic_skip_one_line_tt
-			country_event = ukrework.14
-			custom_effect_tooltip = generic_skip_one_line_tt
-			remove_ideas = ENG_uncertain_future_idea
-			hidden_effect = {
-				set_politics = {
-					ruling_party = neutrality
-    				elections_allowed = yes
-					last_election = "1935.11.14"
-    				election_frequency = 60
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = max_aitken
-		}
-	}
-
-	focus = {
-		id = ENG_recover_ireland
-		prerequisite = { focus = ENG_new_monarchy focus = ENG_consolidate_the_BAF }
-		available = {
-		}
-		mutually_exclusive = {  }
-		icon = GFX_focus_ENG_recover_ireland
-		x = -6
-		y = 1
-		relative_position_id = ENG_new_monarchy
-		will_lead_to_war_with = IRE
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
+			if = {
 				limit = {
-					is_core_of = IRE
+					NOT = {
+						has_completed_focus = ENG_reinstate_democratic_elections
+					}
 				}
-				add_claim_by = ROOT
+				custom_effect_tooltip = generic_skip_one_line_tt
+				country_event = ukrework.12
 			}
-			113 = {
-				controller = {
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = annex_everything
-						}
+			if = {
+				limit = {
+					has_idea = ENG_uncertain_future_idea
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				remove_ideas = ENG_uncertain_future_idea
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_europeanism
+					}
+					uncomplete_national_focus = {
+						focus = ENG_europeanism
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_atlanticism
+					}
+					uncomplete_national_focus = {
+						focus = ENG_atlanticism
+						uncomplete_children = no
+						refund_political_power = yes
 					}
 				}
 			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_reintegrate_ireland
 		}
 	}
 
@@ -16701,6 +16493,64 @@ focus_tree = {
 			}
 		}
 	}
+
+	focus = {
+		id = ENG_war_is_coming
+		prerequisite = { focus = ENG_atlanticism focus = ENG_europeanism }
+		available = {
+			OR = {
+				threat > 0.35
+				has_war = yes
+			}
+		}
+		bypass = {
+		}
+		mutually_exclusive = {  }
+		icon = GFX_SOV_superior_war_machines_ccp_2d_sov_compatibility
+		x = 1
+		y = 2
+		relative_position_id = ENG_reopen_national_elections
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_ideas = ENG_prepare_for_the_inevitable_idea
+		}
+	}
+
+	focus = {
+		id = ENG_invite_exiled_scientists
+		prerequisite = { focus = ENG_atlanticism focus = ENG_europeanism }
+		available = {
+			any_country = {
+				is_major = yes
+				NOT = {
+					has_government = democratic
+				}
+			}
+		}
+		bypass = {
+		}
+		mutually_exclusive = {  }
+		icon = GFX_focus_generic_university_2
+		x = -1
+		y = 2
+		relative_position_id = ENG_reopen_national_elections
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_research_slot = 1
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_ideas = ENG_exiled_scientists_idea
+		}
+	}
+
+	### ATLANTICISM BRANCH ###
 
 	focus = {
 		id = ENG_atlanticism
@@ -16866,6 +16716,135 @@ focus_tree = {
 	}
 
 	focus = {
+		id = ENG_arctic_security
+		prerequisite = { focus = ENG_embrace_the_special_partnership }
+		available = {
+		}
+		bypass = {
+			101 = {
+				controller = {
+					is_in_faction_with = ROOT
+				}
+			}
+			100 = {
+				controller = {
+					is_in_faction_with = ROOT
+				}
+			}
+			337 = {
+				controller = {
+					is_in_faction_with = ROOT
+				}
+			}
+			CAN = {
+				OR = {
+					exists = no
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		mutually_exclusive = {  }
+		icon = GFX_focus_ENG_na_security
+		x = 0
+		y = 1
+		relative_position_id = ENG_embrace_the_special_partnership
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			CAN = {
+				IF = {
+					limit = {
+						has_government = democratic
+						is_subject = no
+						is_in_faction = no
+						NOT = {
+							has_war_with = ROOT
+						}
+					}
+					country_event = generic.5
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							is_subject_of = ROOT
+							is_in_faction_with = ROOT
+						}
+						exists = yes
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = puppet_wargoal_focus
+						}
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						controls_state = 101
+						controls_state = 100
+						controls_state = 337
+						has_subject = GRN
+						has_subject = ICE
+					}
+					is_subject = no
+					NOT = {
+						is_in_faction_with = ROOT
+						tag = ROOT
+						has_war_with = ROOT
+					}
+				}
+				country_event = {
+					id = ukrework.28
+					days = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_form_atlantic_union
+		prerequisite = { focus = ENG_arctic_security }
+		available = {
+			any_country = {
+				is_in_faction_with = ROOT
+				NOT = {
+					tag = ROOT
+				}
+				capital_scope = {
+					OR = {
+						is_on_continent = europe
+						is_on_continent = north_america
+					}
+				}
+			}
+		}
+		bypass = {
+		}
+		mutually_exclusive = {  }
+		icon = GFX_focus_ENG_nato_union
+		x = -2
+		y = 1
+		relative_position_id = ENG_arctic_security
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			unlock_decision_category_tooltip = UK_form_atlantic_union_decisions
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_political_power = 50
+		}
+	}
+
+	### EUROPEANISM BRANCH ###
+
+	focus = {
 		id = ENG_europeanism
 		prerequisite = { focus = ENG_reopen_national_elections }
 		available = {
@@ -16983,62 +16962,6 @@ focus_tree = {
 					modifier = ENG_atlanticism_negative_opinion
 				}
 			}
-		}
-	}
-
-	focus = {
-		id = ENG_war_is_coming
-		prerequisite = { focus = ENG_atlanticism focus = ENG_europeanism }
-		available = {
-			OR = {
-				threat > 0.35
-				has_war = yes
-			}
-		}
-		bypass = {
-		}
-		mutually_exclusive = {  }
-		icon = GFX_SOV_superior_war_machines_ccp_2d_sov_compatibility
-		x = 4
-		y = 1
-		relative_position_id = ENG_atlanticism
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_ideas = ENG_prepare_for_the_inevitable_idea
-		}
-	}
-
-	focus = {
-		id = ENG_invite_exiled_scientists
-		prerequisite = { focus = ENG_atlanticism focus = ENG_europeanism }
-		available = {
-			any_country = {
-				is_major = yes
-				NOT = {
-					has_government = democratic
-				}
-			}
-		}
-		bypass = {
-		}
-		mutually_exclusive = {  }
-		icon = GFX_focus_generic_university_2
-		x = 2
-		y = 1
-		relative_position_id = ENG_atlanticism
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_research_slot = 1
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_ideas = ENG_exiled_scientists_idea
 		}
 	}
 
@@ -17244,132 +17167,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_arctic_security
-		prerequisite = { focus = ENG_embrace_the_special_partnership }
-		available = {
-		}
-		bypass = {
-			101 = {
-				controller = {
-					is_in_faction_with = ROOT
-				}
-			}
-			100 = {
-				controller = {
-					is_in_faction_with = ROOT
-				}
-			}
-			337 = {
-				controller = {
-					is_in_faction_with = ROOT
-				}
-			}
-			CAN = {
-				OR = {
-					exists = no
-					is_in_faction_with = ROOT
-				}
-			}
-		}
-		mutually_exclusive = {  }
-		icon = GFX_focus_ENG_na_security
-		x = 0
-		y = 1
-		relative_position_id = ENG_embrace_the_special_partnership
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			CAN = {
-				IF = {
-					limit = {
-						has_government = democratic
-						is_subject = no
-						is_in_faction = no
-						NOT = {
-							has_war_with = ROOT
-						}
-					}
-					country_event = generic.5
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							is_subject_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						exists = yes
-					}
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = puppet_wargoal_focus
-						}
-					}
-				}
-			}
-			every_country = {
-				limit = {
-					OR = {
-						controls_state = 101
-						controls_state = 100
-						controls_state = 337
-						has_subject = GRN
-						has_subject = ICE
-					}
-					is_subject = no
-					NOT = {
-						is_in_faction_with = ROOT
-						tag = ROOT
-						has_war_with = ROOT
-					}
-				}
-				country_event = {
-					id = ukrework.28
-					days = 1
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_form_atlantic_union
-		prerequisite = { focus = ENG_arctic_security }
-		available = {
-			any_country = {
-				is_in_faction_with = ROOT
-				NOT = {
-					tag = ROOT
-				}
-				capital_scope = {
-					OR = {
-						is_on_continent = europe
-						is_on_continent = north_america
-					}
-				}
-			}
-		}
-		bypass = {
-		}
-		mutually_exclusive = {  }
-		icon = GFX_focus_ENG_nato_union
-		x = -2
-		y = 1
-		relative_position_id = ENG_arctic_security
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			unlock_decision_category_tooltip = UK_form_atlantic_union_decisions
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_political_power = 50
-		}
-	}
+	### BASTION OF DEMOCRACY BRANCH ###
 
 	focus = {
 		id = ENG_the_german_menace
@@ -17691,6 +17489,2424 @@ focus_tree = {
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_ideas = ENG_bastion_of_democracy_idea
+		}
+	}
+
+	### MONARCHY BRANCH ###
+
+	focus = {
+		id = ENG_new_monarchy
+		prerequisite = { focus = ENG_britannia_for_people }
+		available = {
+			neutrality > .6
+		}
+		mutually_exclusive = { focus = ENG_reopen_national_elections }
+		icon = GFX_focus_ENG_new_monarchy
+		x = -4
+		y = 1
+		relative_position_id = ENG_britannia_for_people
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_popularity = {
+				popularity = 0.1
+				ideology = neutrality
+			}
+			add_popularity = {
+				popularity = 0.05
+				ideology = democratic
+			}
+			drop_cosmetic_tag = yes
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							has_country_leader = {
+								character = BAY_rupprecht_of_bavaria
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = HOL_wilhelmina
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_wilhelm_iii
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_victoria
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = "Victoria II"
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = ENG_parliament_german
+								ruling_only = yes
+							}
+						}
+					}
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				country_event = ukrework.14
+			}
+			if = {
+				limit = {
+					has_idea = ENG_uncertain_future_idea
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				remove_ideas = ENG_uncertain_future_idea
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = neutrality
+    				elections_allowed = yes
+					last_election = "1935.11.14"
+    				election_frequency = 60
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_reinstate_democratic_elections
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reinstate_democratic_elections
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_the_union_jack_forever
+					}
+					uncomplete_national_focus = {
+						focus = ENG_the_union_jack_forever
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_new_flag_over_london
+					}
+					uncomplete_national_focus = {
+						focus = ENG_new_flag_over_london
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = max_aitken
+		}
+	}
+
+	### UNION JACK FOREVER BRANCH ###
+
+	focus = {
+		id = ENG_the_union_jack_forever
+		prerequisite = { focus = ENG_new_monarchy }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = BAY_rupprecht_of_bavaria
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = HOL_wilhelmina
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = GER_wilhelm_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = GER_victoria
+					ruling_only = yes
+				}
+			}
+		}
+		mutually_exclusive = { focus = ENG_new_flag_over_london }
+		icon = GFX_focus_ENG_union_jack_forever
+		x = -2
+		y = 1
+		relative_position_id = ENG_new_monarchy
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			country_event = ukrework.24
+		}
+	}
+
+	focus = {
+		id = ENG_new_royal_titles
+		prerequisite = { focus = ENG_the_union_jack_forever }
+		available = {
+		}
+		icon = GFX_focus_ENG_new_royal_titles
+		x = 0
+		y = 1
+		relative_position_id = ENG_the_union_jack_forever
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_ideas = ENG_new_titles_idea
+		}
+	}
+
+	focus = {
+		id = ENG_fate_of_the_lands
+		prerequisite = { focus = ENG_new_royal_titles }
+		available = {
+			controls_state = 126
+			controls_state = 122
+			controls_state = 133
+			controls_state = 119
+		}
+		icon = GFX_focus_ENG_countries_of_the_uk
+		x = 0
+		y = 1
+		relative_position_id = ENG_new_royal_titles
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			country_event = ukrework.54
+		}
+	}
+
+	### A DIFFERENT BANNER WAVES BRANCH ###
+
+	focus = {
+		id = ENG_new_flag_over_london
+		prerequisite = { focus = ENG_new_monarchy }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = BAY_rupprecht_of_bavaria
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = HOL_wilhelmina
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = GER_wilhelm_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = GER_victoria
+					ruling_only = yes
+				}
+			}
+		}
+		mutually_exclusive = { focus = ENG_the_union_jack_forever }
+		icon = GFX_focus_ENG_new_flag_over_london
+		x = 3
+		y = 1
+		relative_position_id = ENG_new_monarchy
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						OR = {
+							has_country_leader = {
+								character = BAY_rupprecht_of_bavaria
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = HOL_wilhelmina
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_wilhelm_iii
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_victoria
+								ruling_only = yes
+							}
+						}
+					}
+				}
+				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
+				effect_tooltip = {
+					country_event = ukrework.25
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = ENG_new_flag_over_london_2_tt
+				effect_tooltip = {
+					country_event = ukrework.26
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = ENG_new_flag_over_london_3_tt
+				effect_tooltip = {
+					country_event = ukrework.27
+				}
+			}
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				country_event = ukrework.25
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+				}
+				country_event = ukrework.26
+			}
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = BAY_rupprecht_of_bavaria
+						ruling_only = yes
+					}
+				}
+				country_event = ukrework.27
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_orange_pennant
+					}
+					uncomplete_national_focus = {
+						focus = ENG_orange_pennant
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_lozenge_flag
+					}
+					uncomplete_national_focus = {
+						focus = ENG_lozenge_flag
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_reichs_flag
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reichs_flag
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_reclaim_the_homeland
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reclaim_the_homeland
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_reclaim_the_homeland_peacefully
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reclaim_the_homeland_peacefully
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_reclaim_the_homeland
+		prerequisite = { focus = ENG_lozenge_flag focus = ENG_orange_pennant focus = ENG_reichs_flag }
+		mutually_exclusive = { focus = ENG_reclaim_the_homeland_peacefully }
+		available = {
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				HOL = {
+					all_core_state = {
+						NOT = {
+							is_controlled_by = ROOT
+						}
+					}
+					OR = {
+						exists = no
+						has_completed_focus = HOL_legacy_of_the_de_zeven_provincien_mutiny
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = BAY_rupprecht_of_bavaria
+						ruling_only = yes
+					}
+				}
+				BAY = {
+					all_core_state = {
+						NOT = {
+							is_controlled_by = ROOT
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+				}
+				GER = {
+					all_core_state = {
+						NOT = {
+							is_controlled_by = ROOT
+						}
+					}
+					OR = {
+						exists = no
+						NOT = {
+							OR = {
+								has_completed_focus = GER_monarchist_sentiment
+								has_completed_focus = GER_oppose_hitler
+							}
+						}
+					}
+				}
+			}
+			else = {
+				custom_trigger_tooltip = {
+					tooltip = ENG_reclaim_the_homeland_trigger_tt
+				}
+			}
+		}
+		bypass = {
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				HOL = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = BAY_rupprecht_of_bavaria
+						ruling_only = yes
+					}
+				}
+				BAY = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+				}
+				GER = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+				}
+			}
+		}
+		icon = GFX_goal_generic_more_territorial_claims
+		x = -1
+		y = 2
+		relative_position_id = ENG_new_flag_over_london
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						OR = {
+							has_country_leader = {
+								character = BAY_rupprecht_of_bavaria
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = HOL_wilhelmina
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_wilhelm_iii
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_victoria
+								ruling_only = yes
+							}
+						}
+					}
+				}
+				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
+				effect_tooltip = {
+					every_state = {
+						limit = {
+							is_core_of = HOL
+						}
+						add_claim_by = ROOT
+					}
+					every_country = {
+						limit = {
+							any_controlled_state = {
+								is_core_of = HOL
+							}
+						}
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = annex_everything
+							}
+						}
+					}
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = ENG_new_flag_over_london_2_tt
+				effect_tooltip = {
+					every_state = {
+						limit = {
+							is_core_of = GER
+						}
+						add_claim_by = ROOT
+					}
+					every_country = {
+						limit = {
+							any_controlled_state = {
+								is_core_of = GER
+							}
+						}
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = annex_everything
+							}
+						}
+					}
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = ENG_new_flag_over_london_3_tt
+				effect_tooltip = {
+					every_state = {
+						limit = {
+							is_core_of = BAY
+						}
+						add_claim_by = ROOT
+					}
+					every_country = {
+						limit = {
+							any_controlled_state = {
+								is_core_of = BAY
+							}
+						}
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = annex_everything
+							}
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = HOL
+					}
+					add_claim_by = ROOT
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				every_country = {
+					limit = {
+						any_controlled_state = {
+							is_core_of = HOL
+						}
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = GER
+					}
+					add_claim_by = ROOT
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				every_country = {
+					limit = {
+						any_controlled_state = {
+							is_core_of = GER
+						}
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = BAY_rupprecht_of_bavaria
+						ruling_only = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = BAY
+					}
+					add_claim_by = ROOT
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				every_country = {
+					limit = {
+						any_controlled_state = {
+							is_core_of = BAY
+						}
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_reclaim_the_homeland_peacefully
+		prerequisite = { focus = ENG_orange_pennant focus = ENG_reichs_flag }
+		mutually_exclusive = { focus = ENG_reclaim_the_homeland }
+		available = {
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				HOL = {
+					OR = {
+						has_government = democratic
+						has_government = neutrality
+					}
+					NOT = {
+						has_war_with = ROOT
+					}
+					OR = {
+						is_subject = no
+						is_subject_of = ROOT
+					}
+					exists = yes
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+				}
+				GER = {
+					OR = {
+						has_government = democratic
+						has_government = neutrality
+					}
+					NOT = {
+						has_war_with = ROOT
+					}
+					OR = {
+						is_subject = no
+						is_subject_of = ROOT
+					}
+					exists = yes
+				}
+			}
+			else = {
+				custom_trigger_tooltip = {
+					tooltip = ENG_reclaim_the_homeland_trigger_tt
+				}
+			}
+		}
+		bypass = {
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				HOL = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+				}
+				GER = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+				}
+			}
+		}
+		icon = GFX_goal_generic_intelligence_exchange
+		x = 1
+		y = 2
+		relative_position_id = ENG_new_flag_over_london
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						OR = {
+							has_country_leader = {
+								character = HOL_wilhelmina
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_wilhelm_iii
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_victoria
+								ruling_only = yes
+							}
+						}
+					}
+				}
+				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
+				effect_tooltip = {
+					HOL = {
+						country_event = {
+							days = 1
+							id = ukrework.35
+						}
+					}
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = ENG_new_flag_over_london_2_tt
+				effect_tooltip = {
+					GER = {
+						country_event = {
+							days = 1
+							id = ukrework.35
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				HOL = {
+					country_event = {
+						days = 1
+						id = ukrework.35
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+				}
+				GER = {
+					country_event = {
+						days = 1
+						id = ukrework.35
+					}
+				}
+			}
+		}
+	}
+
+	### NETHERLANDS BRANCH ###
+
+	focus = {
+		id = ENG_orange_pennant
+		prerequisite = { focus = ENG_new_flag_over_london }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ENG_completed_by_event_tt
+				always = no
+			}
+		}
+		mutually_exclusive = { focus = ENG_reichs_flag }
+		mutually_exclusive = { focus = ENG_lozenge_flag }
+		icon = GFX_focus_ENG_netherlands_over_britain
+		x = 0
+		y = 1
+		relative_position_id = ENG_new_flag_over_london
+		cost = 0
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			effect_tooltip = {
+				add_stability = -0.05
+				add_political_power = 100
+				custom_effect_tooltip = generic_skip_one_line_tt
+				set_cosmetic_tag = ENG_UK_NETHERLANDS
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_restore_netherlands
+		prerequisite = { focus = ENG_reclaim_the_homeland focus = ENG_reclaim_the_homeland_peacefully }
+		prerequisite = { focus = ENG_orange_pennant }
+		mutually_exclusive = {  }
+		available = {
+			HOL = {
+				OR = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+					AND = {
+						is_subject_of = ROOT
+						has_autonomy_state = autonomy_integrated_puppet
+					}
+				}
+			}
+		}
+		icon = GFX_focus_ENG_retake_nederland
+		x = 1
+		y = 1
+		relative_position_id = ENG_reclaim_the_homeland
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = HOL
+				}
+				add_core_of = ROOT
+			}
+			IF = {
+				limit = {
+					HOL = {
+						is_subject_of = ROOT
+					}
+				}
+				annex_country = {
+					target = HOL
+					transfer_troops = yes
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_stability = 0.05
+			set_cosmetic_tag = ENG_UK_NETHERLANDS_UNION
+			hidden_effect = {
+				HOL_wilhelmina = {
+					add_country_leader_trait = konigin_van_britten_en_nederlanders
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_correct_the_treaty_of_london
+		prerequisite = { focus = ENG_restore_netherlands }
+		mutually_exclusive = {  }
+		available = {  }
+		icon = GFX_focus_ENG_correct_treaty_of_london
+		x = 0
+		y = 1
+		relative_position_id = ENG_restore_netherlands
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = BEL
+						is_core_of = LUX
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					OR = {
+						controls_state = 6
+						controls_state = 8
+					}
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_category_tooltip = UK_netherland_decisions
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_recognize_the_frisians
+					}
+					uncomplete_national_focus = {
+						focus = ENG_recognize_the_frisians
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_recognize_the_low_germans
+					}
+					uncomplete_national_focus = {
+						focus = ENG_recognize_the_low_germans
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_recognize_the_low_germans
+		prerequisite = { focus = ENG_correct_the_treaty_of_london }
+		mutually_exclusive = { focus = ENG_recognize_the_frisians }
+		available = {
+			controls_state = 36
+		}
+		icon = GFX_focus_ENG_befriend_low_germans
+		x = 1
+		y = 1
+		relative_position_id = ENG_correct_the_treaty_of_london
+		cost = 2
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_ideas = ENG_north_german_minority_embraced_idea
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_liberate_low_germans
+					}
+					uncomplete_national_focus = {
+						focus = ENG_liberate_low_germans
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_take_back_orange_and_nassau
+					}
+					uncomplete_national_focus = {
+						focus = ENG_take_back_orange_and_nassau
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_liberate_low_germans
+		prerequisite = { focus = ENG_recognize_the_low_germans }
+		mutually_exclusive = { focus = ENG_take_back_orange_and_nassau }
+		available = {}
+		icon = GFX_focus_GER_tend_to_the_future
+		x = 1
+		y = 1
+		relative_position_id = ENG_recognize_the_low_germans
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 56
+						state = 59
+						state = 909
+						state = 58
+						state = 57
+						state = 64
+						state = 62
+						state = 61
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					OR = {
+						controls_state = 56
+						controls_state = 59
+						controls_state = 909
+						controls_state = 58
+						controls_state = 57
+						controls_state = 64
+						controls_state = 62
+						controls_state = 61
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_integrate_low_germany
+		}
+	}
+
+	focus = {
+		id = ENG_free_pennsylvania_dutch
+		prerequisite = { focus = ENG_liberate_low_germans }
+		mutually_exclusive = {  }
+		available = {}
+		icon = GFX_focus_ENG_free_the_pennsylvania_dutch
+		x = 0
+		y = 1
+		relative_position_id = ENG_liberate_low_germans
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			360 = {
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					controls_state = 360
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_integrate_pennsylvania
+		}
+	}
+
+	focus = {
+		id = ENG_recognize_the_frisians
+		prerequisite = { focus = ENG_correct_the_treaty_of_london }
+		mutually_exclusive = { focus = ENG_recognize_the_low_germans }
+		available = {
+			controls_state = 36
+		}
+		icon = GFX_focus_ENG_befriend_frisians
+		x = -1
+		y = 1
+		relative_position_id = ENG_correct_the_treaty_of_london
+		cost = 2
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_ideas = ENG_frisian_minority_embraced_idea
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_take_back_orange_and_nassau
+					}
+					uncomplete_national_focus = {
+						focus = ENG_take_back_orange_and_nassau
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_liberate_frisia
+					}
+					uncomplete_national_focus = {
+						focus = ENG_liberate_frisia
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_liberate_frisia
+		prerequisite = { focus = ENG_recognize_the_frisians }
+		mutually_exclusive = { focus = ENG_take_back_orange_and_nassau }
+		available = {}
+		icon = GFX_focus_ENG_liberate_friesland
+		x = -1
+		y = 1
+		relative_position_id = ENG_recognize_the_frisians
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 56
+						state = 59
+						state = 909
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					OR = {
+						controls_state = 56
+						controls_state = 59
+						controls_state = 909
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_integrate_frisia
+		}
+	}
+
+	focus = {
+		id = ENG_take_back_orange_and_nassau
+		prerequisite = { focus = ENG_recognize_the_frisians focus = ENG_recognize_the_low_germans }
+		mutually_exclusive = { focus = ENG_liberate_low_germans }
+		mutually_exclusive = { focus = ENG_liberate_frisia }
+		available = {}
+		icon = GFX_focus_ENG_take_back_orange_nassau
+		x = 1
+		y = 1
+		relative_position_id = ENG_recognize_the_frisians
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 21
+						state = 51
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					OR = {
+						controls_state = 21
+						controls_state = 51
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_integrate_nassau
+			unlock_decision_tooltip = UK_integrate_orange
+		}
+	}
+
+	focus = {
+		id = ENG_reclaim_new_amsterdam
+		prerequisite = { focus = ENG_take_back_orange_and_nassau focus = ENG_liberate_frisia }
+		mutually_exclusive = {  }
+		available = {}
+		icon = GFX_focus_ENG_reclaim_new_amsterdam
+		x = 1
+		y = 1
+		relative_position_id = ENG_liberate_frisia
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 358
+						state = 359
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					OR = {
+						controls_state = 358
+						controls_state = 359
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_integrate_new_amsterdam
+		}
+	}
+	
+	### GERMANY BRANCH ###
+	
+	focus = {
+		id = ENG_reichs_flag
+		prerequisite = { focus = ENG_new_flag_over_london }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ENG_completed_by_event_tt
+				always = no
+			}
+		}
+		mutually_exclusive = { focus = ENG_orange_pennant }
+		mutually_exclusive = { focus = ENG_lozenge_flag }
+		icon = GFX_focus_ENG_germany_over_britain
+		x = 2
+		y = 1
+		relative_position_id = ENG_new_flag_over_london
+		cost = 0
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			effect_tooltip = {
+				add_stability = -0.05
+				add_political_power = 100
+				custom_effect_tooltip = generic_skip_one_line_tt
+				set_cosmetic_tag = ENG_KAISERREICH
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_restore_deutschland
+		prerequisite = { focus = ENG_reclaim_the_homeland focus = ENG_reclaim_the_homeland_peacefully }
+		prerequisite = { focus = ENG_reichs_flag }
+		mutually_exclusive = {  }
+		available = {
+			GER = {
+				OR = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+					AND = {
+						is_subject_of = ROOT
+						has_autonomy_state = autonomy_integrated_puppet
+					}
+				}
+			}
+		}
+		icon = GFX_focus_ENG_retake_deutschland
+		x = 1
+		y = 1
+		relative_position_id = ENG_reclaim_the_homeland_peacefully
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_political_power = 250
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_category_tooltip = UK_integrate_the_german_kingdoms_decisions
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+					}
+					country_event = {
+						id = ukrework_improvements.3
+			    		days = 1
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_formalize_kaiserreich
+		prerequisite = { focus = ENG_restore_deutschland }
+		mutually_exclusive = {  }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ENG_has_united_the_kaiserreichs_tt
+				has_country_flag = ENG_has_united_the_kaiserreichs
+			}
+		}
+		icon = GFX_focus_GER_monarchy_compromise
+		x = 3
+		y = 1
+		relative_position_id = ENG_restore_deutschland
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			country_event = ukrework.42
+		}
+	}
+
+	focus = {
+		id = ENG_retake_ost_preussen
+		prerequisite = { focus = ENG_formalize_kaiserreich }
+		mutually_exclusive = {  }
+		available = {}
+		icon = GFX_focus_GER_restore_eastern_imperial_possessions
+		x = 1
+		y = 1
+		relative_position_id = ENG_formalize_kaiserreich
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 85
+						state = 807
+						state = 86
+						state = 762
+						state = 188
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					OR = {
+						controls_state = 85
+						controls_state = 807
+						controls_state = 86
+						controls_state = 762
+						controls_state = 188
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_expand_prussia
+		}
+	}
+
+	focus = {
+		id = ENG_retake_north_schleswig
+		prerequisite = { focus = ENG_retake_ost_preussen }
+		mutually_exclusive = {  }
+		available = {}
+		icon = GFX_focus_generic_invade_denmark
+		x = 0
+		y = 1
+		relative_position_id = ENG_retake_ost_preussen
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 912
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					OR = {
+						controls_state = 912
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_integrate_north_schleswig
+		}
+	}
+
+	focus = {
+		id = ENG_retake_alsace_lorraine
+		prerequisite = { focus = ENG_formalize_kaiserreich }
+		mutually_exclusive = {  }
+		available = {}
+		icon = GFX_focus_GER_reinstate_imperial_possessions
+		x = -1
+		y = 1
+		relative_position_id = ENG_formalize_kaiserreich
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 28
+						state = 8
+					}
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					OR = {
+						controls_state = 28
+						controls_state = 8
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_integrate_alsace_lorraine
+			unlock_decision_tooltip = UK_integrate_luxembourg_german
+		}
+	}
+
+	focus = {
+		id = ENG_schlieffen_but_better
+		prerequisite = { focus = ENG_retake_alsace_lorraine }
+		mutually_exclusive = {  }
+		available = {
+			OR = {
+				HOL = {
+					exists = yes
+					NOT = {
+						is_subject_of = ROOT
+						has_war_with = ROOT
+						is_in_faction_with = ROOT
+					}
+				}
+				BEL = {
+					exists = yes
+					NOT = {
+						is_subject_of = ROOT
+						has_war_with = ROOT
+						is_in_faction_with = ROOT
+					}
+				}
+				LUX = {
+					exists = yes
+					NOT = {
+						is_subject_of = ROOT
+						has_war_with = ROOT
+						is_in_faction_with = ROOT
+					}
+				}
+			}
+		}
+		bypass = {
+			HOL = {
+				OR = {
+					exists = no
+					is_subject_of = ROOT
+					has_war_with = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			BEL = {
+				OR = {
+					exists = no
+					is_subject_of = ROOT
+					has_war_with = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			LUX = {
+				OR = {
+					exists = no
+					is_subject_of = ROOT
+					has_war_with = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		icon = GFX_focus_GER_schlieffen_once_more
+		x = 0
+		y = 1
+		relative_position_id = ENG_retake_alsace_lorraine
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			HOL = {
+				IF = {
+					limit = {
+						exists = yes
+						NOT = {
+							is_subject_of = ROOT
+							has_war_with = ROOT
+							is_in_faction_with = ROOT
+						}
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = puppet_wargoal_focus
+						}
+					}
+				}
+			}
+			BEL = {
+				IF = {
+					limit = {
+						exists = yes
+						NOT = {
+							is_subject_of = ROOT
+							has_war_with = ROOT
+							is_in_faction_with = ROOT
+						}
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = puppet_wargoal_focus
+						}
+					}
+				}
+			}
+			LUX = {
+				IF = {
+					limit = {
+						exists = yes
+						NOT = {
+							is_subject_of = ROOT
+							has_war_with = ROOT
+							is_in_faction_with = ROOT
+						}
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = puppet_wargoal_focus
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_liberate_german_americans
+		prerequisite = { focus = ENG_schlieffen_but_better focus = ENG_retake_north_schleswig }
+		mutually_exclusive = {  }
+		available = { 
+			USA = {
+				exists = yes
+				NOT = {
+					is_subject_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		bypass = {
+			USA = {
+				OR = {
+					exists = no
+					is_subject_of = ROOT
+				}
+			}
+		}
+		icon = GFX_focus_ENG_liberate_german_americans
+		x = -1
+		y = 1
+		relative_position_id = ENG_retake_north_schleswig
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_thirteen_german_colonies
+					}
+					uncomplete_national_focus = {
+						focus = ENG_thirteen_german_colonies
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_establish_a_german_american_state
+					}
+					uncomplete_national_focus = {
+						focus = ENG_establish_a_german_american_state
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_establish_a_german_american_state
+		prerequisite = { focus = ENG_liberate_german_americans }
+		mutually_exclusive = { focus = ENG_thirteen_german_colonies }
+		available = { 
+			USA = {
+				OR = {
+					AND = {
+						exists = no
+						any_core_state = {
+							is_controlled_by = ROOT
+						}
+					}
+					is_puppet_of = ROOT
+				}
+			}
+		}
+		bypass = {
+		}
+		icon = GFX_focus_ENG_new_german_american_state
+		x = -1
+		y = 1
+		relative_position_id = ENG_liberate_german_americans
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			IF = {
+				limit = {
+					USA = {
+						exists = no
+					}
+				}
+				release_autonomy = {
+				    target = USA
+				    autonomy_state = autonomy_puppet
+				    freedom_level = 0.5
+				}
+			}
+			USA = {
+				set_cosmetic_tag = USA_GERMAN_AMERICAN
+				hidden_effect = {
+					set_politics = {
+					    ruling_party = neutrality
+					    elections_allowed = no
+					}
+					set_party_name = {
+						ideology = neutrality
+						name = ENG_hohenzollern_haus
+						long_name = ENG_hohenzollern_haus_long
+					}
+					every_possible_country = {
+						limit = { has_character = GER_wilhelm_iv }
+						random_character = {
+							limit = { is_character = GER_wilhelm_iv }
+							set_nationality = USA
+						}
+					}
+					GER_wilhelm_iv = {
+						add_country_leader_role = {
+							country_leader = {
+								expire = "1965.1.1"
+								ideology = despotism
+								traits = {
+									USA_prince_of_america
+								}
+							}
+							promote_leader = yes
+						}
+						set_character_name = ENG_prince_wilhelm_iv
+					}
+					set_popularities = {
+						democratic = 48
+						neutrality = 49
+						fascism = 0
+						communism = 3
+					}
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+			}
+			country_event = ukrework.48
+		}
+	}
+
+	focus = {
+		id = ENG_thirteen_german_colonies
+		prerequisite = { focus = ENG_liberate_german_americans }
+		mutually_exclusive = { focus = ENG_establish_a_german_american_state }
+		available = { 
+			USA = {
+				exists = no
+				any_core_state = {
+					is_controlled_by = ROOT
+				}
+			}
+		}
+		bypass = {
+		}
+		icon = GFX_focus_ENG_german_american_colony
+		x = 1
+		y = 1
+		relative_position_id = ENG_liberate_german_americans
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			unlock_decision_category_tooltip = UK_german_usa_decisions
+			custom_effect_tooltip = ENG_thirteen_german_colonies_tt
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+		id = ENG_reinstate_democratic_elections
+		prerequisite = { focus = ENG_restore_deutschland }
+		mutually_exclusive = {  }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ENG_kaiserreich_democracy_tt
+				has_country_flag = ENG_GER_return_to_democratic_ideals_flag
+			}
+			democratic > 0.4
+		}
+		select_effect = {
+			country_event = {
+			    id = ukrework_improvements.2
+			    days = 3
+			}
+		}
+		allow_branch = {
+			has_country_flag = ENG_GER_return_to_democratic_ideals_flag
+		}
+		icon = GFX_focus_ENG_german_british_democracy
+		x = 0
+		y = 1
+		relative_position_id = ENG_restore_deutschland
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+    				elections_allowed = yes
+					last_election = "1935.11.14"
+    				election_frequency = 60
+				}
+				set_party_name = { ideology = democratic long_name = ENG_parliament_german name = ENG_parliament_german }
+				create_country_leader = {
+					name = ENG_parliament_german
+					picture = GFX_portrait_eng_fallen_government
+					expire = "1965.1.1"
+					ideology = liberalism
+				}
+				country_event = {
+					id = ukrework.47
+					days = 14
+				}
+				country_event = ukrework.45
+				country_event = ukrework.46
+				if = {
+					limit = {
+						has_completed_focus = ENG_new_monarchy
+					}
+					uncomplete_national_focus = {
+						focus = ENG_new_monarchy
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_reopen_national_elections
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reopen_national_elections
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+			custom_effect_tooltip = ENG_reinstate_democratic_elections_tt
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.1
+			}
+			add_stability = 0.05
+			add_political_power = 100
+		}
+	}
+
+	### BAVARIA BRANCH ###
+
+	focus = {
+		id = ENG_lozenge_flag
+		prerequisite = { focus = ENG_new_flag_over_london }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ENG_completed_by_event_tt
+				always = no
+			}
+		}
+		mutually_exclusive = { focus = ENG_orange_pennant }
+		mutually_exclusive = { focus = ENG_reichs_flag }
+		icon = GFX_focus_ENG_bavaria_over_britain
+		x = -2
+		y = 1
+		relative_position_id = ENG_new_flag_over_london
+		cost = 0
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			effect_tooltip = {
+				add_stability = -0.05
+				add_political_power = 100
+				custom_effect_tooltip = generic_skip_one_line_tt
+				set_cosmetic_tag = ENG_BAVARIAN
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_restore_bavaria
+		prerequisite = { focus = ENG_reclaim_the_homeland }
+		prerequisite = { focus = ENG_lozenge_flag }
+		mutually_exclusive = {  }
+		available = {
+			BAY = {
+				OR = {
+					all_core_state = {
+						is_controlled_by = ROOT
+					}
+					AND = {
+						is_subject_of = ROOT
+						has_autonomy_state = autonomy_integrated_puppet
+					}
+				}
+			}
+		}
+		icon = GFX_focus_ENG_retake_bayern
+		x = -1
+		y = 1
+		relative_position_id = ENG_reclaim_the_homeland
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = BAY
+				}
+				add_core_of = ROOT
+			}
+			IF = {
+				limit = {
+					BAY = {
+						is_subject_of = ROOT
+					}
+				}
+				annex_country = {
+					target = BAY
+					transfer_troops = yes
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_stability = 0.05
+			set_cosmetic_tag = ENG_BAVARIAN_UNION
+		}
+	}
+
+	focus = {
+		id = ENG_unite_south_germany
+		prerequisite = { focus = ENG_restore_bavaria }
+		will_lead_to_war_with = AUS
+		will_lead_to_war_with = SWI
+		mutually_exclusive = {  }
+		available = {
+		}
+		bypass = {
+			AUS = {
+				all_core_state = {
+					controller = {
+						OR = {
+							is_subject_of = ROOT
+							tag = ROOT
+						}
+					}
+				}
+			}
+			SWI = {
+				all_core_state = {
+					controller = {
+						OR = {
+							is_subject_of = ROOT
+							tag = ROOT
+						}
+					}
+				}
+			}
+		}
+		icon = GFX_focus_ENG_unite_south_germany
+		x = -3
+		y = 1
+		relative_position_id = ENG_restore_bavaria
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = AUS
+						is_core_of = SWI
+					}
+				}
+				add_claim_by = ROOT
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							is_subject_of = ROOT
+							tag = ROOT
+							is_in_faction_with = ROOT
+						}
+					}
+					any_controlled_state = {
+						OR = {
+							is_core_of = AUS
+							is_core_of = SWI
+						}
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_royal_marriage_habsburg
+					}
+					uncomplete_national_focus = {
+						focus = ENG_royal_marriage_habsburg
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_meet_the_pope
+					}
+					uncomplete_national_focus = {
+						focus = ENG_meet_the_pope
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_hofbraeuhaus_breweries
+		prerequisite = { focus = ENG_restore_bavaria }
+		mutually_exclusive = {  }
+		available = {
+			controls_state = 52
+		}
+		bypass = {
+		}
+		icon = GFX_focus_ENG_hofbraeuhaus_breweries
+		x = 0
+		y = 1
+		relative_position_id = ENG_restore_bavaria
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			52 = {
+				add_dynamic_modifier = {
+					modifier = ENG_hofbrauhaus_modifier
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_category_tooltip = UK_hofbrauhaus_international_decisions
+			custom_effect_tooltip = ENG_hofbraeuhaus_breweries_tt
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = ENG_royal_marriage_habsburg
+		prerequisite = { focus = ENG_unite_south_germany }
+		mutually_exclusive = { focus = ENG_meet_the_pope }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ENG_controls_habsburg_areas_tt
+				controls_state = 3
+				controls_state = 4
+			}
+		}
+		bypass = {
+		}
+		icon = GFX_focus_AUS_reclaim_habsburg
+		x = -1
+		y = 1
+		relative_position_id = ENG_unite_south_germany
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			country_event = ukrework.39
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = ENG_restore_austria
+		prerequisite = { focus = ENG_royal_marriage_habsburg }
+		mutually_exclusive = {  }
+		available = {
+			AUS = {
+				exists = no
+				all_core_state = {
+					is_controlled_by = ROOT
+				}
+			}
+		}
+		bypass = {
+		}
+		icon = GFX_focus_AUS_legacy_of_the_empire
+		x = 0
+		y = 1
+		relative_position_id = ENG_royal_marriage_habsburg
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = AUS
+				}
+				add_core_of = ROOT
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_ideas = ENG_reclaim_the_habsburg_empire_idea
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_category_tooltip = UK_integrate_habsburg_lands_decisions
+		}
+	}
+
+	focus = {
+		id = ENG_a_union_of_european_states
+		prerequisite = { focus = ENG_restore_austria }
+		mutually_exclusive = {  }
+		available = {
+			controls_state = 6
+		}
+		bypass = {
+		}
+		allow_branch = {
+			has_country_flag = ENG_AUS_can_form_EU_flag
+		}
+		icon = GFX_focus_ENG_union_of_european_states
+		x = 0
+		y = 1
+		relative_position_id = ENG_restore_austria
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			unlock_decision_tooltip = form_european_union
+		}
+	}
+
+	focus = {
+		id = ENG_meet_the_pope
+		prerequisite = { focus = ENG_unite_south_germany }
+		mutually_exclusive = { focus = ENG_royal_marriage_habsburg }
+		available = {
+		}
+		bypass = {
+		}
+		icon = GFX_focus_generic_vatican_state
+		x = 1
+		y = 1
+		relative_position_id = ENG_unite_south_germany
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			country_event = ukrework.41
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+		id = ENG_restore_the_hre
+		prerequisite = { focus = ENG_meet_the_pope }
+		mutually_exclusive = {  }
+		available = {
+			controls_state = 64
+			controls_state = 52
+			controls_state = 4
+		}
+		bypass = {
+		}
+		icon = GFX_focus_POL_habsburg
+		x = 0
+		y = 1
+		relative_position_id = ENG_meet_the_pope
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_ideas = ENG_pan_germanicism_idea
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = form_hre
+		}
+	}
+
+	focus = {
+		id = ENG_the_real_roman_empire
+		prerequisite = { focus = ENG_restore_the_hre }
+		mutually_exclusive = {  }
+		available = {
+			controls_state = 2
+		}
+		bypass = {
+		}
+		allow_branch = {
+			has_country_flag = ENG_HRE_can_form_real_roman_empire_flag
+		}
+		icon = GFX_focus_ENG_wtf_have_i_done
+		x = 0
+		y = 1
+		relative_position_id = ENG_restore_the_hre
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			unlock_decision_tooltip = form_roman_empire
+		}
+	}
+
+	### BRITANNIA FOR GLORY BRANCH ###
+
+	focus = {
+		id = ENG_britannia_for_glory
+		prerequisite = { focus = ENG_secure_the_government }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ENG_mc_oppose_democracy_trigger_tt
+				has_country_flag = ENG_has_declined_democracy_flag
+			}
+		}
+		mutually_exclusive = { focus = ENG_britannia_for_people }
+		icon = GFX_focus_ENG_britannia_glory
+		x = -5
+		y = 2
+		relative_position_id = ENG_secure_the_government
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_ideas = ENG_glory_britannia_idea
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_war_support = 0.05
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_country_leader_trait = SWI_militaristic_nationalist
+		}
+	}
+
+	### LORD PROTECTOR BRANCH ###
+
+	focus = {
+		id = ENG_the_new_cromwell
+		prerequisite = { focus = ENG_britannia_for_glory }
+		available = {
+			neutrality > .7
+		}
+		mutually_exclusive = { focus = ENG_consolidate_the_BAF }
+		icon = GFX_focus_ENG_new_cromwell
+		x = -2
+		y = 1
+		relative_position_id = ENG_britannia_for_glory
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_popularity = {
+				popularity = 0.05
+				ideology = neutrality
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			remove_country_leader_trait = great_war_hero
+			add_country_leader_trait = ENG_the_protector
+			custom_effect_tooltip = generic_skip_one_line_tt
+			set_cosmetic_tag = ENG_COMMONWEALTH
+			custom_effect_tooltip = generic_skip_one_line_tt
+			remove_ideas = ENG_uncertain_future_idea
 		}
 	}
 
@@ -18310,1990 +20526,191 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_new_flag_over_london
-		prerequisite = { focus = ENG_new_monarchy }
-		available = {
-			OR = {
-				has_country_leader = {
-					character = BAY_rupprecht_of_bavaria
-					ruling_only = yes
-				}
-				has_country_leader = {
-					character = HOL_wilhelmina
-					ruling_only = yes
-				}
-				has_country_leader = {
-					character = GER_wilhelm_iii
-					ruling_only = yes
-				}
-				has_country_leader = {
-					character = GER_victoria
-					ruling_only = yes
-				}
-			}
-		}
-		mutually_exclusive = { focus = ENG_the_union_jack_forever }
-		icon = GFX_focus_ENG_new_flag_over_london
-		x = 3
-		y = 1
-		relative_position_id = ENG_new_monarchy
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			IF = {
-				limit = {
-					NOT = {
-						OR = {
-							has_country_leader = {
-								character = BAY_rupprecht_of_bavaria
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = HOL_wilhelmina
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_wilhelm_iii
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_victoria
-								ruling_only = yes
-							}
-						}
-					}
-				}
-				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
-				effect_tooltip = {
-					country_event = ukrework.25
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = ENG_new_flag_over_london_2_tt
-				effect_tooltip = {
-					country_event = ukrework.26
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = ENG_new_flag_over_london_3_tt
-				effect_tooltip = {
-					country_event = ukrework.27
-				}
-			}
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = HOL_wilhelmina
-						ruling_only = yes
-					}
-				}
-				country_event = ukrework.25
-			}
-			IF = {
-				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
-				}
-				country_event = ukrework.26
-			}
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = BAY_rupprecht_of_bavaria
-						ruling_only = yes
-					}
-				}
-				country_event = ukrework.27
-			}
-		}
-	}
+	### MILITARY DICTATORSHIP BRANCH ###
 
 	focus = {
-		id = ENG_orange_pennant
-		prerequisite = { focus = ENG_new_flag_over_london }
+		id = ENG_consolidate_the_BAF
+		prerequisite = { focus = ENG_britannia_for_glory }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_completed_by_event_tt
-				always = no
-			}
+			neutrality > .6
 		}
-		mutually_exclusive = { focus = ENG_reichs_flag }
-		mutually_exclusive = { focus = ENG_lozenge_flag }
-		icon = GFX_focus_ENG_netherlands_over_britain
-		x = 0
-		y = 1
-		relative_position_id = ENG_new_flag_over_london
-		cost = 0
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			effect_tooltip = {
-				add_stability = -0.05
-				add_political_power = 100
-				custom_effect_tooltip = generic_skip_one_line_tt
-				set_cosmetic_tag = ENG_UK_NETHERLANDS
-			}
-		}
-	}
-	
-	focus = {
-		id = ENG_reichs_flag
-		prerequisite = { focus = ENG_new_flag_over_london }
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_completed_by_event_tt
-				always = no
-			}
-		}
-		mutually_exclusive = { focus = ENG_orange_pennant }
-		mutually_exclusive = { focus = ENG_lozenge_flag }
-		icon = GFX_focus_ENG_germany_over_britain
+		mutually_exclusive = { focus = ENG_the_new_cromwell }
+		icon = GFX_focus_ENG_officer_dictatorship
 		x = 2
 		y = 1
-		relative_position_id = ENG_new_flag_over_london
-		cost = 0
+		relative_position_id = ENG_britannia_for_glory
+		cost = 5
 		ai_will_do = {
 			factor = 1
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
-			effect_tooltip = {
-				add_stability = -0.05
-				add_political_power = 100
-				custom_effect_tooltip = generic_skip_one_line_tt
-				set_cosmetic_tag = ENG_KAISERREICH
+			add_popularity = {
+				popularity = -0.05
+				ideology = neutrality
 			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			create_country_leader = {
+				name = "British Armed Forces High Command"
+				picture = GFX_Portrait_ENG_BAF_Command
+				expire = "1965.1.1"
+				ideology = oligarchism
+				traits = {
+					ENG_military_command
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			remove_ideas = ENG_uncertain_future_idea
 		}
 	}
 
 	focus = {
-		id = ENG_lozenge_flag
-		prerequisite = { focus = ENG_new_flag_over_london }
+		id = ENG_puppet_monarch
+		prerequisite = { focus = ENG_consolidate_the_BAF }
 		available = {
 			custom_trigger_tooltip = {
-				tooltip = ENG_completed_by_event_tt
-				always = no
+				tooltip = ENG_has_not_killed_monarchy_tt
+				has_country_flag = ENG_monarchy_exiled_to_canada_flag
+			}
+			NOT = {
+				has_war_with = CAN
 			}
 		}
-		mutually_exclusive = { focus = ENG_orange_pennant }
-		mutually_exclusive = { focus = ENG_reichs_flag }
-		icon = GFX_focus_ENG_bavaria_over_britain
-		x = -2
+		mutually_exclusive = { focus = ENG_figurehead_presidency }
+		icon = GFX_focus_ENG_puppet_king
+		x = 1
 		y = 1
-		relative_position_id = ENG_new_flag_over_london
-		cost = 0
+		relative_position_id = ENG_consolidate_the_BAF
+		cost = 5
 		ai_will_do = {
 			factor = 1
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
-			effect_tooltip = {
-				add_stability = -0.05
-				add_political_power = 100
-				custom_effect_tooltip = generic_skip_one_line_tt
-				set_cosmetic_tag = ENG_BAVARIAN
+			country_event = ukrework.55
+			CAN = {
+				country_event = ukrework.56
 			}
 		}
 	}
 
 	focus = {
-		id = ENG_reclaim_the_homeland
-		prerequisite = { focus = ENG_lozenge_flag focus = ENG_orange_pennant focus = ENG_reichs_flag }
-		mutually_exclusive = { focus = ENG_reclaim_the_homeland_peacefully }
+		id = ENG_figurehead_presidency
+		prerequisite = { focus = ENG_consolidate_the_BAF }
 		available = {
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = HOL_wilhelmina
-						ruling_only = yes
-					}
-				}
-				HOL = {
-					all_core_state = {
-						NOT = {
-							is_controlled_by = ROOT
-						}
-					}
-					OR = {
-						exists = no
-						has_completed_focus = HOL_legacy_of_the_de_zeven_provincien_mutiny
-					}
-				}
-			}
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = BAY_rupprecht_of_bavaria
-						ruling_only = yes
-					}
-				}
-				BAY = {
-					all_core_state = {
-						NOT = {
-							is_controlled_by = ROOT
-						}
-					}
-				}
-			}
-			IF = {
-				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
-				}
-				GER = {
-					all_core_state = {
-						NOT = {
-							is_controlled_by = ROOT
-						}
-					}
-					OR = {
-						exists = no
-						NOT = {
-							OR = {
-								has_completed_focus = GER_monarchist_sentiment
-								has_completed_focus = GER_oppose_hitler
-							}
-						}
-					}
-				}
-			}
-			else = {
-				custom_trigger_tooltip = {
-					tooltip = ENG_reclaim_the_homeland_trigger_tt
-				}
-			}
 		}
-		bypass = {
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = HOL_wilhelmina
-						ruling_only = yes
-					}
-				}
-				HOL = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = BAY_rupprecht_of_bavaria
-						ruling_only = yes
-					}
-				}
-				BAY = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-			IF = {
-				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
-				}
-				GER = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-		}
-		icon = GFX_goal_generic_more_territorial_claims
+		mutually_exclusive = { focus = ENG_puppet_monarch }
+		icon = GFX_focus_ENG_figurehead_president
 		x = -1
 		y = 1
-		relative_position_id = ENG_orange_pennant
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			IF = {
-				limit = {
-					NOT = {
-						OR = {
-							has_country_leader = {
-								character = BAY_rupprecht_of_bavaria
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = HOL_wilhelmina
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_wilhelm_iii
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_victoria
-								ruling_only = yes
-							}
-						}
-					}
-				}
-				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
-				effect_tooltip = {
-					every_state = {
-						limit = {
-							is_core_of = HOL
-						}
-						add_claim_by = ROOT
-					}
-					every_country = {
-						limit = {
-							any_controlled_state = {
-								is_core_of = HOL
-							}
-						}
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = annex_everything
-							}
-						}
-					}
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = ENG_new_flag_over_london_2_tt
-				effect_tooltip = {
-					every_state = {
-						limit = {
-							is_core_of = GER
-						}
-						add_claim_by = ROOT
-					}
-					every_country = {
-						limit = {
-							any_controlled_state = {
-								is_core_of = GER
-							}
-						}
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = annex_everything
-							}
-						}
-					}
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = ENG_new_flag_over_london_3_tt
-				effect_tooltip = {
-					every_state = {
-						limit = {
-							is_core_of = BAY
-						}
-						add_claim_by = ROOT
-					}
-					every_country = {
-						limit = {
-							any_controlled_state = {
-								is_core_of = BAY
-							}
-						}
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = annex_everything
-							}
-						}
-					}
-				}
-			}
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = HOL_wilhelmina
-						ruling_only = yes
-					}
-				}
-				every_state = {
-					limit = {
-						is_core_of = HOL
-					}
-					add_claim_by = ROOT
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				every_country = {
-					limit = {
-						any_controlled_state = {
-							is_core_of = HOL
-						}
-					}
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = annex_everything
-						}
-					}
-				}
-			}
-			IF = {
-				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
-				}
-				every_state = {
-					limit = {
-						is_core_of = GER
-					}
-					add_claim_by = ROOT
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				every_country = {
-					limit = {
-						any_controlled_state = {
-							is_core_of = GER
-						}
-					}
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = annex_everything
-						}
-					}
-				}
-			}
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = BAY_rupprecht_of_bavaria
-						ruling_only = yes
-					}
-				}
-				every_state = {
-					limit = {
-						is_core_of = BAY
-					}
-					add_claim_by = ROOT
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				every_country = {
-					limit = {
-						any_controlled_state = {
-							is_core_of = BAY
-						}
-					}
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = annex_everything
-						}
-					}
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_reclaim_the_homeland_peacefully
-		prerequisite = { focus = ENG_orange_pennant focus = ENG_reichs_flag }
-		mutually_exclusive = { focus = ENG_reclaim_the_homeland }
-		available = {
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = HOL_wilhelmina
-						ruling_only = yes
-					}
-				}
-				HOL = {
-					OR = {
-						has_government = democratic
-						has_government = neutrality
-					}
-					NOT = {
-						has_war_with = ROOT
-					}
-					OR = {
-						is_subject = no
-						is_subject_of = ROOT
-					}
-					exists = yes
-				}
-			}
-			IF = {
-				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
-				}
-				GER = {
-					OR = {
-						has_government = democratic
-						has_government = neutrality
-					}
-					NOT = {
-						has_war_with = ROOT
-					}
-					OR = {
-						is_subject = no
-						is_subject_of = ROOT
-					}
-					exists = yes
-				}
-			}
-			else = {
-				custom_trigger_tooltip = {
-					tooltip = ENG_reclaim_the_homeland_trigger_tt
-				}
-			}
-		}
-		bypass = {
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = HOL_wilhelmina
-						ruling_only = yes
-					}
-				}
-				HOL = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-			IF = {
-				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
-				}
-				GER = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-		}
-		icon = GFX_goal_generic_intelligence_exchange
-		x = 1
-		y = 1
-		relative_position_id = ENG_orange_pennant
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			IF = {
-				limit = {
-					NOT = {
-						OR = {
-							has_country_leader = {
-								character = HOL_wilhelmina
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_wilhelm_iii
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_victoria
-								ruling_only = yes
-							}
-						}
-					}
-				}
-				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
-				effect_tooltip = {
-					HOL = {
-						country_event = {
-							days = 1
-							id = ukrework.35
-						}
-					}
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				custom_effect_tooltip = ENG_new_flag_over_london_2_tt
-				effect_tooltip = {
-					GER = {
-						country_event = {
-							days = 1
-							id = ukrework.35
-						}
-					}
-				}
-			}
-			IF = {
-				limit = {
-					has_country_leader = {
-						character = HOL_wilhelmina
-						ruling_only = yes
-					}
-				}
-				HOL = {
-					country_event = {
-						days = 1
-						id = ukrework.35
-					}
-				}
-			}
-			IF = {
-				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
-				}
-				GER = {
-					country_event = {
-						days = 1
-						id = ukrework.35
-					}
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_restore_bavaria
-		prerequisite = { focus = ENG_reclaim_the_homeland }
-		prerequisite = { focus = ENG_lozenge_flag }
-		mutually_exclusive = {  }
-		available = {
-			BAY = {
-				OR = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-					AND = {
-						is_subject_of = ROOT
-						has_autonomy_state = autonomy_integrated_puppet
-					}
-				}
-			}
-		}
-		icon = GFX_focus_ENG_retake_bayern
-		x = -1
-		y = 1
-		relative_position_id = ENG_reclaim_the_homeland
+		relative_position_id = ENG_consolidate_the_BAF
 		cost = 5
 		ai_will_do = {
 			factor = 1
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
-			every_state = {
-				limit = {
-					is_core_of = BAY
-				}
-				add_core_of = ROOT
-			}
-			IF = {
-				limit = {
-					BAY = {
-						is_subject_of = ROOT
-					}
-				}
-				annex_country = {
-					target = BAY
-					transfer_troops = yes
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_stability = 0.05
-			set_cosmetic_tag = ENG_BAVARIAN_UNION
-		}
-	}
-
-	focus = {
-		id = ENG_unite_south_germany
-		prerequisite = { focus = ENG_restore_bavaria }
-		will_lead_to_war_with = AUS
-		will_lead_to_war_with = SWI
-		mutually_exclusive = {  }
-		available = {
-		}
-		bypass = {
-			AUS = {
-				all_core_state = {
-					controller = {
-						OR = {
-							is_subject_of = ROOT
-							tag = ROOT
-						}
-					}
-				}
-			}
-			SWI = {
-				all_core_state = {
-					controller = {
-						OR = {
-							is_subject_of = ROOT
-							tag = ROOT
-						}
-					}
-				}
-			}
-		}
-		icon = GFX_focus_ENG_unite_south_germany
-		x = -3
-		y = 1
-		relative_position_id = ENG_restore_bavaria
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						is_core_of = AUS
-						is_core_of = SWI
-					}
-				}
-				add_claim_by = ROOT
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			every_country = {
-				limit = {
-					NOT = {
-						OR = {
-							is_subject_of = ROOT
-							tag = ROOT
-							is_in_faction_with = ROOT
-						}
-					}
-					any_controlled_state = {
-						OR = {
-							is_core_of = AUS
-							is_core_of = SWI
-						}
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_hofbraeuhaus_breweries
-		prerequisite = { focus = ENG_restore_bavaria }
-		mutually_exclusive = {  }
-		available = {
-			controls_state = 52
-		}
-		bypass = {
-		}
-		icon = GFX_focus_ENG_hofbraeuhaus_breweries
-		x = 0
-		y = 1
-		relative_position_id = ENG_restore_bavaria
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			52 = {
-				add_dynamic_modifier = {
-					modifier = ENG_hofbrauhaus_modifier
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_category_tooltip = UK_hofbrauhaus_international_decisions
-			custom_effect_tooltip = ENG_hofbraeuhaus_breweries_tt
-			add_political_power = 50
-		}
-	}
-
-	focus = {
-		id = ENG_royal_marriage_habsburg
-		prerequisite = { focus = ENG_unite_south_germany }
-		mutually_exclusive = { focus = ENG_meet_the_pope }
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_controls_habsburg_areas_tt
-				controls_state = 3
-				controls_state = 4
-			}
-		}
-		bypass = {
-		}
-		icon = GFX_focus_AUS_reclaim_habsburg
-		x = -1
-		y = 1
-		relative_position_id = ENG_unite_south_germany
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			country_event = ukrework.39
-			add_political_power = 50
-		}
-	}
-
-	focus = {
-		id = ENG_restore_austria
-		prerequisite = { focus = ENG_royal_marriage_habsburg }
-		mutually_exclusive = {  }
-		available = {
-			AUS = {
-				exists = no
-				all_core_state = {
-					is_controlled_by = ROOT
-				}
-			}
-		}
-		bypass = {
-		}
-		icon = GFX_focus_AUS_legacy_of_the_empire
-		x = 0
-		y = 1
-		relative_position_id = ENG_royal_marriage_habsburg
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					is_core_of = AUS
-				}
-				add_core_of = ROOT
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_ideas = ENG_reclaim_the_habsburg_empire_idea
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_category_tooltip = UK_integrate_habsburg_lands_decisions
-		}
-	}
-
-	focus = {
-		id = ENG_a_union_of_european_states
-		prerequisite = { focus = ENG_restore_austria }
-		mutually_exclusive = {  }
-		available = {
-			controls_state = 6
-		}
-		bypass = {
-		}
-		allow_branch = {
-			has_country_flag = ENG_AUS_can_form_EU_flag
-		}
-		icon = GFX_focus_ENG_union_of_european_states
-		x = 0
-		y = 1
-		relative_position_id = ENG_restore_austria
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			unlock_decision_tooltip = form_european_union
-		}
-	}
-
-	focus = {
-		id = ENG_meet_the_pope
-		prerequisite = { focus = ENG_unite_south_germany }
-		mutually_exclusive = { focus = ENG_royal_marriage_habsburg }
-		available = {
-		}
-		bypass = {
-		}
-		icon = GFX_focus_generic_vatican_state
-		x = 1
-		y = 1
-		relative_position_id = ENG_unite_south_germany
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			country_event = ukrework.41
-			add_political_power = 100
-		}
-	}
-
-	focus = {
-		id = ENG_restore_the_hre
-		prerequisite = { focus = ENG_meet_the_pope }
-		mutually_exclusive = {  }
-		available = {
-			controls_state = 64
-			controls_state = 52
-			controls_state = 4
-		}
-		bypass = {
-		}
-		icon = GFX_focus_POL_habsburg
-		x = 0
-		y = 1
-		relative_position_id = ENG_meet_the_pope
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_ideas = ENG_pan_germanicism_idea
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = form_hre
-		}
-	}
-
-	focus = {
-		id = ENG_the_real_roman_empire
-		prerequisite = { focus = ENG_restore_the_hre }
-		mutually_exclusive = {  }
-		available = {
-			controls_state = 2
-		}
-		bypass = {
-		}
-		allow_branch = {
-			has_country_flag = ENG_HRE_can_form_real_roman_empire_flag
-		}
-		icon = GFX_focus_ENG_wtf_have_i_done
-		x = 0
-		y = 1
-		relative_position_id = ENG_restore_the_hre
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			unlock_decision_tooltip = form_roman_empire
-		}
-	}
-
-	focus = {
-		id = ENG_restore_netherlands
-		prerequisite = { focus = ENG_reclaim_the_homeland focus = ENG_reclaim_the_homeland_peacefully }
-		prerequisite = { focus = ENG_orange_pennant }
-		mutually_exclusive = {  }
-		available = {
-			HOL = {
-				OR = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-					AND = {
-						is_subject_of = ROOT
-						has_autonomy_state = autonomy_integrated_puppet
-					}
-				}
-			}
-		}
-		icon = GFX_focus_ENG_retake_nederland
-		x = 1
-		y = 1
-		relative_position_id = ENG_reclaim_the_homeland
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					is_core_of = HOL
-				}
-				add_core_of = ROOT
-			}
-			IF = {
-				limit = {
-					HOL = {
-						is_subject_of = ROOT
-					}
-				}
-				annex_country = {
-					target = HOL
-					transfer_troops = yes
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_stability = 0.05
-			set_cosmetic_tag = ENG_UK_NETHERLANDS_UNION
-		}
-	}
-
-	focus = {
-		id = ENG_correct_the_treaty_of_london
-		prerequisite = { focus = ENG_restore_netherlands }
-		mutually_exclusive = {  }
-		available = {  }
-		icon = GFX_focus_ENG_correct_treaty_of_london
-		x = 0
-		y = 1
-		relative_position_id = ENG_restore_netherlands
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						is_core_of = BEL
-						is_core_of = LUX
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					OR = {
-						controls_state = 6
-						controls_state = 8
-					}
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_category_tooltip = UK_netherland_decisions
-		}
-	}
-
-	focus = {
-		id = ENG_recognize_the_low_germans
-		prerequisite = { focus = ENG_correct_the_treaty_of_london }
-		mutually_exclusive = { focus = ENG_recognize_the_frisians }
-		available = {
-			controls_state = 36
-		}
-		icon = GFX_focus_ENG_befriend_low_germans
-		x = 1
-		y = 1
-		relative_position_id = ENG_correct_the_treaty_of_london
-		cost = 2
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_ideas = ENG_north_german_minority_embraced_idea
-		}
-	}
-
-	focus = {
-		id = ENG_liberate_low_germans
-		prerequisite = { focus = ENG_recognize_the_low_germans }
-		mutually_exclusive = { focus = ENG_take_back_orange_and_nassau }
-		available = {}
-		icon = GFX_focus_GER_tend_to_the_future
-		x = 1
-		y = 1
-		relative_position_id = ENG_recognize_the_low_germans
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 56
-						state = 59
-						state = 909
-						state = 58
-						state = 57
-						state = 64
-						state = 62
-						state = 61
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					OR = {
-						controls_state = 56
-						controls_state = 59
-						controls_state = 909
-						controls_state = 58
-						controls_state = 57
-						controls_state = 64
-						controls_state = 62
-						controls_state = 61
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_integrate_low_germany
-		}
-	}
-
-	focus = {
-		id = ENG_free_pennsylvania_dutch
-		prerequisite = { focus = ENG_liberate_low_germans }
-		mutually_exclusive = {  }
-		available = {}
-		icon = GFX_focus_ENG_free_the_pennsylvania_dutch
-		x = 0
-		y = 1
-		relative_position_id = ENG_liberate_low_germans
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			360 = {
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					controls_state = 360
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_integrate_pennsylvania
-		}
-	}
-
-	focus = {
-		id = ENG_recognize_the_frisians
-		prerequisite = { focus = ENG_correct_the_treaty_of_london }
-		mutually_exclusive = { focus = ENG_recognize_the_low_germans }
-		available = {
-			controls_state = 36
-		}
-		icon = GFX_focus_ENG_befriend_frisians
-		x = -1
-		y = 1
-		relative_position_id = ENG_correct_the_treaty_of_london
-		cost = 2
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_ideas = ENG_frisian_minority_embraced_idea
-		}
-	}
-
-	focus = {
-		id = ENG_liberate_frisia
-		prerequisite = { focus = ENG_recognize_the_frisians }
-		mutually_exclusive = { focus = ENG_take_back_orange_and_nassau }
-		available = {}
-		icon = GFX_focus_ENG_liberate_friesland
-		x = -1
-		y = 1
-		relative_position_id = ENG_recognize_the_frisians
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 56
-						state = 59
-						state = 909
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					OR = {
-						controls_state = 56
-						controls_state = 59
-						controls_state = 909
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_integrate_frisia
-		}
-	}
-
-	focus = {
-		id = ENG_take_back_orange_and_nassau
-		prerequisite = { focus = ENG_recognize_the_frisians focus = ENG_recognize_the_low_germans }
-		mutually_exclusive = { focus = ENG_liberate_low_germans }
-		mutually_exclusive = { focus = ENG_liberate_frisia }
-		available = {}
-		icon = GFX_focus_ENG_take_back_orange_nassau
-		x = 1
-		y = 1
-		relative_position_id = ENG_recognize_the_frisians
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 21
-						state = 51
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					OR = {
-						controls_state = 21
-						controls_state = 51
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_integrate_nassau
-			unlock_decision_tooltip = UK_integrate_orange
-		}
-	}
-
-	focus = {
-		id = ENG_reclaim_new_amsterdam
-		prerequisite = { focus = ENG_take_back_orange_and_nassau focus = ENG_liberate_frisia }
-		mutually_exclusive = {  }
-		available = {}
-		icon = GFX_focus_ENG_reclaim_new_amsterdam
-		x = 1
-		y = 1
-		relative_position_id = ENG_liberate_frisia
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 358
-						state = 359
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					OR = {
-						controls_state = 358
-						controls_state = 359
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_integrate_new_amsterdam
-		}
-	}
-	
-	focus = {
-		id = ENG_restore_deutschland
-		prerequisite = { focus = ENG_reclaim_the_homeland focus = ENG_reclaim_the_homeland_peacefully }
-		prerequisite = { focus = ENG_reichs_flag }
-		mutually_exclusive = {  }
-		available = {
-			GER = {
-				OR = {
-					all_core_state = {
-						is_controlled_by = ROOT
-					}
-					AND = {
-						is_subject_of = ROOT
-						has_autonomy_state = autonomy_integrated_puppet
-					}
-				}
-			}
-		}
-		icon = GFX_focus_ENG_retake_deutschland
-		x = 1
-		y = 1
-		relative_position_id = ENG_reclaim_the_homeland_peacefully
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_political_power = 250
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_category_tooltip = UK_integrate_the_german_kingdoms_decisions
-		}
-	}
-
-	focus = {
-		id = ENG_formalize_kaiserreich
-		prerequisite = { focus = ENG_restore_deutschland }
-		mutually_exclusive = {  }
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_has_united_the_kaiserreichs_tt
-				has_country_flag = ENG_has_united_the_kaiserreichs
-			}
-		}
-		icon = GFX_focus_GER_monarchy_compromise
-		x = 3
-		y = 1
-		relative_position_id = ENG_restore_deutschland
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			country_event = ukrework.42
-		}
-	}
-
-	focus = {
-		id = ENG_retake_ost_preussen
-		prerequisite = { focus = ENG_formalize_kaiserreich }
-		mutually_exclusive = {  }
-		available = {}
-		icon = GFX_focus_GER_restore_eastern_imperial_possessions
-		x = 1
-		y = 1
-		relative_position_id = ENG_formalize_kaiserreich
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 85
-						state = 807
-						state = 86
-						state = 762
-						state = 188
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					OR = {
-						controls_state = 85
-						controls_state = 807
-						controls_state = 86
-						controls_state = 762
-						controls_state = 188
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_expand_prussia
-		}
-	}
-
-	focus = {
-		id = ENG_retake_north_schleswig
-		prerequisite = { focus = ENG_retake_ost_preussen }
-		mutually_exclusive = {  }
-		available = {}
-		icon = GFX_focus_generic_invade_denmark
-		x = 0
-		y = 1
-		relative_position_id = ENG_retake_ost_preussen
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 912
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					OR = {
-						controls_state = 912
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_integrate_north_schleswig
-		}
-	}
-
-	focus = {
-		id = ENG_retake_alsace_lorraine
-		prerequisite = { focus = ENG_formalize_kaiserreich }
-		mutually_exclusive = {  }
-		available = {}
-		icon = GFX_focus_GER_reinstate_imperial_possessions
-		x = -1
-		y = 1
-		relative_position_id = ENG_formalize_kaiserreich
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 28
-						state = 8
-					}
-				}
-				add_claim_by = ROOT
-			}
-			every_country = {
-				limit = {
-					NOT = {
-						tag = ROOT
-						is_subject_of = ROOT
-					}
-					OR = {
-						controls_state = 28
-						controls_state = 8
-					}
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = annex_everything
-					}
-				}
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = UK_integrate_alsace_lorraine
-			unlock_decision_tooltip = UK_integrate_luxembourg_german
-		}
-	}
-
-	focus = {
-		id = ENG_schlieffen_but_better
-		prerequisite = { focus = ENG_retake_alsace_lorraine }
-		mutually_exclusive = {  }
-		available = {
-			OR = {
-				HOL = {
-					exists = yes
-					NOT = {
-						is_subject_of = ROOT
-						has_war_with = ROOT
-						is_in_faction_with = ROOT
-					}
-				}
-				BEL = {
-					exists = yes
-					NOT = {
-						is_subject_of = ROOT
-						has_war_with = ROOT
-						is_in_faction_with = ROOT
-					}
-				}
-				LUX = {
-					exists = yes
-					NOT = {
-						is_subject_of = ROOT
-						has_war_with = ROOT
-						is_in_faction_with = ROOT
-					}
-				}
-			}
-		}
-		bypass = {
-			HOL = {
-				OR = {
-					exists = no
-					is_subject_of = ROOT
-					has_war_with = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-			BEL = {
-				OR = {
-					exists = no
-					is_subject_of = ROOT
-					has_war_with = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-			LUX = {
-				OR = {
-					exists = no
-					is_subject_of = ROOT
-					has_war_with = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-		}
-		icon = GFX_focus_GER_schlieffen_once_more
-		x = 0
-		y = 1
-		relative_position_id = ENG_retake_alsace_lorraine
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			HOL = {
-				IF = {
-					limit = {
-						exists = yes
-						NOT = {
-							is_subject_of = ROOT
-							has_war_with = ROOT
-							is_in_faction_with = ROOT
-						}
-					}
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = puppet_wargoal_focus
-						}
-					}
-				}
-			}
-			BEL = {
-				IF = {
-					limit = {
-						exists = yes
-						NOT = {
-							is_subject_of = ROOT
-							has_war_with = ROOT
-							is_in_faction_with = ROOT
-						}
-					}
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = puppet_wargoal_focus
-						}
-					}
-				}
-			}
-			LUX = {
-				IF = {
-					limit = {
-						exists = yes
-						NOT = {
-							is_subject_of = ROOT
-							has_war_with = ROOT
-							is_in_faction_with = ROOT
-						}
-					}
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = puppet_wargoal_focus
-						}
-					}
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_liberate_german_americans
-		prerequisite = { focus = ENG_schlieffen_but_better focus = ENG_retake_north_schleswig }
-		mutually_exclusive = {  }
-		available = { 
-			USA = {
-				exists = yes
-				NOT = {
-					is_subject_of = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-		}
-		bypass = {
-			USA = {
-				OR = {
-					exists = no
-					is_subject_of = ROOT
-				}
-			}
-		}
-		icon = GFX_focus_ENG_liberate_german_americans
-		x = -1
-		y = 1
-		relative_position_id = ENG_retake_north_schleswig
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			create_wargoal = {
-				target = USA
-				type = annex_everything
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_establish_a_german_american_state
-		prerequisite = { focus = ENG_liberate_german_americans }
-		mutually_exclusive = { focus = ENG_thirteen_german_colonies }
-		available = { 
-			USA = {
-				OR = {
-					AND = {
-						exists = no
-						any_core_state = {
-							is_controlled_by = ROOT
-						}
-					}
-					is_puppet_of = ROOT
-				}
-			}
-		}
-		bypass = {
-		}
-		icon = GFX_focus_ENG_new_german_american_state
-		x = -1
-		y = 1
-		relative_position_id = ENG_liberate_german_americans
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			IF = {
-				limit = {
-					USA = {
-						exists = no
-					}
-				}
-				release_autonomy = {
-				    target = USA
-				    autonomy_state = autonomy_puppet
-				    freedom_level = 0.5
-				}
-			}
-			USA = {
-				set_cosmetic_tag = USA_GERMAN_AMERICAN
-				hidden_effect = {
-					set_politics = {
-					    ruling_party = neutrality
-					    elections_allowed = no
-					}
-					set_party_name = {
-						ideology = neutrality
-						name = ENG_hohenzollern_haus
-						long_name = ENG_hohenzollern_haus_long
-					}
-					every_possible_country = {
-						limit = { has_character = GER_wilhelm_iv }
-						random_character = {
-							limit = { is_character = GER_wilhelm_iv }
-							set_nationality = USA
-						}
-					}
-					GER_wilhelm_iv = {
-						add_country_leader_role = {
-							country_leader = {
-								expire = "1965.1.1"
-								ideology = despotism
-								traits = {
-									USA_prince_of_america
-								}
-							}
-							promote_leader = yes
-						}
-						set_character_name = ENG_prince_wilhelm_iv
-					}
-					set_popularities = {
-						democratic = 48
-						neutrality = 49
-						fascism = 0
-						communism = 3
-					}
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-			}
-			country_event = ukrework.48
-		}
-	}
-
-	focus = {
-		id = ENG_thirteen_german_colonies
-		prerequisite = { focus = ENG_liberate_german_americans }
-		mutually_exclusive = { focus = ENG_establish_a_german_american_state }
-		available = { 
-			USA = {
-				exists = no
-				any_core_state = {
-					is_controlled_by = ROOT
-				}
-			}
-		}
-		bypass = {
-		}
-		icon = GFX_focus_ENG_german_american_colony
-		x = 1
-		y = 1
-		relative_position_id = ENG_liberate_german_americans
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			unlock_decision_category_tooltip = UK_german_usa_decisions
-			custom_effect_tooltip = ENG_thirteen_german_colonies_tt
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_political_power = 100
-		}
-	}
-
-	focus = {
-		id = ENG_reinstate_democratic_elections
-		prerequisite = { focus = ENG_restore_deutschland }
-		mutually_exclusive = {  }
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = ENG_kaiserreich_democracy_tt
-				has_country_flag = ENG_GER_return_to_democratic_ideals_flag
-			}
-			democratic > 0.4
-		}
-		select_effect = {
-			country_event = {
-			    id = ukrework_improvements.2
-			    days = 3
-			}
-		}
-		allow_branch = {
-			has_country_flag = ENG_GER_return_to_democratic_ideals_flag
-		}
-		icon = GFX_focus_ENG_german_british_democracy
-		x = 0
-		y = 1
-		relative_position_id = ENG_restore_deutschland
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			hidden_effect = {
-				set_politics = {
-					ruling_party = democratic
-    				elections_allowed = yes
-					last_election = "1935.11.14"
-    				election_frequency = 60
-				}
-				set_party_name = { ideology = democratic long_name = ENG_parliament_german name = ENG_parliament_german }
-				create_country_leader = {
-					name = ENG_parliament_german
-					picture = GFX_portrait_eng_fallen_government
-					expire = "1965.1.1"
-					ideology = liberalism
-				}
-				country_event = {
-					id = ukrework.47
-					days = 14
-				}
-				country_event = ukrework.45
-				country_event = ukrework.46
-			}
-			custom_effect_tooltip = ENG_reinstate_democratic_elections_tt
+			add_ideas = ENG_puppet_president
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_popularity = {
 				ideology = democratic
-				popularity = 0.1
+				popularity = 0.05
 			}
-			add_stability = 0.05
-			add_political_power = 100
 		}
 	}
 
 	focus = {
-		id = ENG_the_union_jack_forever
-		prerequisite = { focus = ENG_new_monarchy }
+		id = ENG_conscription_increase
+		prerequisite = { focus = ENG_figurehead_presidency focus = ENG_puppet_monarch }
 		available = {
 			OR = {
-				has_country_leader = {
-					character = BAY_rupprecht_of_bavaria
-					ruling_only = yes
-				}
-				has_country_leader = {
-					character = HOL_wilhelmina
-					ruling_only = yes
-				}
-				has_country_leader = {
-					character = GER_wilhelm_iii
-					ruling_only = yes
-				}
-				has_country_leader = {
-					character = GER_victoria
-					ruling_only = yes
-				}
+				has_war_support > 0.4
+				has_war = yes
 			}
 		}
-		mutually_exclusive = { focus = ENG_new_flag_over_london }
-		icon = GFX_focus_ENG_union_jack_forever
-		x = -2
+		mutually_exclusive = {  }
+		icon = GFX_focus_chi_army_reform
+		x = 1
+		y = 1
+		relative_position_id = ENG_figurehead_presidency
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_ideas = ENG_expand_conscription_budget
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_war_support = -0.05
+		}
+	}
+
+	focus = {
+		id = ENG_military_school
+		prerequisite = { focus = ENG_conscription_increase }
+		available = {
+			has_army_manpower = {
+			    size > 1500000
+			}
+			OR = {
+				has_war = yes
+				threat > 0.9
+			}
+		}
+		mutually_exclusive = {  }
+		icon = GFX_focus_generic_military_academy
+		x = 0
+		y = 1
+		relative_position_id = ENG_conscription_increase
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}	
+		completion_reward = {
+			add_research_slot = 1
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_ideas = ENG_military_school_idea
+		}
+	}
+
+	### GREATER BRITISH EMPIRE BRANCH ###
+
+	focus = {
+		id = ENG_recover_ireland
+		prerequisite = { focus = ENG_new_monarchy focus = ENG_consolidate_the_BAF }
+		available = {
+		}
+		mutually_exclusive = {  }
+		icon = GFX_focus_ENG_recover_ireland
+		x = -6
 		y = 1
 		relative_position_id = ENG_new_monarchy
+		will_lead_to_war_with = IRE
 		cost = 5
 		ai_will_do = {
 			factor = 1
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
-			country_event = ukrework.24
+			every_state = {
+				limit = {
+					is_core_of = IRE
+				}
+				add_claim_by = ROOT
+			}
+			113 = {
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = UK_reintegrate_ireland
 		}
 	}
 
@@ -20927,88 +21344,6 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_new_royal_titles
-		prerequisite = { focus = ENG_the_union_jack_forever }
-		available = {
-		}
-		icon = GFX_focus_ENG_new_royal_titles
-		x = 0
-		y = 1
-		relative_position_id = ENG_the_union_jack_forever
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			add_political_power = 50
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_ideas = ENG_new_titles_idea
-		}
-	}
-
-	focus = {
-		id = ENG_fate_of_the_lands
-		prerequisite = { focus = ENG_new_royal_titles }
-		available = {
-			controls_state = 126
-			controls_state = 122
-			controls_state = 133
-			controls_state = 119
-		}
-		icon = GFX_focus_ENG_countries_of_the_uk
-		x = 0
-		y = 1
-		relative_position_id = ENG_new_royal_titles
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			country_event = ukrework.54
-		}
-	}
-
 	### OTHER COOL FOCUSES THAT I ADDED ALSO HI IF UR SEEING THIS ###
-
-	focus = {
-		id = ENG_establish_the_overseas_territories
-		prerequisite = { focus = uk_service_focus }
-		available = {
-			date > 1944.1.1
-		}
-		mutually_exclusive = {  }
-		icon = GFX_focus_ENG_overseas_territories
-		x = 1
-		y = 1
-		relative_position_id = uk_service_focus
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_POLITICAL}	
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 696
-						state = 118
-						state = 710
-						state = 711
-						state = 712
-						state = 703
-						state = 704
-						state = 299
-						state = 720
-					}
-					is_controlled_by = ROOT
-					is_owned_by = ROOT
-				}
-				add_core_of = ROOT
-			}
-		}
-	}
 
 }

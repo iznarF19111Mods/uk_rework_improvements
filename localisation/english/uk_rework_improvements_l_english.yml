@@ -1,23 +1,30 @@
 ﻿l_english:
   # New Decisions
   UK_integrate_austria: "Re-Establish the §HKingdom of Austria§!"
+  ENG_victoria_established_uk_german_democracy_tt: "Our Kaiserin Victoria established an Anglo-German democracy"
 
   # Character Traits
   victoria_ii: "Kaiserin Victoria Louise"
   victoria_louise: "Kaiserin Victoria Louise"
   kaiserin_of_the_british_and_german_people: "Kaiserin of the British and German people"
+  konigin_van_britten_en_nederlanders: "Konigin van de Britten en Nederlanders"
 
   # Ideas
   ENG_democracy_rules: "Democracy Rising"
+  ENG_wilhelmina: "Wilhelmina"
 
   # Events
   ukrework_improvements.1:0 "Victoria's Coronation"
-  ukrework_improvements.1.t:0 "The Coronation of Empress Victoria"
+  ukrework_improvements.1.t:0 "The Coronation of Kaiserin Victoria"
   ukrework_improvements.1.desc:0 "Today, after re-establishing all German Kingdoms, Empress Victoria was crowned Kaiserin von Großbritannien und Deutschland in Berlin, cementing her rule over Germany.\nThis ceremony only marks the first step towards a formal union of Great Britain and Germany, which will be discussed in the near future."
   ukrework_improvements.1.a:0 "Long live Kaiserin Victoria II!"
   ukrework_improvements.2:0 "Path of Democracy"
-  ukrework_improvements.2.t:0 "The Future of the Germano-British Democracy"
+  ukrework_improvements.2.t:0 "The Future of the Anglo-German Democracy"
   ukrework_improvements.2.desc:0 "Along with the elections to parliament, marking the return of democracy to our nation, our people will decide about wether or not we shall keep our monarch as ceremonial head of state?"
   ukrework_improvements.2.a:0 "Yes, let's keep a royal representative."
-	ukrework_improvements.2.a.tt: "Depending on our §Hcurrent monarch§!, we will gain a §Hminor buff§!."
+	ukrework_improvements.2.a.tt: "Depending on our §Hcurrent monarch§!, we will gain a §Hminor boost§! to our nation."
   ukrework_improvements.2.b:0 "No, abolish the Monarchy all together!"
+  ukrework_improvements.3:0 "Victoria's Return"
+  ukrework_improvements.3.t:0 "Victoria Returns Home"
+  ukrework_improvements.3.desc:0 "All over Germany, the people call for Victoria to recreate the German Empire, praising her achievements."
+  ukrework_improvements.3.a:0 "That's what I intended."

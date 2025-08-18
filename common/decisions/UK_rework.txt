@@ -803,9 +803,17 @@ UK_parliament_decisions = {
 				}
 				has_completed_focus = ENG_work_with_the_tuc
 				has_government = communism
-				AND = {
-					has_country_flag = ENG_GER_return_to_democratic_ideals_flag
-					has_country_leader_with_trait = kaiserin_of_the_british_and_german_people
+				custom_trigger_tooltip = {
+					tooltip = {
+						localization_key = ENG_victoria_established_uk_german_democracy_tt
+					}
+					AND = {
+						has_country_flag = ENG_GER_return_to_democratic_ideals_flag
+						OR = {
+							has_idea = victoria_ii
+							has_country_leader_with_trait = kaiserin_of_the_british_and_german_people
+						}
+					}
 				}
 			}
 			custom_trigger_tooltip = {
@@ -1743,6 +1751,16 @@ UK_integrate_the_german_kingdoms_decisions = {
 						}
 					}
 					country_event = ukrework_improvements.1
+				}
+				every_state = {
+					limit = {
+						is_core_of = GER
+						NOT = {
+							is_core_of = ENG
+						}
+						is_controlled_by = ENG
+					}
+					add_core_of = ENG
 				}
 			}
 			add_stability = 0.05
@@ -4071,7 +4089,7 @@ UK_motorways = {
 						free_building_slots = {
 							building = infrastructure
 							size > 0
-							include_locked = yes
+							#include_locked = yes
 						}
 					}
 					add_building_construction = {

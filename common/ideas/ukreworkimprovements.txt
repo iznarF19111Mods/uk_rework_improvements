@@ -61,6 +61,36 @@ ideas = {
 			traits = { popular_figurehead2 }
 		}
 
+		ENG_wilhelmina = {
+			allowed = {
+				original_tag = ENG
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			picture = HOL_wilhelmina
+
+			removal_cost = -1
+
+			traits = {
+				popular_figurehead
+				konigin_van_britten_en_nederlanders
+			}
+		}
+
 		ENG_democracy_rules = {
 			allowed = {
 				always = no

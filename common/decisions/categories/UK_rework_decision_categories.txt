@@ -68,7 +68,10 @@ UK_integrate_the_german_kingdoms_decisions = {
 	priority = 100
 	visible = {
 		OR = {
-			has_country_leader = { character = GER_victoria }
+			AND = {
+				has_government = democratic
+				has_country_leader = { character = GER_victoria }
+			}
 			has_idea = victoria_ii
 			has_completed_focus = ENG_restore_deutschland
 		}
