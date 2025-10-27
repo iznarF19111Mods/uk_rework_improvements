@@ -1,0 +1,29 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_idea_PRE_eitel_friedrich"
+		texturefile = "gfx/interface/ideas/idea_PRE_eitel_friedrich.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_GER_wilhelm_iv"
+		texturefile = "gfx/interface/ideas/idea_GER_wilhelm_iv.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_victoria_ii"
+		texturefile = "gfx/interface/ideas/idea_kaiserin_victoria_louise.dds"
+	}
+	spriteType = {
+		name = "GFX_idea_rupprecht_of_bavaria"
+		texturefile = "gfx/interface/ideas/idea_BAY_rupprecht_of_bavaria.dds"
+	}
+
+	# Modified_Advisor_Pics
+	spriteType = {
+		name = "GFX_ENG_henry_channon"
+		texturefile = "gfx/interface/ideas/ENG_henry_channon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_ENG_max_aitken"
+		texturefile = "gfx/interface/ideas/ENG_max_aitken.dds"
+	}
+}

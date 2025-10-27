@@ -21,7 +21,6 @@ focus_tree = {
 	continuous_focus_position = { x = 0 y = 1100 }
 	default = no
 
-
 	### NATIONAL GOVERNMENT ###
 
 	focus = {
@@ -65,46 +64,7 @@ focus_tree = {
 		}
 	}
 
-
-	### DEMOCRATIC BRANCH - STEADY AS SHE GOES ###
-
-	focus = {
-		id = ENG_steady_as_she_goes
-		mutually_exclusive = { focus = ENG_a_change_in_course }
-		icon = GFX_focus_ENG_british_democracy
-
-		x = -26
-		y = 1
-		relative_position_id = ENG_national_government
-	
-		cost = 5
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				OR = {
-					has_country_flag = ENG_abdication_crisis_normal_marriage
-					has_country_flag = ENG_abdication_crisis_morganatic_marriage
-				}
-			}
-		}
-		
-		prerequisite = { focus = ENG_national_government }
-		available = { 
-			if = {
-				limit = {
-					NOT = { has_country_flag = ENG_abdication_crisis_changed_mind }
-				}
-				NOT = { has_country_flag = edward_viii_refused_to_abdicate_flag }
-			}
-		}
-		cancel_if_invalid = yes
-
-		search_filters = {FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_HISTORICAL}	
-		completion_reward = {
-			add_timed_idea = { idea = ENG_steady_as_she_goes_idea days = 365 }
-		}
-	}
+	### Economy ###
 
 	focus = {
 		id = limited_rearmament_focus
@@ -2770,6 +2730,46 @@ focus_tree = {
 	#	}
 	#}
 
+	### DEMOCRATIC BRANCH - STEADY AS SHE GOES ###
+
+	focus = {
+		id = ENG_steady_as_she_goes
+		mutually_exclusive = { focus = ENG_a_change_in_course }
+		icon = GFX_focus_ENG_british_democracy
+
+		x = -26
+		y = 1
+		relative_position_id = ENG_national_government
+	
+		cost = 5
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_country_flag = ENG_abdication_crisis_normal_marriage
+					has_country_flag = ENG_abdication_crisis_morganatic_marriage
+				}
+			}
+		}
+		
+		prerequisite = { focus = ENG_national_government }
+		available = { 
+			if = {
+				limit = {
+					NOT = { has_country_flag = ENG_abdication_crisis_changed_mind }
+				}
+				NOT = { has_country_flag = edward_viii_refused_to_abdicate_flag }
+			}
+		}
+		cancel_if_invalid = yes
+
+		search_filters = {FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_HISTORICAL}	
+		completion_reward = {
+			add_timed_idea = { idea = ENG_steady_as_she_goes_idea days = 365 }
+		}
+	}
+	
 	### EMPIRE ###
 
 	focus = {
@@ -16434,6 +16434,16 @@ focus_tree = {
 						refund_political_power = yes
 					}
 				}
+				if = {
+					limit = {
+						has_completed_focus = ENG_reinstate_democratic_elections
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reinstate_democratic_elections
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
 			}
 		}
 	}
@@ -16579,6 +16589,18 @@ focus_tree = {
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_reinstate_democratic_elections
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reinstate_democratic_elections
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
 			USA = {
 				add_opinion_modifier = {
 					target = ROOT
@@ -16881,6 +16903,18 @@ focus_tree = {
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_completed_focus = ENG_reinstate_democratic_elections
+					}
+					uncomplete_national_focus = {
+						focus = ENG_reinstate_democratic_elections
+						uncomplete_children = no
+						refund_political_power = yes
+					}
+				}
+			}
 			every_country = {
 				limit = {
 					capital_scope = {
@@ -17499,6 +17533,10 @@ focus_tree = {
 		prerequisite = { focus = ENG_britannia_for_people }
 		available = {
 			neutrality > .6
+			custom_trigger_tooltip = {
+				tooltip = ENG_new_monarchy_possible_tt
+				NOT = { has_country_flag = ENG_nobody_wants_our_throne_flag }
+			}
 		}
 		mutually_exclusive = { focus = ENG_reopen_national_elections }
 		icon = GFX_focus_ENG_new_monarchy
@@ -17542,6 +17580,14 @@ focus_tree = {
 							}
 							has_country_leader = {
 								character = "Victoria II"
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = GER_wilhelm_iv
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = PRE_eitel_friedrich
 								ruling_only = yes
 							}
 							has_country_leader = {
@@ -17611,7 +17657,11 @@ focus_tree = {
 		id = ENG_the_union_jack_forever
 		prerequisite = { focus = ENG_new_monarchy }
 		available = {
-			OR = {
+			OR = {			
+				custom_trigger_tooltip = {
+					tooltip = ENG_promised_unionjack_return_tt
+					has_country_flag = ENG_promised_unionjack_return
+				}
 				has_country_leader = {
 					character = BAY_rupprecht_of_bavaria
 					ruling_only = yes
@@ -17704,13 +17754,31 @@ focus_tree = {
 					character = HOL_wilhelmina
 					ruling_only = yes
 				}
-				has_country_leader = {
-					character = GER_wilhelm_iii
-					ruling_only = yes
+			#	has_country_leader = {
+				#	character = GER_wilhelm_iii
+				#	ruling_only = yes
+				#}
+				#has_country_leader = {
+				#	character = PRE_eitel_friedrich
+				#	ruling_only = yes
+				#}
+				#has_country_leader = {
+				#	character = GER_victoria
+				#	ruling_only = yes
+				#}
+				#has_country_leader = {
+				#	character = GER_wilhelm_iv
+				#	ruling_only = yes
+			#	}
+				custom_trigger_tooltip = {
+					tooltip = ENG_has_hohenzollern_monarch_tt
+					has_country_leader_with_trait = house_of_hohenzollern_member
 				}
-				has_country_leader = {
-					character = GER_victoria
-					ruling_only = yes
+			}
+			NOT = {
+				custom_trigger_tooltip = {
+					tooltip = ENG_promised_unionjack_return_tt
+					has_country_flag = ENG_promised_unionjack_return
 				}
 			}
 		}
@@ -17737,14 +17805,7 @@ focus_tree = {
 								character = HOL_wilhelmina
 								ruling_only = yes
 							}
-							has_country_leader = {
-								character = GER_wilhelm_iii
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_victoria
-								ruling_only = yes
-							}
+							has_country_leader_with_trait = house_of_hohenzollern_member
 						}
 					}
 				}
@@ -17774,16 +17835,7 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
+					has_country_leader_with_trait = house_of_hohenzollern_member
 				}
 				country_event = ukrework.26
 			}
@@ -17892,16 +17944,7 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
+					has_country_leader_with_trait = house_of_hohenzollern_member
 				}
 				GER = {
 					all_core_state = {
@@ -17955,16 +17998,7 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
+					has_country_leader_with_trait = house_of_hohenzollern_member
 				}
 				GER = {
 					all_core_state = {
@@ -17995,14 +18029,7 @@ focus_tree = {
 								character = HOL_wilhelmina
 								ruling_only = yes
 							}
-							has_country_leader = {
-								character = GER_wilhelm_iii
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_victoria
-								ruling_only = yes
-							}
+							has_country_leader_with_trait = house_of_hohenzollern_member
 						}
 					}
 				}
@@ -18105,16 +18132,7 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
+					has_country_leader_with_trait = house_of_hohenzollern_member
 				}
 				every_state = {
 					limit = {
@@ -18197,16 +18215,7 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
+					has_country_leader_with_trait = house_of_hohenzollern_member
 				}
 				GER = {
 					OR = {
@@ -18245,16 +18254,7 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
-					}
+					has_country_leader_with_trait = house_of_hohenzollern_member
 				}
 				GER = {
 					all_core_state = {
@@ -18281,14 +18281,7 @@ focus_tree = {
 								character = HOL_wilhelmina
 								ruling_only = yes
 							}
-							has_country_leader = {
-								character = GER_wilhelm_iii
-								ruling_only = yes
-							}
-							has_country_leader = {
-								character = GER_victoria
-								ruling_only = yes
-							}
+							has_country_leader_with_trait = house_of_hohenzollern_member
 						}
 					}
 				}
@@ -18329,14 +18322,7 @@ focus_tree = {
 			IF = {
 				limit = {
 					OR = {
-						has_country_leader = {
-							character = GER_wilhelm_iii
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = GER_victoria
-							ruling_only = yes
-						}
+						has_country_leader_with_trait = house_of_hohenzollern_member
 					}
 				}
 				GER = {
@@ -18430,8 +18416,17 @@ focus_tree = {
 			add_stability = 0.05
 			set_cosmetic_tag = ENG_UK_NETHERLANDS_UNION
 			hidden_effect = {
-				HOL_wilhelmina = {
-					add_country_leader_trait = konigin_van_britten_en_nederlanders
+				if = {
+					limit = {
+						has_country_leader = {
+							character = HOL_wilhelmina
+							ruling_only = yes
+						}
+					}
+					
+					HOL_wilhelmina = {
+						add_country_leader_trait = konigin_van_britten_en_nederlanders
+					}
 				}
 			}
 		}
@@ -18874,8 +18869,38 @@ focus_tree = {
 		available = {
 			GER = {
 				OR = {
-					all_core_state = {
-						is_controlled_by = ROOT
+					custom_trigger_tooltip = {
+						tooltip = form_country_germany_required_states_tt
+						all_of_scopes = {
+							array = GER.core_states_at_game_start
+							#should contain the following states = {
+								#51 # Rhineland
+								#42 # Moselland
+								#56 # Weser-Ems
+								#57 # Westfalen
+								#55 # Hessen
+								#50 # Wurttemberg
+								#978 # Baden
+								#59 # Hannover
+								#58 # Holstein
+								#909 # Schleswig
+								#60 # Thuringia
+								#54 # Franken
+								#52 # Oberbayern
+								#53 # Niederbayern
+								#61 # Mecklenburg
+								#64 # Brandenberg
+								#65 # Sachsen
+								#62 # Vorpommern
+								#68 # Ostmark
+								#66 # Niederschlesien
+								#67 # Oberschlesien
+								#63 # Hinterpommern
+								#5 # Ermland-Masuren
+								#763 # Königsberg
+							#}
+							is_controlled_by = ROOT
+						}
 					}
 					AND = {
 						is_subject_of = ROOT
@@ -18903,6 +18928,9 @@ focus_tree = {
 						has_country_leader = {
 							character = GER_victoria
 							ruling_only = yes
+						}
+						NOT = {
+							has_country_leader_with_trait = kaiserin_of_the_people
 						}
 					}
 					country_event = {
@@ -19308,6 +19336,42 @@ focus_tree = {
 				    target = USA
 				    autonomy_state = autonomy_puppet
 				    freedom_level = 0.5
+				}
+			}
+			IF = {	
+				limit = {
+					has_country_leader = {
+						character = GER_wilhelm_iv
+						ruling_only = yes
+					}
+				}
+				every_possible_country = {
+					limit = { has_character = GER_victoria }
+					random_character = {
+						limit = { is_character = GER_victoria }
+						set_nationality = ENG
+					}
+				}
+				GER_victoria = {
+					add_country_leader_role = {
+					country_leader = {
+					expire = "1980.12.11"
+					ideology = despotism
+					traits = {
+						victoria_louise
+					}
+				}
+				promote_leader = yes
+			}
+		}
+			}
+			IF = {
+				limit = {
+					has_idea = GER_wilhelm_iv
+				}
+				swap_ideas = {
+					remove_idea = GER_wilhelm_iv
+					add_idea = GER_victoria_louise
 				}
 			}
 			USA = {

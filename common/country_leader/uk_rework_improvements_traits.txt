@@ -1,4 +1,7 @@
 leader_traits = {
+	house_of_hohenzollern_member = {
+		# maybe increased opinion of GER towards us?
+	}
 	victoria_louise = {
 		stability_factor = 0.10
 	}
@@ -15,5 +18,10 @@ leader_traits = {
 		naval_coordination = 0.2
 		naval_morale_factor = 0.25
 		army_morale_factor = 0.15
+	}
+	kaiser_of_ENG_and_GER = {
+		stability_weekly = 0.001
+		political_power_factor = 0.1
+		production_speed_buildings_factor = 0.05
 	}
 }

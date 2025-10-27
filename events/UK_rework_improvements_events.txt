@@ -1,0 +1,541 @@
+###########################
+# Improved UK Rework Events
+###########################
+
+add_namespace = ukrework_improvements
+# Victoria's (German) Coronation
+country_event = {
+	id = ukrework_improvements.1
+	title = ukrework_improvements.1.t
+	desc = ukrework_improvements.1.desc
+	picture = GFX_report_event_german_speech
+	
+	is_triggered_only = yes
+
+	trigger = {
+	}
+	
+	option = { # Wonderful
+		name = ukrework_improvements.1.a
+		GER_victoria = {
+			swap_country_leader_traits = {
+				remove = popular_figurehead2
+				add = victoria_louise
+			}
+			swap_country_leader_traits = {
+				remove = kaiserin_of_the_people
+				add = kaiserin_of_the_british_and_german_people
+			}
+		}
+		set_character_name = {
+			character = GER_victoria
+			name = "Victoria II"
+		}
+	}
+}
+# Path of Democracy
+country_event = {
+	id = ukrework_improvements.2
+	title = ukrework_improvements.2.t
+	desc = ukrework_improvements.2.desc
+	picture = GFX_report_event_german_reichstag_gathering
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	option = { # constitutional monarchy
+		name = ukrework_improvements.2.a
+		custom_effect_tooltip = ukrework_improvements.2.a.tt
+		hidden_effect = {
+			IF = { # Vic
+				limit = {
+					has_country_leader = {
+						character = GER_victoria
+						ruling_only = yes
+					}
+				}
+				add_ideas = {
+					victoria_ii
+				}
+			}
+			IF = { # Wil III
+				limit = {
+					has_country_leader = {
+						character = GER_wilhelm_iii
+						ruling_only = yes
+					}
+				}
+				add_ideas = {
+					GER_wilhelm_iii
+				}
+			}
+			IF = { # Rupprecht of Bavaria
+				limit = {
+					has_country_leader = {
+						character = BAY_rupprecht_of_bavaria
+						ruling_only = yes
+					}
+				}
+				add_ideas = {
+					rupprecht_of_bavaria
+				}
+			}
+			IF = { # Wilhelmina
+				limit = {
+					has_country_leader = {
+						character = HOL_wilhelmina
+						ruling_only = yes
+					}
+				}
+				add_ideas = {
+					wilhelmina
+				}
+			}
+			IF = { # Eitel Friedrich
+				limit = {
+					has_country_leader = {
+						character = PRE_eitel_friedrich
+						ruling_only = yes
+					}
+				}
+				add_ideas = {
+					eitel_friedrich
+				}
+			}
+			IF = { # Wil IV
+				limit = {
+					has_country_leader = {
+						character = GER_wilhelm_iv
+						ruling_only = yes
+					}
+				}
+				add_ideas = {
+					GER_wilhelm_iv
+				}
+			}
+		}
+	}
+	option = { # democracy without any monarch
+		name = ukrework_improvements.2.b
+		custom_effect_tooltip = generic_skip_one_line_tt
+		add_ideas = {
+			ENG_democracy_rules
+		}
+	}
+}
+# Victoria's Return Home
+country_event = {
+	id = ukrework_improvements.3
+	title = ukrework_improvements.3.t
+	desc = ukrework_improvements.3.desc
+	picture = GFX_report_event_german_speech
+	
+	is_triggered_only = yes
+
+	trigger = {
+	}
+	
+	option = { # Wonderful
+		name = ukrework_improvements.3.a
+		GER_victoria = {
+			add_country_leader_trait = kaiserin_of_the_people
+		}
+		set_character_name = {
+			character = GER_victoria
+			name = ENG_GER_victoria_louise
+		}
+	}
+}
+# Selection of a Hohenzollern Monarch
+country_event = {
+	id = ukrework_improvements.4
+	title = ukrework_improvements.4.t
+	desc = ukrework_improvements.4.desc
+	picture = GFX_report_event_royal_visit
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	option = { # Approach the eldest son (Wilhelm III)
+		ai_chance = {
+			base = 5
+		}
+		name = ukrework_improvements.4.a
+		trigger = {
+			NOT = {
+				GER = {
+					OR = {
+						has_country_leader = {
+							character = GER_wilhelm_ii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+						has_idea = GER_wilhelm_iii
+					}
+				}
+			}
+		}
+		custom_effect_tooltip = ukrework_improvements.4.a.tt
+		custom_effect_tooltip = generic_skip_one_line_tt
+			IF = {
+				limit = {
+					GER = {
+						AND = {
+							has_government = fascism
+							has_war_with = FRA
+							OR = {
+								has_war_with = POL
+								has_war_with = CZE
+							}
+						}
+					}
+				}
+				random_list = {
+					30 = { ENG_wilhelm_iii_joins_effect = yes } # Wilhelm agrees
+					70 = { country_event = { id = ukrework_improvements.5 days = 1 } } # Wilhelm refuses
+				}
+			}
+			ELSE = {
+				random_list = {
+					10 = { ENG_wilhelm_iii_joins_effect = yes } # Wilhelm agrees
+					90 = { country_event = { id = ukrework_improvements.5 days = 1 } } # Wilhelm refuses
+				}
+			}
+		#}
+	}
+
+	option = { # Don't bother him, we want a separate monarch!
+		ai_chance = {
+			base = 5
+		}
+		name = ukrework_improvements.4.b
+		trigger = {
+			NOT = {
+				any_country = {
+					OR = {
+						has_country_leader = {
+							character = GER_victoria
+							ruling_only = yes
+						}
+						has_idea = GER_victoria_louise
+						has_idea = victoria_ii
+					}
+				}
+			}
+		}
+		custom_effect_tooltip = ukrework_improvements.4.b.tt
+		hidden_effect = {
+			ENG_victoria_joins_effect = yes
+			set_country_flag = ENG_promised_unionjack_return
+		}
+	}
+}
+# Wilhelm III refuses!
+country_event = {
+	id = ukrework_improvements.5
+	title = ukrework_improvements.5.t
+	desc = ukrework_improvements.5.desc
+	picture = GFX_report_event_royal_visit
+
+	is_triggered_only = yes
+	trigger = {
+	}
+	option = { # ask his brother
+		name = ukrework_improvements.5.a
+		trigger = {
+			NOT = {
+				has_country_flag = PRE_eitel_friedrich_refused_throne
+				any_country = {
+					exists = yes
+					has_country_leader = {
+						character = PRE_eitel_friedrich
+						ruling_only = yes
+					}
+				}
+				PRE = {
+					exists = yes
+				}
+			}
+		}
+		random_list = {
+			25 = { ENG_eitel_friedrich_joins_effect = yes } # Eitel Friedrich agrees
+			75 = { set_country_flag = PRE_eitel_friedrich_refused_throne country_event = { id = ukrework_improvements.5 days = 1 } } # Eitel Friedrich refuses
+		}
+	}
+	option = { # ask his son
+		name = ukrework_improvements.5.b
+		trigger = {
+			NOT = {
+				has_country_flag = ENG_wilhelm_iv_refused_throne
+				any_country = {
+					exists = yes
+					has_country_leader = {
+						character = GER_wilhelm_iv
+						ruling_only = yes
+					}
+				}
+				GER = { # Westfeldzug has begun -> Wilhelm IV died there
+					has_government = fascism
+					has_war_with = FRA
+					OR = {
+						has_war_with = HOL
+						has_war_with = BEL
+						has_war_with = LUX
+					}
+				}
+			}
+		}
+		random_list = {
+			40 = { ENG_wilhelm_iv_joins_effect = yes } # Eitel Friedrich agrees
+			60 = { set_country_flag = ENG_wilhelm_iv_refused_throne country_event = { id = ukrework_improvements.5 days = 1 } } # Eitel Friedrich refuses
+		}
+	}
+	option = { # ask his sister
+		name = ukrework_improvements.5.c
+		trigger = {
+			NOT = {
+				has_country_flag = ENG_victoria_refused_throne
+				any_country = {
+					exists = yes
+					has_country_leader = {
+						character = GER_victoria
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		random_list = {
+			99 = { ENG_victoria_joins_effect = yes } # Victoria agrees
+			1 = { country_event = { id = ukrework_improvements.6 days = 1 } } # only if we keep the german and british throne separate
+		}
+	}
+	option = { # Don't bother them, we want a separate monarch!
+		name = ukrework_improvements.5.d
+		add_political_power = -10
+		add_stability = -0.005
+		set_country_flag = ENG_hohenzollern_declined_flag
+		custom_effect_tooltip = generic_skip_one_line_tt
+		country_event = {
+			id = ukrework.14
+			days = 1
+		}
+	}
+}
+# Do we waive all claim to the German lands?
+country_event = {
+	id = ukrework_improvements.6
+	title = ukrework_improvements.6.t
+	desc = ukrework_improvements.6.desc
+	picture = GFX_report_event_royal_visit
+
+	is_triggered_only = yes
+	trigger = {
+	}
+	option = { # yes, we wanted to return to the Union Jack anyways
+		name = ukrework_improvements.6.a
+		custom_effect_tooltip = ukrework_improvements.6.a.tt
+		custom_effect_tooltip = generic_skip_one_line_tt
+		ENG_victoria_joins_effect = yes
+		set_country_flag = ENG_promised_unionjack_return
+	}
+	option = { # we will look for someone else instead
+		name = ukrework_improvements.6.b
+		set_country_flag = ENG_victoria_refused_throne
+		country_event = {
+			id = ukrework_improvements.5
+			days = 1
+		}
+	}
+}
+# GER seeks to join us after their royal family died
+country_event = {
+	id = ukrework_improvements.7
+	title = ukrework_improvements.7.t
+	desc = ukrework_improvements.7.desc
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+	trigger = {
+	}
+
+	option = { # yes, let them join!
+		name = ukrework_improvements.7.a
+		ai_chance = {
+			base = 99
+			modifier = {
+				factor = 0.3
+				has_country_flag = ENG_promised_unionjack_return
+			}
+			modifier = {
+				factor = 0.8
+				has_completed_focus = ENG_the_union_jack_forever
+			}
+		}
+		#custom_effect_tooltip = this_will_happen_tt
+		GER = {
+			country_event = {
+				id = ukrework_improvements.8
+				days = 1
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+		effect_tooltip = {
+			ENG = {
+				hidden_effect = {
+					puppet = {
+						target = GER
+						end_wars = yes
+						end_civil_wars = no
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							ENG = { has_completed_focus = ENG_the_union_jack_forever }
+						}
+					}
+					set_autonomy = {
+						target = GER
+						autonomous_state = autonomy_integrated_puppet
+						freedom_level = 0.2
+						end_wars = yes
+						end_civil_wars = no
+					}
+				}
+				else = {
+					set_autonomy = {
+						target = GER
+						autonomous_state = autonomy_personal_union
+						freedom_level = 0.2
+						end_wars = yes
+						end_civil_wars = no
+					}
+				}
+			}
+		}
+	}
+
+	option = { # nope, they shall search for someone themselves.
+		name = ukrework_improvements.7.b
+		trigger = {
+			NOT = {
+				has_country_flag = ENG_promised_unionjack_return
+			}
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 200
+				has_completed_focus = ENG_the_union_jack_forever
+			}
+		}
+		give_guarantee = GER
+		GER = {
+			country_event = {
+				id = ukrework_improvements.9
+				days = 1
+			}
+		}
+	}
+	option = { # nope, we promised not to interfere
+		name = ukrework_improvements.7.c
+		trigger = {
+			has_country_flag = ENG_promised_unionjack_return
+		}
+		ai_chance = {
+			base = 500
+			modifier = {
+				factor = 3
+				has_completed_focus = ENG_the_union_jack_forever
+			}
+		}
+		GER = {
+			country_event = {
+				id = ukrework_improvements.9
+				days = 1
+			}
+		}
+	}
+}
+# ENG lets us join - event for GER
+country_event = {
+	id = ukrework_improvements.8
+	title = ukrework_improvements.8.t
+	desc = ukrework_improvements.8.desc
+
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+	trigger = {
+	}
+
+	option = { # everything works as intended!
+		name = ukrework_improvements.8.a
+		ENG = {
+			hidden_effect = {
+				puppet = {
+					target = GER
+					end_wars = yes
+					end_civil_wars = no
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = ENG_the_union_jack_forever
+					}
+				}
+				set_autonomy = {
+					target = GER
+					autonomous_state = autonomy_integrated_puppet
+					freedom_level = 0.2
+					end_wars = yes
+					end_civil_wars = no
+				}
+			}
+			else = {
+				set_autonomy = {
+					target = GER
+					autonomous_state = autonomy_personal_union
+					freedom_level = 0.2
+					end_wars = yes
+					end_civil_wars = no
+				}
+			}
+		}
+	}
+}
+# ENG denies our request - event for GER
+country_event = {
+	id = ukrework_improvements.9
+	title = ukrework_improvements.9.t
+	desc = {
+		text = ukrework_improvements.9.desc
+		trigger = {
+			NOT = {
+				ENG = { has_country_flag = ENG_promised_unionjack_return }
+			}
+		}
+	}
+	desc = {
+		trigger = {
+			ENG = { has_country_flag = ENG_promised_unionjack_return }
+		}
+		text = ukrework_improvements.9.desc.2
+	}
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+	trigger = {
+	}
+
+	option = { # How dare they!
+		name = ukrework_improvements.9.a
+		add_stability = -0.1
+		# leads to a military dictatorship instead
+	}
+}

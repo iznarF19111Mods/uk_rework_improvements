@@ -1738,6 +1738,17 @@ UK_integrate_the_german_kingdoms_decisions = {
 				    ENG_num_of_german_kingdoms_integrated > 11
 				}
 			}
+			if = {
+				limit = {
+					has_power_balance = {
+						id = ENG_monarch_legitimacy_balance
+					}
+				}
+				power_balance_value = {
+					id = ENG_monarch_legitimacy_balance
+					value > 0.8
+				}
+			}
         }
 		modifier = {
 		}
@@ -1761,6 +1772,17 @@ UK_integrate_the_german_kingdoms_decisions = {
 						is_controlled_by = ENG
 					}
 					add_core_of = ENG
+				}
+				GER = {
+					every_character = {
+						#IF = {
+						#	limit = {
+						#		can_be_country_leader = yes
+						#	}
+						#	log = "uk_rework_improvements: dropping potential country leader!"
+						#}
+						set_nationality = ENG
+					}
 				}
 			}
 			add_stability = 0.05
@@ -1813,6 +1835,17 @@ UK_integrate_the_german_kingdoms_decisions = {
 				add_state_core = 67
 				add_state_core = 763
 				add_state_core = 5
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.2
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -1849,6 +1882,17 @@ UK_integrate_the_german_kingdoms_decisions = {
 				add_state_core = 52
 				add_state_core = 53
 				add_state_core = 54
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.1
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -1879,6 +1923,17 @@ UK_integrate_the_german_kingdoms_decisions = {
         complete_effect = {
 			hidden_effect = {
 				add_state_core = 57
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.1
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -1912,6 +1967,17 @@ UK_integrate_the_german_kingdoms_decisions = {
 			hidden_effect = {
 				add_state_core = 56
 				add_state_core = 59
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.1
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -1945,6 +2011,17 @@ UK_integrate_the_german_kingdoms_decisions = {
 			hidden_effect = {
 				add_state_core = 42
 				add_state_core = 51
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.1
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -1975,6 +2052,17 @@ UK_integrate_the_german_kingdoms_decisions = {
         complete_effect = {
 			hidden_effect = {
 				add_state_core = 65
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.1
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -2005,6 +2093,17 @@ UK_integrate_the_german_kingdoms_decisions = {
         complete_effect = {
 			hidden_effect = {
 				add_state_core = 50
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.05
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -2035,6 +2134,17 @@ UK_integrate_the_german_kingdoms_decisions = {
         complete_effect = {
 			hidden_effect = {
 				add_state_core = 55
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.05
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -2065,6 +2175,17 @@ UK_integrate_the_german_kingdoms_decisions = {
         complete_effect = {
 			hidden_effect = {
 				add_state_core = 978
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.05
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -2095,6 +2216,17 @@ UK_integrate_the_german_kingdoms_decisions = {
         complete_effect = {
 			hidden_effect = {
 				add_state_core = 61
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.05
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -2125,6 +2257,17 @@ UK_integrate_the_german_kingdoms_decisions = {
         complete_effect = {
 			hidden_effect = {
 				add_state_core = 60
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.05
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -2158,6 +2301,17 @@ UK_integrate_the_german_kingdoms_decisions = {
 			hidden_effect = {
 				add_state_core = 909
 				add_state_core = 58
+				if = {
+					limit = {
+						has_power_balance = {
+							id = ENG_monarch_legitimacy_balance
+						}
+					}
+					add_power_balance_value = {
+						id = ENG_monarch_legitimacy_balance
+						value = 0.05
+					}
+				}
 			}
 			custom_effect_tooltip = ENG_core_highlighted_states_tt
 			add_to_variable = {
@@ -2171,32 +2325,57 @@ UK_integrate_the_german_kingdoms_decisions = {
         cost = 100
 		fire_only_once = yes
         visible = {
-			OR = {
+			AND = {
 				has_completed_focus = ENG_retake_ost_preussen
-				AND = {
-					5 = {
-						is_core_of = ROOT
-					}
-					62 = {
-						is_core_of = ROOT
-					}
-					63 = {
-						is_core_of = ROOT
-					}
-					64 = {
-						is_core_of = ROOT
-					}
-					66 = {
-						is_core_of = ROOT
-					}
-					67 = {
-						is_core_of = ROOT
-					}
-					68 = {
-						is_core_of = ROOT
-					}
-					763 = {
-						is_core_of = ROOT
+				5 = { # Ermland-Masuren
+					is_core_of = ROOT
+				}
+				62 = { # Vorpommern
+					is_core_of = ROOT
+				}
+				63 = { # Hinterpommern
+					is_core_of = ROOT
+				}
+				64 = { # Brandenburg
+					is_core_of = ROOT
+				}
+				66 = { # Lower Silesia
+					is_core_of = ROOT
+				}
+				67 = { # Upper Silesia
+					is_core_of = ROOT
+				}
+				68 = { # Ostmark
+					is_core_of = ROOT
+				}
+				763 = { # Königsberg
+					is_core_of = ROOT
+				}
+				NOT = {
+					AND = {
+						85 = { is_core_of = ENG }
+						86 = { is_core_of = ENG }
+						87 = {
+							AND = {
+								is_core_of = GER
+								is_core_of = ENG
+							}
+						}
+						97 = {
+							AND = {
+								is_core_of = GER
+								is_core_of = ENG
+							}
+						}
+						98 = {
+							AND = {
+								is_core_of = GER
+								is_core_of = ENG
+							}
+						}
+						188 = { is_core_of = ENG }
+						762 = { is_core_of = ENG }
+						807 = { is_core_of = ENG }
 					}
 				}
 			}
@@ -2228,7 +2407,7 @@ UK_integrate_the_german_kingdoms_decisions = {
 					limit = {
 						87 = {
 							is_core_of = GER
-							is_owned_by = ROOT
+							#is_owned_by = ROOT
 						}
 					}
 					add_state_core = 87
@@ -2237,7 +2416,7 @@ UK_integrate_the_german_kingdoms_decisions = {
 					limit = {
 						97 = {
 							is_core_of = GER
-							is_owned_by = ROOT
+							#is_owned_by = ROOT
 						}
 					}
 					add_state_core = 97
@@ -2246,7 +2425,7 @@ UK_integrate_the_german_kingdoms_decisions = {
 					limit = {
 						98 = {
 							is_core_of = GER
-							is_owned_by = ROOT
+							#is_owned_by = ROOT
 						}
 					}
 					add_state_core = 98
