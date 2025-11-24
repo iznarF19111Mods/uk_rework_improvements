@@ -22,26 +22,20 @@ focus_tree = {
 	default = no
 
 	shortcut = {
-		name = limited_rearmament_focus_shortcut
-		target = limited_rearmament_focus 
-		scroll_wheel_factor = 0.95
+		name = ENG_army_countercoup_shortcut
+		target = ENG_army_countercoup 
+		scroll_wheel_factor = 0.525
 	}
 
 	shortcut = {
-		name = ENG_steady_as_she_goes_shortcut
-		target = ENG_steady_as_she_goes 
-		scroll_wheel_factor = 0.75
-	}
-
-	shortcut = {
-		name = uk_empire_focus_shortcut
-		target = uk_empire_focus 
+		name = ENG_eliminate_the_upper_class_shortcut
+		target = ENG_eliminate_the_upper_class 
 		scroll_wheel_factor = 0.875
 	}
 
 	shortcut = {
-		name = ENG_revisit_colonial_policy_shortcut
-		target = ENG_revisit_colonial_policy 
+		name = ENG_organize_the_blackshirts_shortcut
+		target = ENG_organize_the_blackshirts 
 		scroll_wheel_factor = 1
 	}
 
@@ -52,21 +46,27 @@ focus_tree = {
 	}
 
 	shortcut = {
-		name = ENG_organize_the_blackshirts_shortcut
-		target = ENG_organize_the_blackshirts 
+		name = ENG_revisit_colonial_policy_shortcut
+		target = ENG_revisit_colonial_policy 
 		scroll_wheel_factor = 1
 	}
 
 	shortcut = {
-		name = ENG_eliminate_the_upper_class_shortcut
-		target = ENG_eliminate_the_upper_class 
+		name = uk_empire_focus_shortcut
+		target = uk_empire_focus 
 		scroll_wheel_factor = 0.875
 	}
 
 	shortcut = {
-		name = ENG_army_countercoup_shortcut
-		target = ENG_army_countercoup 
-		scroll_wheel_factor = 0.525
+		name = ENG_steady_as_she_goes_shortcut
+		target = ENG_steady_as_she_goes 
+		scroll_wheel_factor = 0.75
+	}
+
+	shortcut = {
+		name = limited_rearmament_focus_shortcut
+		target = limited_rearmament_focus 
+		scroll_wheel_factor = 0.95
 	}
 
 	initial_show_position = {
@@ -1975,7 +1975,7 @@ focus_tree = {
 				name = ENG_secure_the_imperial_shipping_routes
 				bonus = 1.0
 				uses = 2
-				category = cl_tech
+				category = ca_tech
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_ideas = ENG_secure_the_imperial_shipping_routes
@@ -2295,11 +2295,11 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #industrial legacy
 		id = ENG_industrial_legacy
 		prerequisite = { focus = ENG_national_government }
 		icon = GFX_focus_ENG_industrial_legacy
-		x = -43
+		x = -46
 		y = 1
 		relative_position_id = ENG_national_government
 		cost = 10
@@ -2766,22 +2766,22 @@ focus_tree = {
 	}
 	
 	#focus = {
-	#	id = uk_embargo_focus
-	#	available = { threat > 0.1 }
-	#	icon = GFX_goal_support_democracy
-	#	x = 12
-	#	y = 0
-	#	cost = 10
-	#	ai_will_do = {
-	#		factor = 1
-	#	}	
-	#	completion_reward = {
-	#		every_other_country = {
-	#			limit = { NOT = { has_government = democratic } }
-	#			add_opinion_modifier = { target = ENG modifier = minor_sanctions }
-	#			add_opinion_modifier = { target = ENG modifier = minor_sanctions_relations } 
-	#		}
-	#	}
+		#id = uk_embargo_focus
+		#available = { threat > 0.1 }
+		#icon = GFX_goal_support_democracy
+		#x = 12
+		#y = 0
+		#cost = 10
+		#ai_will_do = {
+		#	factor = 1
+		#}	
+		#completion_reward = {
+		#	every_other_country = {
+		#		limit = { NOT = { has_government = democratic } }
+		#		add_opinion_modifier = { target = ENG modifier = minor_sanctions }
+		#		add_opinion_modifier = { target = ENG modifier = minor_sanctions_relations } 
+		#	}
+		#}
 	#}
 
 	### DEMOCRATIC BRANCH - STEADY AS SHE GOES ###
@@ -12181,7 +12181,81 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #reassess continental commitments
+		id = ENG_reassess_continental_commitments
+		prerequisite = { focus = ENG_the_kings_party }
+		#mutually_exclusive = { focus = ENG_look_back_to_the_past }
+		available = {
+			is_subject = no
+			NOT = {
+				has_war_together_with = FRA 
+			}
+		}
+		icon = GFX_focus_usa_focus_on_europe
+		x = 0
+		y = 1
+		relative_position_id = ENG_the_kings_party
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		search_filters = {FOCUS_FILTER_WAR_SUPPORT}	
+		completion_reward = {
+			remove_ideas = ENG_the_war_to_end_all_wars
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_war_support = 0.05
+			custom_effect_tooltip = generic_skip_one_line_tt
+			FRA = {
+				if = {
+					limit = { NOT = { is_in_faction_with = ENG } }
+					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
+				}
+			}
+			POL = {
+				if = {
+					limit = { NOT = { is_in_faction_with = ENG } }
+					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
+				}
+			}
+			CZE = {
+				if = {
+					limit = { NOT = { is_in_faction_with = ENG } }
+					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
+				}
+			}
+			HOL = {
+				if = {
+					limit = { NOT = { is_in_faction_with = ENG } }
+					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
+				}
+			}
+			BEL = {
+				if = {
+					limit = { NOT = { is_in_faction_with = ENG } }
+					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
+				}
+			}
+			LUX = {
+				if = {
+					limit = { NOT = { is_in_faction_with = ENG } }
+					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
+				}
+			}
+			GER = {
+				if = {
+					limit = {
+						OR = {
+							has_government = fascism
+							has_government = neutrality
+						}
+					}
+					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_good }
+				}
+			}
+		}
+	}
+
+	focus = { #look back to past
 		id = ENG_look_back_to_the_past
 		prerequisite = { focus = ENG_reassess_continental_commitments }
 		mutually_exclusive = { focus = ENG_britannia_first focus = ENG_isolate_the_mediterranean_threat }
@@ -12926,80 +13000,6 @@ focus_tree = {
 			create_wargoal = {
 				target = EST
 				type = annex_everything
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_reassess_continental_commitments
-		prerequisite = { focus = ENG_the_kings_party }
-		mutually_exclusive = { focus = ENG_look_back_to_the_past }
-		available = {
-			is_subject = no
-			NOT = {
-				has_war_together_with = FRA 
-			}
-		}
-		icon = GFX_focus_usa_focus_on_europe
-		x = 0
-		y = 1
-		relative_position_id = ENG_the_kings_party
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}
-		search_filters = {FOCUS_FILTER_WAR_SUPPORT}	
-		completion_reward = {
-			remove_ideas = ENG_the_war_to_end_all_wars
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_war_support = 0.05
-			custom_effect_tooltip = generic_skip_one_line_tt
-			FRA = {
-				if = {
-					limit = { NOT = { is_in_faction_with = ENG } }
-					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
-				}
-			}
-			POL = {
-				if = {
-					limit = { NOT = { is_in_faction_with = ENG } }
-					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
-				}
-			}
-			CZE = {
-				if = {
-					limit = { NOT = { is_in_faction_with = ENG } }
-					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
-				}
-			}
-			HOL = {
-				if = {
-					limit = { NOT = { is_in_faction_with = ENG } }
-					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
-				}
-			}
-			BEL = {
-				if = {
-					limit = { NOT = { is_in_faction_with = ENG } }
-					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
-				}
-			}
-			LUX = {
-				if = {
-					limit = { NOT = { is_in_faction_with = ENG } }
-					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_bad }
-				}
-			}
-			GER = {
-				if = {
-					limit = {
-						OR = {
-							has_government = fascism
-							has_government = neutrality
-						}
-					}
-					add_opinion_modifier = { target = ENG modifier = ENG_reassessed_continental_committments_good }
-				}
 			}
 		}
 	}
@@ -14716,189 +14716,189 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_gibraltar_for_spanish_support
-		prerequisite = { focus = ENG_secure_the_italian_alliance }
-		mutually_exclusive = { focus = ENG_pre_empt_spanish_alignment }
-		available = {
-			is_subject = no
-			if = {
-				limit = {
-					NOT = { has_dlc = "La Resistance" }
-				}
-				any_country = {
-					original_tag = SPR
-					has_government = fascism
-					exists = yes
-					NOT = { is_in_faction_with = ENG }
-				}
-			}
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				SPA = {
-					exists = yes
-					NOT = { is_in_faction_with = ENG }
-				}
-			}
-			has_global_flag = scw_over
-		}
-		icon = GFX_focus_intervention_spain_nationalists
-		x = -1
-		y = 1
-		relative_position_id = ENG_secure_the_italian_alliance
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}	
-		completion_reward = {
-			if = {
-				limit = {
-					NOT = { has_dlc = "La Resistance" }
-				}
-				random_country = {
-					limit = {
-						original_tag = SPR
-						has_government = fascism
-					}
-					country_event = { id = mtg_britain.40 hours = 6 }
-				}
-			}
-			ELSE = {
-				SPA = {
-					country_event = { id = mtg_britain.40 hours = 6 }
-				}
-			}
-		}
-	}
+	#focus = {
+		#id = ENG_gibraltar_for_spanish_support
+		#prerequisite = { focus = ENG_secure_the_italian_alliance }
+		#mutually_exclusive = { focus = ENG_pre_empt_spanish_alignment }
+		#available = {
+		#	is_subject = no
+		#	if = {
+		#		limit = {
+		#			NOT = { has_dlc = "La Resistance" }
+		#		}
+		#		any_country = {
+		#			original_tag = SPR
+		#			has_government = fascism
+		#			exists = yes
+		#			NOT = { is_in_faction_with = ENG }
+		#		}
+		#	}
+		#	if = {
+		#		limit = {
+		#			has_dlc = "La Resistance"
+		#		}
+		#		SPA = {
+		#			exists = yes
+		#			NOT = { is_in_faction_with = ENG }
+		#		}
+		#	}
+		#	has_global_flag = scw_over
+		#}
+		#icon = GFX_focus_intervention_spain_nationalists
+		#x = -1
+		#y = 1
+		#relative_position_id = ENG_secure_the_italian_alliance
+		#cost = 5
+		#ai_will_do = {
+		#	factor = 1
+		#}	
+		#completion_reward = {
+		#	if = {
+		#		limit = {
+		#			NOT = { has_dlc = "La Resistance" }
+		#		}
+		#		random_country = {
+		#			limit = {
+		#				original_tag = SPR
+		#				has_government = fascism
+		#			}
+		#			country_event = { id = mtg_britain.40 hours = 6 }
+		#		}
+		#	}
+		#	ELSE = {
+		#		SPA = {
+		#			country_event = { id = mtg_britain.40 hours = 6 }
+		#		}
+		#	}
+		#}
+	#}
 
-	focus = {
-		id = ENG_pre_empt_spanish_alignment
-		prerequisite = { focus = ENG_secure_the_italian_alliance }
-		mutually_exclusive = { focus = ENG_gibraltar_for_spanish_support }
-		available = {
-			is_subject = no
-			if = {
-				limit = {
-					NOT = { has_dlc = "La Resistance" }
-				}
-				any_country = {
-					original_tag = SPR
-					has_government = fascism
-					exists = yes
-					NOT = { is_in_faction_with = ENG }
-					NOT = { has_war_with = ENG }
-				}
-			}
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				SPA = {
-					exists = yes
-					NOT = { is_in_faction_with = ENG }
-					NOT = { has_war_with = ENG }
-				}
-			}
-			has_global_flag = scw_over
-		}
-		bypass = {
-			if = {
-				limit = {
-					NOT = { has_dlc = "La Resistance" }
-				}
-				NOT = {
-					any_country = {
-						original_tag = SPR
-						has_government = fascism
-						exists = yes
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				NOT = {
-					country_exists = SPA
-				}
-			}
-			has_global_flag = scw_over
-		}
-		icon = GFX_focus_focus_fra_intervention_spain
-		x = 1
-		y = 1
-		relative_position_id = ENG_secure_the_italian_alliance
-		cost = 10
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				has_war = yes
-			}
-			modifier = {
-				factor = 0
-				if = {
-					limit = {
-						NOT = { has_dlc = "La Resistance" }
-					}
-					any_country = {
-						original_tag = SPR
-						has_government = fascism
-						exists = yes
-						is_in_faction_with = GER
-					}
-				}
-				if = {
-					limit = {
-						has_dlc = "La Resistance"
-					}
-					SPA = {
-						exists = yes
-						is_in_faction_with = GER
-					}
-				}
-			}
-		}	
-		completion_reward = {
-			ENG_mosley_pacifism_level_down = yes
-			if = {
-				limit = {
-					NOT = { has_dlc = "La Resistance" }
-				}
-				random_country = {
-					limit = {
-						original_tag = SPR
-						has_government = fascism
-					}
-					ENG = {
-						create_wargoal = {
-							type = puppet_wargoal_focus
-							target = PREV
-							expire = 0
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				ENG = {
-					create_wargoal = {
-						type = puppet_wargoal_focus
-						target = SPA
-						expire = 0
-					}
-				}
-			}
-		}
-	}
+	#focus = {
+		#id = ENG_pre_empt_spanish_alignment
+		#prerequisite = { focus = ENG_secure_the_italian_alliance }
+		#mutually_exclusive = { focus = ENG_gibraltar_for_spanish_support }
+		#available = {
+		#	is_subject = no
+		#	if = {
+		#		limit = {
+		#			NOT = { has_dlc = "La Resistance" }
+		#		}
+		#		any_country = {
+		#			original_tag = SPR
+		#			has_government = fascism
+		#			exists = yes
+		#			NOT = { is_in_faction_with = ENG }
+		#			NOT = { has_war_with = ENG }
+		#		}
+		#	}
+		#	if = {
+		#		limit = {
+		#			has_dlc = "La Resistance"
+		#		}
+		#		SPA = {
+		#			exists = yes
+		#			NOT = { is_in_faction_with = ENG }
+		#			NOT = { has_war_with = ENG }
+		#		}
+		#	}
+		#	has_global_flag = scw_over
+		#}
+		#bypass = {
+		#	if = {
+		#		limit = {
+		#			NOT = { has_dlc = "La Resistance" }
+		#		}
+		#		NOT = {
+		#			any_country = {
+		#				original_tag = SPR
+		#				has_government = fascism
+		#				exists = yes
+		#			}
+		#		}
+		#	}
+		#	if = {
+		#		limit = {
+		#			has_dlc = "La Resistance"
+		#		}
+		#		NOT = {
+		#			country_exists = SPA
+		#		}
+		#	}
+		#	has_global_flag = scw_over
+		#}
+		#icon = GFX_focus_focus_fra_intervention_spain
+		#x = 1
+		#y = 1
+		#relative_position_id = ENG_secure_the_italian_alliance
+		#cost = 10
+		#ai_will_do = {
+		#	factor = 1
+		#	modifier = {
+		#		factor = 0
+		#		has_war = yes
+		#	}
+		#	modifier = {
+		#		factor = 0
+		#		if = {
+		#			limit = {
+		#				NOT = { has_dlc = "La Resistance" }
+		#			}
+		#			any_country = {
+		#				original_tag = SPR
+		#				has_government = fascism
+		#				exists = yes
+		#				is_in_faction_with = GER
+		#			}
+		#		}
+		#		if = {
+		#			limit = {
+		#				has_dlc = "La Resistance"
+		#			}
+		#			SPA = {
+		#				exists = yes
+		#				is_in_faction_with = GER
+		#			}
+		#		}
+		#	}
+		#}	
+		#completion_reward = {
+		#	ENG_mosley_pacifism_level_down = yes
+		#	if = {
+		#		limit = {
+		#			NOT = { has_dlc = "La Resistance" }
+		#		}
+		#		random_country = {
+		#			limit = {
+		#				original_tag = SPR
+		#				has_government = fascism
+		#			}
+		#			ENG = {
+		#				create_wargoal = {
+		#					type = puppet_wargoal_focus
+		#					target = PREV
+		#					expire = 0
+		#				}
+		#			}
+		#		}
+		#	}
+		#	if = {
+		#		limit = {
+		#			has_dlc = "La Resistance"
+		#		}
+		#		ENG = {
+		#			create_wargoal = {
+		#				type = puppet_wargoal_focus
+		#				target = SPA
+		#				expire = 0
+		#			}
+		#		}
+		#	}
+		#}
+	#}
 
 	focus = {
 		id = ENG_prevent_a_continental_hegemony
-		prerequisite = { focus = ENG_gibraltar_for_spanish_support focus = ENG_pre_empt_spanish_alignment }
+		prerequisite = { focus = ENG_secure_the_italian_alliance }
 		available = {
 			is_subject = no
 			country_exists = GER
@@ -14906,9 +14906,9 @@ focus_tree = {
 		}
 		will_lead_to_war_with = GER
 		icon = GFX_focus_attack_germany
-		x = 1
+		x = 0
 		y = 1
-		relative_position_id = ENG_gibraltar_for_spanish_support
+		relative_position_id = ENG_secure_the_italian_alliance
 		cost = 10
 		ai_will_do = {
 			factor = 1
@@ -14927,88 +14927,88 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_enact_the_mosley_manifesto
-		prerequisite = { focus = ENG_the_british_path_to_fascism focus = ENG_rekindle_german_relations }
-		available = {
-
-		}
-		icon = GFX_focus_ENG_mosley_paper
-		x = 3
-		y = 1
-		relative_position_id = ENG_the_british_path_to_fascism
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}	
-		complete_tooltip = {
-			every_state = {
-				limit = { has_state_flag = enact_the_mosley_memorandum_2IC }
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
-			every_state = {
-				limit = { has_state_flag = enact_the_mosley_memorandum_2AF }
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-		search_filters = {FOCUS_FILTER_INDUSTRY}
-		completion_reward = {
-			if = {
-				limit = {
-					NOT = { has_idea = limited_exports }
-					NOT = { has_idea = closed_economy }
-				}
-				add_ideas = limited_exports
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			add_ideas = ENG_the_mosley_memorandum_idea
-			custom_effect_tooltip = generic_skip_one_line_tt
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
-					}
-					is_core_of = ROOT
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-				set_state_flag = enact_the_mosley_memorandum_2IC
-			}
-			random_owned_controlled_state = {
-				limit = {
-					is_in_home_area = yes
-					free_building_slots = {
-						building = arms_factory
-						size > 1
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-				set_state_flag = enact_the_mosley_memorandum_2AF
-			}
-		}
-	}
+	#focus = {
+		#id = ENG_enact_the_mosley_manifesto
+		#prerequisite = { focus = ENG_the_british_path_to_fascism focus = ENG_rekindle_german_relations }
+		#available = {
+		#
+		#}
+		#icon = GFX_focus_ENG_mosley_paper
+		#x = 3
+		#y = 1
+		#relative_position_id = ENG_the_british_path_to_fascism
+		#cost = 10
+		#ai_will_do = {
+		#	factor = 1
+		#}	
+		#complete_tooltip = {
+		#	every_state = {
+		#		limit = { has_state_flag = enact_the_mosley_memorandum_2IC }
+		#		add_extra_state_shared_building_slots = 2
+		#		add_building_construction = {
+		#			type = industrial_complex
+		#			level = 2
+		#			instant_build = yes
+		#		}
+		#	}
+		#	every_state = {
+		#		limit = { has_state_flag = enact_the_mosley_memorandum_2AF }
+		#		add_extra_state_shared_building_slots = 2
+		#		add_building_construction = {
+		#			type = arms_factory
+		#			level = 2
+		#			instant_build = yes
+		#		}
+		#	}
+		#}
+		#search_filters = {FOCUS_FILTER_INDUSTRY}
+		#completion_reward = {
+		#	if = {
+		#		limit = {
+		#			NOT = { has_idea = limited_exports }
+		#			NOT = { has_idea = closed_economy }
+		#		}
+		#		add_ideas = limited_exports
+		#	}
+		#	custom_effect_tooltip = generic_skip_one_line_tt
+		#	add_ideas = ENG_the_mosley_memorandum_idea
+		#	custom_effect_tooltip = generic_skip_one_line_tt
+		#	random_owned_controlled_state = {
+		#		limit = {
+		#			free_building_slots = {
+		#				building = industrial_complex
+		#				size > 1
+		#				include_locked = yes
+		#			}
+		#			is_core_of = ROOT
+		#		}
+		#		add_extra_state_shared_building_slots = 2
+		#		add_building_construction = {
+		#			type = industrial_complex
+		#			level = 2
+		#			instant_build = yes
+		#		}
+		#		set_state_flag = enact_the_mosley_memorandum_2IC
+		#	}
+		#	random_owned_controlled_state = {
+		#		limit = {
+		#			is_in_home_area = yes
+		#			free_building_slots = {
+		#				building = arms_factory
+		#				size > 1
+		#				include_locked = yes
+		#			}
+		#		}
+		#		add_extra_state_shared_building_slots = 2
+		#		add_building_construction = {
+		#			type = arms_factory
+		#			level = 2
+		#			instant_build = yes
+		#		}
+		#		set_state_flag = enact_the_mosley_memorandum_2AF
+		#	}
+		#}
+	#}
 
 	focus = {
 		id = ENG_a_european_identity
@@ -15024,9 +15024,9 @@ focus_tree = {
 			}
 		}
 		icon = GFX_focus_ENG_euro_britain
-		x = 3
-		y = 2
-		relative_position_id = ENG_the_british_path_to_fascism
+		x = -1
+		y = 1
+		relative_position_id = ENG_enact_the_mosley_manifesto
 		cost = 5
 		ai_will_do = {
 			factor = 1
@@ -15108,47 +15108,47 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_destroy_france
-		prerequisite = { focus = ENG_london_berlin_axis }
-		mutually_exclusive = {  }
-		available = {
-			FRA = {
-				exists = yes
-				NOT = {
-					has_war_with = ROOT
-					is_subject_of = ROOT
-				}
-			}
-		}
-		bypass = {
-			FRA = {
-				OR = {
-					exists = no
-					has_war_with = ROOT
-					is_subject_of = ROOT
-				}
-			}
-		}
-		icon = GFX_focus_attack_france
-		x = 1
-		y = 2
-		relative_position_id = ENG_rekindle_german_relations
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}	
-		completion_reward = {
-			create_wargoal = {
-				target = FRA
-				type = puppet_wargoal_focus
-			}
-		}
-	}
+	#focus = {
+		#id = ENG_destroy_france
+		#prerequisite = { focus = ENG_london_berlin_axis }
+		#mutually_exclusive = {  }
+		#available = {
+		#	FRA = {
+		#		exists = yes
+		#		NOT = {
+		#			has_war_with = ROOT
+		#			is_subject_of = ROOT
+		#		}
+		#	}
+		#}
+		#bypass = {
+		#	FRA = {
+		#		OR = {
+		#			exists = no
+		#			has_war_with = ROOT
+		#			is_subject_of = ROOT
+		#		}
+		#	}
+		#}
+		#icon = GFX_focus_attack_france
+		#x = 1
+		#y = 2
+		#relative_position_id = ENG_rekindle_german_relations
+		#cost = 10
+		#ai_will_do = {
+		#	factor = 1
+		#}	
+		#completion_reward = {
+		#	create_wargoal = {
+		#		target = FRA
+		#		type = puppet_wargoal_focus
+		#	}
+		#}
+	#}
 
 	focus = {
 		id = ENG_secure_scandinavian_resources
-		prerequisite = { focus = ENG_london_berlin_axis }
+		prerequisite = { focus = ENG_look_to_the_continent }
 		mutually_exclusive = {  }
 		available = {
 			OR = {
@@ -15167,6 +15167,13 @@ focus_tree = {
 					}
 				}
 				SWE = {
+					exists = yes
+					NOT = {
+						has_war_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				FIN = {
 					exists = yes
 					NOT = {
 						has_war_with = ROOT
@@ -15197,11 +15204,18 @@ focus_tree = {
 					is_subject_of = ROOT
 				}
 			}
+			FIN = {
+				OR = {
+					exists = no
+					has_war_with = ROOT
+					is_subject_of = ROOT
+				}
+			}
 		}
 		icon = GFX_focus_ENG_get_scandi
-		x = -1
-		y = 2
-		relative_position_id = ENG_rekindle_german_relations
+		x = -2
+		y = 1
+		relative_position_id = ENG_look_to_the_continent
 		cost = 10
 		ai_will_do = {
 			factor = 1
@@ -15219,48 +15233,52 @@ focus_tree = {
 				target = SWE
 				type = puppet_wargoal_focus
 			}
+			create_wargoal = {
+				target = FIN
+				type = puppet_wargoal_focus
+			}
 		}
 	}
 
 	focus = {
 		id = ENG_secure_med
-		prerequisite = { focus = ENG_secure_scandinavian_resources focus = ENG_destroy_france }
+		prerequisite = { focus = ENG_london_berlin_axis }
 		mutually_exclusive = {  }
 		available = {
-			OR = {
-				any_country = {
-					original_tag = SPR
-					exists = yes
-					NOT = {
-						has_war_with = ROOT
-						is_subject_of = ROOT
-					}
-				}
-				ITA = {
-					exists = yes
-					NOT = {
-						has_war_with = ROOT
-						is_subject_of = ROOT
-					}
-				}
-				TUR = {
-					exists = yes
-					NOT = {
-						has_war_with = ROOT
-						is_subject_of = ROOT
-					}
-				}
-			}
-		}
-		bypass = {
-			any_country = {
-				original_tag = SPR
-				OR = {
-					exists = no
+			ITA = {
+				exists = yes
+				NOT = {
 					has_war_with = ROOT
 					is_subject_of = ROOT
 				}
 			}
+			#OR = {
+				#any_country = {
+				#	original_tag = SPR
+				#	exists = yes
+				#	NOT = {
+				#		has_war_with = ROOT
+				#		is_subject_of = ROOT
+				#	}
+				#}
+				#TUR = {
+				#	exists = yes
+				#	NOT = {
+				#		has_war_with = ROOT
+				#		is_subject_of = ROOT
+				#	}
+				#}
+			#}
+		}
+		bypass = {
+			#any_country = {
+			#	original_tag = SPR
+			#	OR = {
+			#		exists = no
+			#		has_war_with = ROOT
+			#		is_subject_of = ROOT
+			#	}
+			#}
 			ITA = {
 				OR = {
 					exists = no
@@ -15269,34 +15287,34 @@ focus_tree = {
 					is_in_faction_with = ROOT
 				}
 			}
-			TUR = {
-				OR = {
-					exists = no
-					has_war_with = ROOT
-					is_subject_of = ROOT
-				}
-			}
+			#TUR = {
+			#	OR = {
+			#		exists = no
+			#		has_war_with = ROOT
+			#		is_subject_of = ROOT
+			#	}
+			#}
 		}
-		icon = GFX_focus_generic_mediterranean_sea_focus
+		icon = GFX_focus_ENG_attack_kingdom_of_italy
 		x = 0
-		y = 3
-		relative_position_id = ENG_rekindle_german_relations
+		y = 1
+		relative_position_id = ENG_london_berlin_axis
 		cost = 10
 		ai_will_do = {
 			factor = 1
 		}	
 		completion_reward = {
-			every_country = {
-				limit = {
-					original_tag = SPR
-				}
-				ROOT = {
-					create_wargoal = {
-						target = PREV
-						type = puppet_wargoal_focus
-					}
-				}
-			}
+			#every_country = {
+			#	limit = {
+			#		original_tag = SPR
+			#	}
+			#	ROOT = {
+			#		create_wargoal = {
+			#			target = PREV
+			#			type = puppet_wargoal_focus
+			#		}
+			#	}
+			#}
 			IF = {
 				limit = {
 					NOT = {
@@ -15308,8 +15326,84 @@ focus_tree = {
 					type = puppet_wargoal_focus
 				}
 			}
+			#create_wargoal = {
+			#	target = TUR
+			#	type = puppet_wargoal_focus
+			#}
+		}
+	}
+
+	focus = {
+		id = ENG_gateway_to_the_continent
+		prerequisite = { focus = ENG_look_to_the_continent }
+		mutually_exclusive = {  }
+		available = {
+			OR = {
+				HOL = {
+					exists = yes
+					NOT = {
+						has_war_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				BEL = {
+					exists = yes
+					NOT = {
+						has_war_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				LUX = {
+					exists = yes
+					NOT = {
+						has_war_with = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+		}
+		bypass = {
+			HOL = {
+				OR = {
+					exists = no
+					has_war_with = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			BEL = {
+				OR = {
+					exists = no
+					has_war_with = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			LUX = {
+				OR = {
+					exists = no
+					has_war_with = ROOT
+					is_subject_of = ROOT
+				}
+			}
+		}
+		icon = GFX_focus_GER_around_maginot
+		x = 2
+		y = 1
+		relative_position_id = ENG_look_to_the_continent
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
 			create_wargoal = {
-				target = TUR
+				target = HOL
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = BEL
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = LUX
 				type = puppet_wargoal_focus
 			}
 		}
@@ -15317,9 +15411,9 @@ focus_tree = {
 
 	### UNALIGNED/FASCIST SHARED PATH ###
 
-	focus = {
+	focus = { #god save the king
 		id = ENG_god_save_the_king
-		prerequisite = { focus = ENG_the_kings_party focus = ENG_organize_the_blackshirts }
+		prerequisite = { focus = ENG_reassess_continental_commitments focus = ENG_union_of_fascists }
 		available = {
 			is_subject = no
 			OR = {
@@ -15328,9 +15422,9 @@ focus_tree = {
 			}
 		}
 		icon = GFX_focus_eng_god_save_the_king
-		x = 2
+		x = -11
 		y = 1
-		relative_position_id = ENG_the_kings_party
+		relative_position_id = ENG_union_of_fascists
 		cost = 10
 		ai_will_do = {
 			factor = 1
@@ -15355,91 +15449,16 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_ceylon_forward_operating_base
-		prerequisite = { focus = ENG_god_save_the_king }
-		available = {
-			has_full_control_of_state = 422
-			hidden_trigger = {
-					if = {
-						limit = {
-							has_dlc = "Graveyard of Empires"
-							has_event_target = UK_INDIA
-						}
-						event_target:UK_INDIA = { is_subject_of = ENG }
-					}
-				}
-			}
-		bypass = {
-			OR = {
-				RAJ = {
-					is_in_faction_with = ENG
-					OR = {
-						has_country_flag = ENG_dominions_stayed_with_fascist_britain_flag
-						has_country_flag = britain_enforced_our_loyalty
-					}
-				}
-				has_completed_focus = ENG_towards_indian_independence
-			}
-			if = {
-					limit = {
-						has_dlc = "Graveyard of Empires"
-						has_event_target = UK_INDIA
-					}
-					event_target:UK_INDIA = {
-						exists = no
-						NOT = { is_subject_of = ROOT }
-					}
-				}
-			}
-		icon = GFX_focus_PER_foothold_in_indus
-		x = -1
-		y = 1
-		relative_position_id = ENG_god_save_the_king
-		cost = 4
-		ai_will_do = {
-			factor = 1
-		}	
-		search_filters = {FOCUS_FILTER_INDUSTRY}
-		completion_reward = {
-			# Ceylon
-			422 = {
-				if = {
-					limit = {
-						is_controlled_by = ROOT
-					}
-					add_building_construction = {
-						type = infrastructure
-						level = 3
-						instant_build = yes
-					}
-					add_building_construction = {
-						type = air_base
-						level = 5
-						instant_build = yes
-					}
-					# Singapore
-					add_building_construction = {
-						type = naval_base
-						level = 5
-						province = 7260
-						instant_build = yes
-					}
-				}								
-			}
-		}
-	}
-
-	focus = {
+	focus = { #imperial conscription
 		id = ENG_imperial_conscription
-		prerequisite = { focus = ENG_ceylon_forward_operating_base }	
+		prerequisite = { focus = ENG_god_save_the_king }	
 		available = {
 
 		}
 		icon = GFX_focus_generic_commonwealth_build_infantry
-		x = 0
-		y = 2
-		relative_position_id = ENG_ceylon_forward_operating_base
+		x = -1
+		y = 1
+		relative_position_id = ENG_god_save_the_king
 		cost = 10
 		ai_will_do = {
 			factor = 1
@@ -15456,353 +15475,51 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ENG_reclaim_burma
-		prerequisite = { focus = ENG_imperial_conscription }	
+	focus = { #imperial security
+		id = ENG_imperial_security
+		prerequisite = { focus = ENG_god_save_the_king }
 		available = {
-			is_subject = no
-			BRM = {
-				exists = yes
-				NOT = {
-					is_subject_of = ROOT
-				}
-			}
-
+			
 		}
-		bypass = {
-			OR = {
-				NOT = { country_exists = BRM }
-				BRM = {
-					is_in_faction_with = ENG
-					OR = {
-						has_country_flag = ENG_dominions_stayed_with_fascist_britain_flag
-						has_country_flag = britain_enforced_our_loyalty
-					}
-				}
-				has_completed_focus = ENG_towards_indian_independence
-			}
-		}
-		icon = GFX_focus_ENG_attack_burma
-		will_lead_to_war_with = BRM
-		x = 0
-		y = 2
-		relative_position_id = ENG_imperial_conscription
+		icon = GFX_focus_generic_home_defense
+		x = 3
+		y = 1
+		relative_position_id = ENG_god_save_the_king
 		cost = 5
 		ai_will_do = {
 			factor = 1
-		}	
+		}
+		search_filters = {FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT}	
 		completion_reward = {
-			ENG_mosley_pacifism_level_down = yes
-			every_state = {
-				limit = {
-					OR = {
-						is_core_of = BRM
-					}
-					NOT = { state = 321 }
-					NOT = { state = 320 }
-				}
-				add_claim_by = ENG
-			}
-			if = {
-				limit = {
-					country_exists = BRM
-				}
-				create_wargoal = {
-					type = annex_everything
-					target = BRM
-					expire = 0
-				}
-			}
+			add_stability = 0.05
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_ideas = ENG_imperial_security_idea
 		}
 	}
 
-	focus = {
-		id = ENG_pre_empt_the_ideological_threat
-		prerequisite = { focus = ENG_imperial_conscription focus = ENG_alliance_with_germany focus = ENG_noninterference_treaty_with_germany focus = ENG_reclaim_france focus = ENG_reclaim_hanover }	
+	focus = { #reclaim the empire
+		id = ENG_reclaim_the_empire
+		prerequisite = { focus = ENG_god_save_the_king }
 		available = {
-			is_subject = no
-			country_exists = SOV
-			NOT = { is_in_faction_with = SOV }
-			SOV = { has_government = communism }
+			
 		}
-		will_lead_to_war_with = SOU
-		icon = GFX_focus_attack_soviet
+		icon = GFX_focus_ENG_restore_pax_britannica
 		x = -3
 		y = 1
-		relative_position_id = ENG_imperial_conscription
-		cost = 10
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				has_war = yes
-			}
-		}	
-		completion_reward = {
-			ENG_mosley_pacifism_level_down = yes
-			create_wargoal = {
-				type = puppet_wargoal_focus
-				target = SOV
-				expire = 0
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_expose_the_belly_of_the_bear
-		prerequisite = { focus = ENG_pre_empt_the_ideological_threat }	
-		available = {
-			is_subject = no
-			OR = {
-				AND = {
-					country_exists = PER
-					NOT = { is_in_faction_with = PER }
-				}
-				AND = {
-					country_exists = AFG
-					NOT = { is_in_faction_with = AFG }
-				}
-			}
-		}
-		will_lead_to_war_with = PER
-		will_lead_to_war_with = AFG
-		icon = GFX_focus_eng_expose_the_belly_of_the_bear
-		x = 0
-		y = 1
-		relative_position_id = ENG_pre_empt_the_ideological_threat
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}	
-		completion_reward = {
-			ENG_mosley_pacifism_level_down = yes
-			PER = {
-				if = {
-					limit = {
-						exists = yes
-						NOT = { is_in_faction_with = ENG }
-					}
-					country_event = { id = mtg_britain.79 hours = 6 }
-				} 	
-			}
-			AFG = {
-				if = {
-					limit = {
-						exists = yes
-						NOT = { is_in_faction_with = ENG }
-					}
-					country_event = { id = mtg_britain.79 hours = 6 }
-				} 
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_reclaim_the_jewel_in_the_crown
-		prerequisite = { focus = ENG_imperial_conscription }	
-		available = {
-			is_subject = no
-			if = {
-				limit = {
-					has_dlc = "Graveyard of Empires"
-				}
-				RAJ = {
-					NOT = { is_subject_of = ENG }
-				}
-				hidden_trigger = {
-					if = {
-						limit = {
-							has_dlc = "Graveyard of Empires"
-							has_event_target = UK_INDIA
-						}
-						event_target:UK_INDIA = { NOT = {is_subject_of = ENG} }
-					}
-				}
-			}
-		}
-		bypass = {
-			OR = {
-				NOT = { country_exists = RAJ }
-				RAJ = {
-					is_in_faction_with = ENG
-					OR = {
-						has_country_flag = ENG_dominions_stayed_with_fascist_britain_flag
-						has_country_flag = britain_enforced_our_loyalty
-					}
-				}
-				has_completed_focus = ENG_towards_indian_independence
-			}
-			if = {
-					limit = {
-						has_dlc = "Graveyard of Empires"
-						has_event_target = UK_INDIA
-					}
-					NOT = { country_exists = event_target:UK_INDIA }
-					event_target:UK_INDIA = {
-						is_in_faction_with = ENG
-					}
-				}	
-			}
-		icon = GFX_focus_generic_attack_india
-		will_lead_to_war_with = RAJ
-		will_lead_to_war_with = PAK
-		will_lead_to_war_with = BAN
-		x = -1
-		y = 1
-		relative_position_id = ENG_imperial_conscription
-		cost = 10
-		ai_will_do = {
-			factor = 1
-		}	
-		completion_reward = {
-			ENG_mosley_pacifism_level_down = yes
-			every_state = {
-				limit = {
-					OR = {
-						is_core_of = PAK
-						is_core_of = RAJ
-					}
-					NOT = { state = 321 }
-					NOT = { state = 320 }
-				}
-				add_claim_by = ENG
-			}
-			if = {
-				limit = {
-					country_exists = RAJ
-				}
-				create_wargoal = {
-					type = annex_everything
-					target = RAJ
-					expire = 0
-				}
-			}
-			if = {
-				limit = {
-					country_exists = PAK
-				}
-				create_wargoal = {
-					type = annex_everything
-					target = PAK
-					expire = 0
-				}
-			}
-			if = {
-				limit = {
-					country_exists = BAN
-				}
-				create_wargoal = {
-					type = annex_everything
-					target = BAN
-					expire = 0
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = ENG_consolidate_the_british_isles
-		prerequisite = { focus = ENG_god_save_the_king }	
-		available = {
-			is_subject = no
-			country_exists = IRE
-			NOT = { is_in_faction_with = IRE }
-		}
-		bypass = {
-			owns_state = 113
-			owns_state = 134
-			owns_state = 135
-			owns_state = 119
-			owns_state = 122
-			owns_state = 133
-			owns_state = 121
-			owns_state = 136
-			owns_state = 120
-		}
-		will_lead_to_war_with = IRE
-		icon = GFX_focus_ENG_secure_ireland
-		x = 0
-		y = 2
 		relative_position_id = ENG_god_save_the_king
-		cost = 5	
+		cost = 5
 		ai_will_do = {
 			factor = 1
-		}	
+		}
+		search_filters = {FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT}	
 		completion_reward = {
-			ENG_mosley_pacifism_level_down = yes
-			every_other_country = {
-				limit = {
-					OR = {
-						owns_state = 113
-						owns_state = 134
-						owns_state = 135
-						owns_state = 119
-						owns_state = 122
-						owns_state = 133
-						owns_state = 121
-						owns_state = 136
-						owns_state = 120
-					}
-				}
-				ENG = {
-					add_state_claim = 113
-					add_state_claim = 134
-					add_state_claim = 135
-					create_wargoal = {
-						type = annex_everything
-						target = PREV
-						expire = 0
-					}
-				}
-			}
+			add_war_support = 0.05
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_ideas = ENG_imperial_revaunchism_idea
 		}
 	}
 
-	focus = {
-		id = ENG_unite_the_anglosphere
-		prerequisite = { focus = ENG_consolidate_the_british_isles }
-		prerequisite = { focus = ENG_imperial_conscription }
-		prerequisite = { focus = ENG_bring_the_dominions_back_into_the_fold }
-		available = {
-			is_subject = no
-		}
-		will_lead_to_war_with = USA
-		icon = GFX_focus_eng_unite_the_anglosphere
-		x = 0
-		y = 2
-		relative_position_id = ENG_consolidate_the_british_isles
-		cost = 10
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				has_war = yes
-			}
-		}	
-		completion_reward = {
-			ENG_mosley_pacifism_level_down = yes
-			every_state = {
-				limit = {
-					is_core_of = IRE
-					NOT = {
-						is_core_of = ROOT
-					}
-				}
-				add_core_of = ROOT
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			create_wargoal = {
-				type = annex_everything
-				target = USA
-				expire = 0
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-			unlock_decision_tooltip = ENG_install_american_monarchy
-			unlock_decision_tooltip = ENG_create_pan_north_american_state
-		}
-	}
-
-	focus = {
+	focus = { #appeal to imperial loyalists
 		id = ENG_appeal_to_imperial_loyalists
 		prerequisite = { focus = ENG_god_save_the_king }	
 		available = {
@@ -15856,9 +15573,9 @@ focus_tree = {
 			}
 		}
 		icon = GFX_goal_tfv_strengthen_commonwealth_ties
-		x = 1
+		x = 2
 		y = 1
-		relative_position_id = ENG_god_save_the_king
+		relative_position_id = ENG_reclaim_the_empire
 		cost = 5
 		ai_will_do = {
 			factor = 1
@@ -15872,7 +15589,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #bring dominions into the fold
 		id = ENG_bring_the_dominions_back_into_the_fold
 		prerequisite = { focus = ENG_appeal_to_imperial_loyalists }	
 		available = {
@@ -15925,7 +15642,7 @@ focus_tree = {
 		will_lead_to_war_with = NZL
 		icon = GFX_focus_eng_bring_the_dominions_back_into_the_fold
 		x = 0
-		y = 2
+		y = 1
 		relative_position_id = ENG_appeal_to_imperial_loyalists
 		cost = 10
 		ai_will_do = {
@@ -16005,16 +15722,408 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #ceylon FOB
+		id = ENG_ceylon_forward_operating_base
+		prerequisite = { focus = ENG_reclaim_the_empire }
+		available = {
+			has_full_control_of_state = 422
+			hidden_trigger = {
+					if = {
+						limit = {
+							has_dlc = "Graveyard of Empires"
+							has_event_target = UK_INDIA
+						}
+						event_target:UK_INDIA = { is_subject_of = ENG }
+					}
+				}
+			}
+		bypass = {
+			OR = {
+				RAJ = {
+					is_in_faction_with = ENG
+					OR = {
+						has_country_flag = ENG_dominions_stayed_with_fascist_britain_flag
+						has_country_flag = britain_enforced_our_loyalty
+					}
+				}
+				has_completed_focus = ENG_towards_indian_independence
+			}
+			if = {
+					limit = {
+						has_dlc = "Graveyard of Empires"
+						has_event_target = UK_INDIA
+					}
+					event_target:UK_INDIA = {
+						exists = no
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+			}
+		icon = GFX_focus_PER_foothold_in_indus
+		x = -2
+		y = 1
+		relative_position_id = ENG_reclaim_the_empire
+		cost = 4
+		ai_will_do = {
+			factor = 1
+		}	
+		search_filters = {FOCUS_FILTER_INDUSTRY}
+		completion_reward = {
+			# Ceylon
+			422 = {
+				if = {
+					limit = {
+						is_controlled_by = ROOT
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 3
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = air_base
+						level = 5
+						instant_build = yes
+					}
+					# Singapore
+					add_building_construction = {
+						type = naval_base
+						level = 5
+						province = 7260
+						instant_build = yes
+					}
+				}								
+			}
+		}
+	}
+
+	focus = { #reclaim jewel of the crown
+		id = ENG_reclaim_the_jewel_in_the_crown
+		prerequisite = { focus = ENG_ceylon_forward_operating_base }	
+		available = {
+			is_subject = no
+			if = {
+				limit = {
+					has_dlc = "Graveyard of Empires"
+				}
+				RAJ = {
+					NOT = { is_subject_of = ENG }
+				}
+				hidden_trigger = {
+					if = {
+						limit = {
+							has_dlc = "Graveyard of Empires"
+							has_event_target = UK_INDIA
+						}
+						event_target:UK_INDIA = { NOT = {is_subject_of = ENG} }
+					}
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				NOT = { country_exists = RAJ }
+				RAJ = {
+					is_in_faction_with = ENG
+					OR = {
+						has_country_flag = ENG_dominions_stayed_with_fascist_britain_flag
+						has_country_flag = britain_enforced_our_loyalty
+					}
+				}
+				has_completed_focus = ENG_towards_indian_independence
+			}
+			if = {
+					limit = {
+						has_dlc = "Graveyard of Empires"
+						has_event_target = UK_INDIA
+					}
+					NOT = { country_exists = event_target:UK_INDIA }
+					event_target:UK_INDIA = {
+						is_in_faction_with = ENG
+					}
+				}	
+			}
+		icon = GFX_focus_generic_attack_india
+		will_lead_to_war_with = RAJ
+		will_lead_to_war_with = PAK
+		will_lead_to_war_with = BAN
+		x = -1
+		y = 1
+		relative_position_id = ENG_ceylon_forward_operating_base
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			ENG_mosley_pacifism_level_down = yes
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = PAK
+						is_core_of = RAJ
+					}
+					NOT = { state = 321 }
+					NOT = { state = 320 }
+				}
+				add_claim_by = ENG
+			}
+			if = {
+				limit = {
+					country_exists = RAJ
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = RAJ
+					expire = 0
+				}
+			}
+			if = {
+				limit = {
+					country_exists = PAK
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PAK
+					expire = 0
+				}
+			}
+			if = {
+				limit = {
+					country_exists = BAN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BAN
+					expire = 0
+				}
+			}
+		}
+	}
+
+	focus = { #reclaim burma
+		id = ENG_reclaim_burma
+		prerequisite = { focus = ENG_imperial_conscription }	
+		available = {
+			is_subject = no
+			BRM = {
+				exists = yes
+				NOT = {
+					is_subject_of = ROOT
+				}
+			}
+
+		}
+		bypass = {
+			OR = {
+				NOT = { country_exists = BRM }
+				BRM = {
+					is_in_faction_with = ENG
+					OR = {
+						has_country_flag = ENG_dominions_stayed_with_fascist_britain_flag
+						has_country_flag = britain_enforced_our_loyalty
+					}
+				}
+				has_completed_focus = ENG_towards_indian_independence
+			}
+		}
+		icon = GFX_focus_ENG_attack_burma
+		will_lead_to_war_with = BRM
+		x = 1
+		y = 1
+		relative_position_id = ENG_ceylon_forward_operating_base
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			ENG_mosley_pacifism_level_down = yes
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = BRM
+					}
+					NOT = { state = 321 }
+					NOT = { state = 320 }
+				}
+				add_claim_by = ENG
+			}
+			if = {
+				limit = {
+					country_exists = BRM
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BRM
+					expire = 0
+				}
+			}
+		}
+	}
+
+	focus = { #claim siam
+		id = ENG_claim_siam
+		prerequisite = { focus = ENG_reclaim_burma }
+		prerequisite = { focus = ENG_reclaim_the_jewel_in_the_crown }
+		available = {
+			is_subject = no
+			SIA = {
+				exists = yes
+				NOT = {
+					is_subject_of = ROOT
+				}
+			}
+
+		}
+		bypass = {
+		}
+		icon = GFX_focus_ENG_attack_thailand
+		will_lead_to_war_with = SIA
+		x = -1
+		y = 1
+		relative_position_id = ENG_reclaim_burma
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			ENG_mosley_pacifism_level_down = yes
+			every_state = {
+				limit = {
+					is_core_of = SIA
+				}
+				add_claim_by = ENG
+			}
+			if = {
+				limit = {
+					country_exists = SIA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SIA
+					expire = 0
+				}
+			}
+		}
+	}
+
+	focus = { #consolidate british isles
+		id = ENG_consolidate_the_british_isles
+		prerequisite = { focus = ENG_reclaim_the_empire }	
+		available = {
+			#is_subject = no
+			#country_exists = IRE
+			#NOT = { is_in_faction_with = IRE }
+		}
+		bypass = {
+			#owns_state = 113
+			#owns_state = 134
+			#owns_state = 135
+			#owns_state = 119
+			#owns_state = 122
+			#owns_state = 133
+			#owns_state = 121
+			#owns_state = 136
+			#owns_state = 120
+		}
+		will_lead_to_war_with = IRE
+		icon = GFX_focus_ENG_secure_ireland
+		x = 0
+		y = 1
+		relative_position_id = ENG_reclaim_the_empire
+		cost = 5	
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			ENG_mosley_pacifism_level_down = yes
+			every_state = {
+				limit = {
+					NOT = {
+						is_core_of = ROOT
+					}
+					is_core_of = IRE
+				}
+				add_claim_by = ROOT
+			}
+			every_other_country = {
+				limit = {
+					OR = {
+						owns_state = 113
+						owns_state = 134
+						owns_state = 135
+						owns_state = 119
+						owns_state = 122
+						owns_state = 133
+						owns_state = 121
+						owns_state = 136
+						owns_state = 120
+					}
+				}
+				ENG = {
+					create_wargoal = {
+						type = annex_everything
+						target = PREV
+						expire = 0
+					}
+				}
+			}
+		}
+	}
+
+	focus = { #unite the anglosphere
+		id = ENG_unite_the_anglosphere
+		prerequisite = { focus = ENG_consolidate_the_british_isles }
+		#prerequisite = { focus = ENG_imperial_conscription }
+		prerequisite = { focus = ENG_bring_the_dominions_back_into_the_fold }
+		available = {
+			is_subject = no
+		}
+		will_lead_to_war_with = USA
+		icon = GFX_focus_eng_unite_the_anglosphere
+		x = 1
+		y = 2
+		relative_position_id = ENG_consolidate_the_british_isles
+		cost = 10
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}	
+		completion_reward = {
+			ENG_mosley_pacifism_level_down = yes
+			every_state = {
+				limit = {
+					is_core_of = IRE
+					NOT = {
+						is_core_of = ROOT
+					}
+				}
+				add_core_of = ROOT
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			create_wargoal = {
+				type = annex_everything
+				target = USA
+				expire = 0
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_tooltip = ENG_install_american_monarchy
+			unlock_decision_tooltip = ENG_create_pan_north_american_state
+		}
+	}
+
+	focus = { #sun never sets
 		id = ENG_the_sun_never_sets
-		prerequisite = { focus = ENG_bring_the_dominions_back_into_the_fold }	
+		prerequisite = { focus = ENG_god_save_the_king }	
 		available = {
 
 		}
 		icon = GFX_focus_eng_the_sun_never_sets
-		x = 0
-		y = 2
-		relative_position_id = ENG_bring_the_dominions_back_into_the_fold
+		x = 1
+		y = 1
+		relative_position_id = ENG_god_save_the_king
 		cost = 10
 		ai_will_do = {
 			factor = 1
@@ -16026,7 +16135,7 @@ focus_tree = {
 				bonus = 1.0
 				uses = 1
 				category = dd_tech
-				category = cl_tech
+				#category = cl_tech #does not exist any more
 				category = ca_tech
 				category = bb_tech
 				category = cv_tech
@@ -16038,9 +16147,9 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { # pre empt strategic threat
 		id = ENG_pre_empt_the_strategic_threat
-		prerequisite = { focus = ENG_bring_the_dominions_back_into_the_fold }	
+		prerequisite = { focus = ENG_imperial_security }	
 		available = {
 			is_subject = no
 			country_exists = JAP
@@ -16055,9 +16164,9 @@ focus_tree = {
 		}
 		will_lead_to_war_with = JAP
 		icon = GFX_focus_attack_japan
-		x = 1
+		x = -2
 		y = 1
-		relative_position_id = ENG_bring_the_dominions_back_into_the_fold
+		relative_position_id = ENG_imperial_security
 		cost = 10
 		ai_will_do = {
 			factor = 1
@@ -16076,9 +16185,175 @@ focus_tree = {
 		}
 	}
 
+	focus = { #pre empt ideological threat
+		id = ENG_pre_empt_the_ideological_threat
+		prerequisite = { focus = ENG_imperial_security }	
+		available = {
+			is_subject = no
+			country_exists = SOV
+			NOT = { is_in_faction_with = SOV }
+			SOV = { has_government = communism }
+		}
+		will_lead_to_war_with = SOU
+		icon = GFX_focus_attack_soviet
+		x = 0
+		y = 1
+		relative_position_id = ENG_imperial_security
+		cost = 10
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}	
+		completion_reward = {
+			ENG_mosley_pacifism_level_down = yes
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = SOV
+				expire = 0
+			}
+		}
+	}
+
+	focus = { #end great game
+		id = ENG_end_the_great_game
+		prerequisite = { focus = ENG_pre_empt_the_ideological_threat }	
+		available = {
+			country_exists = AFG
+			NOT = { is_in_faction_with = AFG }
+		}
+		will_lead_to_war_with = AFG
+		icon = GFX_focus_PER_secure_afghanistan
+		x = 0
+		y = 1
+		relative_position_id = ENG_pre_empt_the_ideological_threat
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			ENG_mosley_pacifism_level_down = yes
+			AFG = {
+				country_event = { id = mtg_britain.79 hours = 6 }
+			}
+		}
+	}
+
+	focus = { #secure oil
+		id = ENG_secure_oil
+		prerequisite = { focus = ENG_imperial_security }	
+		available = {
+		}
+		will_lead_to_war_with = PER
+		icon = GFX_focus_IRQ_anglo_iraqi_oil_expansion
+		x = 2
+		y = 1
+		relative_position_id = ENG_imperial_security
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			every_state = {
+				limit = {
+					controller = {
+						NOT = {
+							OR = {
+								is_in_faction_with = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						OR = {
+							tag = SAU
+							tag = IRQ
+							tag = YEM
+							tag = PER
+							tag = OMA
+						}
+					}
+					oil > 0
+					is_on_continent = middle_east
+				}
+				add_claim_by = ROOT
+			}
+			every_country = {
+				limit = {
+					OR = {
+						tag = SAU
+						tag = IRQ
+						tag = YEM
+						tag = PER
+						tag = OMA
+					}
+					is_subject = no
+					NOT = {
+						is_in_faction_with = ROOT
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = puppet_wargoal_focus
+					}
+				}
+			}
+		}
+	}
+
+	#focus = { #expose belly of the bear
+		#id = ENG_expose_the_belly_of_the_bear
+		#prerequisite = { focus = ENG_pre_empt_the_ideological_threat }	
+		#available = {
+		#	is_subject = no
+		#	OR = {
+		#		AND = {
+		#			country_exists = PER
+		#			NOT = { is_in_faction_with = PER }
+		#		}
+		#		AND = {
+		#			country_exists = AFG
+		#			NOT = { is_in_faction_with = AFG }
+		#		}
+		#	}
+		#}
+		#will_lead_to_war_with = PER
+		#will_lead_to_war_with = AFG
+		#icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		#x = 0
+		#y = 1
+		#relative_position_id = ENG_pre_empt_the_ideological_threat
+		#cost = 10
+		#ai_will_do = {
+		#	factor = 1
+		#}	
+		#completion_reward = {
+		#	ENG_mosley_pacifism_level_down = yes
+		#	PER = {
+		#		if = {
+		#			limit = {
+		#				exists = yes
+		#				NOT = { is_in_faction_with = ENG }
+		#			}
+		#			country_event = { id = mtg_britain.79 hours = 6 }
+		#		} 	
+		#	}
+		#	AFG = {
+		#		if = {
+		#			limit = {
+		#				exists = yes
+		#				NOT = { is_in_faction_with = ENG }
+		#			}
+		#			country_event = { id = mtg_britain.79 hours = 6 }
+		#		} 
+		#	}
+		#}
+	#}
+
 	### COMMUNIST BRANCH ###
 
-	focus = {
+	focus = { #concessions to trade unions
 		id = ENG_concessions_to_the_trade_unions
 		prerequisite = { focus = ENG_a_change_in_course }
 		mutually_exclusive = { focus = ENG_the_kings_party focus = ENG_organize_the_blackshirts focus = ENG_workers_revolution }
@@ -16094,7 +16369,7 @@ focus_tree = {
 			}
 		}
 		icon = GFX_focus_ENG_work_with_tuc
-		x = 22
+		x = 46
 		y = 1
 		relative_position_id = ENG_a_change_in_course
 		cancel_if_invalid = yes
@@ -16175,7 +16450,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #workers revolution
 		id = ENG_workers_revolution
 		prerequisite = { focus = ENG_a_change_in_course }
 		mutually_exclusive = { focus = ENG_the_kings_party focus = ENG_organize_the_blackshirts focus = ENG_concessions_to_the_trade_unions }
@@ -16191,7 +16466,7 @@ focus_tree = {
 			}
 		}
 		icon = GFX_focus_SWE_refuge_for_revolutionaries
-		x = 24
+		x = 48
 		y = 1
 		relative_position_id = ENG_a_change_in_course
 		cancel_if_invalid = yes
@@ -16217,7 +16492,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #move to secure dominions
 		id = ENG_move_to_secure_the_dominions
 		prerequisite = { focus = ENG_organize_the_blackshirts focus = ENG_concessions_to_the_trade_unions }
 
@@ -16296,7 +16571,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #fate of royal family
 		id = ENG_the_fate_of_the_royal_family
 		prerequisite = { focus = ENG_concessions_to_the_trade_unions focus = ENG_workers_revolution }
 		available = {
@@ -16318,7 +16593,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #eliminate upper class
 		id = ENG_eliminate_the_upper_class
 		prerequisite = { focus = ENG_the_fate_of_the_royal_family }
 		available = {
@@ -16342,7 +16617,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #for the good of the revolution
 		id = ENG_for_the_good_of_the_revolution
 		prerequisite = { focus = ENG_eliminate_the_upper_class }
 		available = {
@@ -16365,7 +16640,7 @@ focus_tree = {
 
 	### GO COMMUNIST ALONE BRANCH ###
 
-	focus = {
+	focus = { #british communist alternative
 		id = ENG_the_british_communist_alternative
 		prerequisite = { focus = ENG_for_the_good_of_the_revolution }
 		mutually_exclusive = { focus = ENG_follow_moscow }
@@ -16438,7 +16713,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #enforce decolonization
 		id = ENG_enforce_decolonization
 		prerequisite = { focus = ENG_the_british_communist_alternative }
 		mutually_exclusive = { focus = ENG_reach_out_across_the_channel focus = ENG_expand_revolution_to_the_dominions }
@@ -16899,7 +17174,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #expand revolution to dominions
 		id = ENG_expand_revolution_to_the_dominions
 		prerequisite = { focus = ENG_for_the_good_of_the_revolution }
 		mutually_exclusive = { focus = ENG_enforce_decolonization }
@@ -16907,7 +17182,10 @@ focus_tree = {
 			NOT = {
 				has_completed_focus = ENG_move_to_secure_the_dominions
 			}
-			has_completed_focus = ENG_decolonization
+			OR = {
+				has_completed_focus = ENG_decolonization
+				has_completed_focus = ENG_workers_revolution
+			}
 		}
 		bypass = {
 			CAN = {
@@ -17048,7 +17326,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #anglo peoples union
 		id = ENG_anglo_peoples_union
 		prerequisite = { focus = ENG_expand_revolution_to_the_dominions }
 		mutually_exclusive = {  }
@@ -17493,7 +17771,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #expand revolution to ireland
 		id = ENG_expand_revolution_to_ireland
 		prerequisite = { focus = ENG_expand_revolution_to_the_dominions }
 		mutually_exclusive = {  }
@@ -17539,7 +17817,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #expand revolution to america
 		id = ENG_expand_revolution_to_america
 		prerequisite = { focus = ENG_expand_revolution_to_the_dominions }
 		mutually_exclusive = {  }
@@ -17588,7 +17866,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #irish socialist republic
 		id = ENG_irish_socialist_republic
 		prerequisite = { focus = ENG_expand_revolution_to_ireland }
 		prerequisite = { focus = ENG_anglo_peoples_union }
@@ -17638,7 +17916,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #north american federative socialist republic
 		id = ENG_north_american_federative_socialist_republic
 		prerequisite = { focus = ENG_expand_revolution_to_america }
 		prerequisite = { focus = ENG_anglo_peoples_union }
@@ -17683,7 +17961,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #reach out across the channel
 		id = ENG_reach_out_across_the_channel
 		prerequisite = { focus = ENG_the_british_communist_alternative }
 		mutually_exclusive = { focus = ENG_enforce_decolonization }
@@ -17761,7 +18039,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #soviet cooperation
 		id = ENG_soviet_cooperation
 		prerequisite = { focus = ENG_enforce_decolonization focus = ENG_reach_out_across_the_channel }
 		mutually_exclusive = { focus = ENG_the_one_true_revolution }
@@ -17802,7 +18080,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #one true revolution
 		id = ENG_the_one_true_revolution
 		prerequisite = { focus = ENG_enforce_decolonization focus = ENG_reach_out_across_the_channel }
 		mutually_exclusive = { focus = ENG_soviet_cooperation }
@@ -17836,7 +18114,7 @@ focus_tree = {
 
 	### GO COMMUNIST WITH SOVIET UNION BRANCH ###
 
-	focus = {
+	focus = { #follow moscow
 		id = ENG_follow_moscow
 		prerequisite = { focus = ENG_for_the_good_of_the_revolution }
 		mutually_exclusive = { focus = ENG_the_british_communist_alternative }
@@ -17874,7 +18152,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #tackle fascism
 		id = ENG_tackle_fascism
 		prerequisite = { focus = ENG_follow_moscow focus = ENG_the_british_communist_alternative }
 		mutually_exclusive = {  }
@@ -17931,7 +18209,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #prepare second front
 		id = ENG_preparing_the_second_front
 		prerequisite = { focus = ENG_tackle_fascism }
 		available = {
@@ -17967,7 +18245,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #tackle capitalism
 		id = ENG_tackle_capitalism
 		prerequisite = { focus = ENG_follow_moscow focus = ENG_the_british_communist_alternative }
 		mutually_exclusive = {  }
@@ -17993,7 +18271,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #bermuda invasion launch point
 		id = ENG_bermuda_invasion_launch_point
 		prerequisite = { focus = ENG_tackle_capitalism }
 		available = {
@@ -18036,7 +18314,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #crush dream
 		id = ENG_crush_the_dream
 		prerequisite = { focus = ENG_bermuda_invasion_launch_point }
 		available = {
@@ -18065,7 +18343,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #socialist science pool
 		id = ENG_socialist_science_pool
 		prerequisite = { focus = ENG_follow_moscow }
 		available = {
@@ -18092,7 +18370,7 @@ focus_tree = {
 
 	### COMMUNIST SHARED FINISHER BRANCH ###
 
-	focus = {
+	focus = { #liberate home of marx
 		id = ENG_liberate_the_home_of_marx
 		prerequisite = { focus = ENG_the_one_true_revolution focus = ENG_preparing_the_second_front focus = ENG_soviet_cooperation }
 		available = {
@@ -18118,7 +18396,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #spirit of industrial revolution
 		id = ENG_spirit_of_the_industrial_revolution
 		prerequisite = { focus = ENG_soviet_cooperation focus = ENG_liberate_the_home_of_marx focus = ENG_crush_the_dream }
 		available = {
@@ -18140,7 +18418,7 @@ focus_tree = {
 
 	### ARMY COUNTERCOUP ###
 
-	focus = {
+	focus = { #army countercoup
 		id = ENG_army_countercoup
 		prerequisite = { focus = ENG_the_fate_of_the_royal_family }
 		available = {
@@ -18165,7 +18443,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #secure government
 		id = ENG_secure_the_government
 		prerequisite = { focus = ENG_army_countercoup }
 		available = {
@@ -18200,7 +18478,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #crush communists
 		id = ENG_crush_the_communists
 		prerequisite = { focus = ENG_secure_the_government }
 		available = {
@@ -18243,7 +18521,7 @@ focus_tree = {
 
 	### BRITANNIA FOR THE PEOPLE BRANCH ###
 
-	focus = {
+	focus = { #britannia for people
 		id = ENG_britannia_for_people
 		prerequisite = { focus = ENG_secure_the_government }
 		available = {
@@ -18279,7 +18557,7 @@ focus_tree = {
 
 	### DEMOCRACY PATH ###
 
-	focus = {
+	focus = { #reopen national elections
 		id = ENG_reopen_national_elections
 		prerequisite = { focus = ENG_britannia_for_people }
 		available = {
@@ -18289,7 +18567,7 @@ focus_tree = {
 			has_government = democratic
 		}
 		mutually_exclusive = { focus = ENG_new_monarchy }
-		icon = GFX_focus_ENG_reopen_national_elections
+		icon = GFX_focus_generic_election
 		x = 8
 		y = 1
 		relative_position_id = ENG_britannia_for_people
@@ -18362,7 +18640,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #ireland vote
 		id = ENG_ireland_vote
 		prerequisite = { focus = ENG_reopen_national_elections }
 		available = {
@@ -18418,7 +18696,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #war is coming
 		id = ENG_war_is_coming
 		prerequisite = { focus = ENG_atlanticism focus = ENG_europeanism }
 		available = {
@@ -18444,7 +18722,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #invite exiled scientists
 		id = ENG_invite_exiled_scientists
 		prerequisite = { focus = ENG_atlanticism focus = ENG_europeanism }
 		available = {

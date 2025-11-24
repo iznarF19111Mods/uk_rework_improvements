@@ -174,3 +174,36 @@ UK_get_path_guide = {
 		has_country_flag = ENG_wants_to_spoil_secret_paths_flag
 	}
 }
+UK_german_confederation_decisions = {
+	icon = GFX_decision_cat_generic_austria_hungary_icon
+	picture = GFX_decision_cat_picture_unite_germany
+	allowed = {
+		original_tag = ENG
+	}
+	priority = 50
+	visible = {
+		has_completed_focus = ENG_new_german_confederation
+	}
+}
+UK_nse_decisions = {
+	icon = GFX_decision_category_ICE_the_viking_spirit
+	picture = GFX_decision_cat_generic_north_sea_empire
+	allowed = {
+		original_tag = ENG
+	}
+	priority = 50
+	visible = {
+		has_completed_focus = ENG_dreams_of_a_north_sea_empire
+	}
+}
+UK_germanic_empire_decisions = {
+	icon = GFX_decision_category_GER_weltpolitik
+	picture = GFX_decision_cat_picture_unite_germany
+	allowed = {
+		original_tag = ENG
+	}
+	priority = 50
+	visible = {
+		
+	}
+}
