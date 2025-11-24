@@ -1,0 +1,27 @@
+ENG_HAS_HOHENZOLLERN_MONARCH = {
+	ENG = {
+		OR = {
+			has_country_leader = {
+				character = GER_victoria
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = GER_wilhelm_iii
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = GER_wilhelm_iv
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = PRE_eitel_friedrich
+				ruling_only = yes
+			}
+			has_idea = victoria_ii
+			has_idea = GER_wilhelm_iii
+			has_idea = GER_wilhelm_iv
+			has_idea = PRE_eitel_friedrich
+			has_idea = GER_victoria_louise
+		}
+	}
+}

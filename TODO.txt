@@ -1,0 +1,4 @@
+#- Code Legitimacy Balance of Power (BOP) for Kaiserin Victoria --> needs to be on side of high legitimacy for union of ENG and GER
+#- BOP starts on low legitimacy (giving debuffs to stability and pp gain)
+- not controlling GER lowers legitimacy of Victoria, while controlling it without cores freezes BOP
+#- adding cores in the various parts of GER will increase legitimacy --> proportional to the investment into coring the part

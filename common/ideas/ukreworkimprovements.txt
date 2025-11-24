@@ -1,5 +1,35 @@
 ideas = {
 	country = {
+		GER_victoria_louise = {
+			allowed = {
+				OR = {
+					original_tag = GER
+					original_tag = ENG
+				}
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			picture = victoria_ii
+			
+			removal_cost = -1
+			
+			traits = { victoria_louise }
+		}
+
 		victoria_ii = {
 			allowed = {
 				OR = {
@@ -30,7 +60,7 @@ ideas = {
 			traits = { victoria_louise kaiserin_of_the_british_and_german_people }
 		}
 
-		BAY_rupprecht_of_bavaria = {
+		rupprecht_of_bavaria = {
 			allowed = {
 				OR = {
 					original_tag = GER
@@ -54,11 +84,41 @@ ideas = {
 				}
 			}
 
-			#picture = BAY_rupprecht_of_bavaria
+			picture = rupprecht_of_bavaria
 			
 			removal_cost = -1
 			
 			traits = { popular_figurehead2 }
+		}
+
+		wilhelmina = {
+			allowed = {
+				original_tag = ENG
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			picture = HOL_wilhelmina
+
+			removal_cost = -1
+
+			traits = {
+				popular_figurehead
+				konigin_van_britten_en_nederlanders
+			}
 		}
 
 		ENG_democracy_rules = {
@@ -82,6 +142,93 @@ ideas = {
 			picture = generic_pp_unity_bonus
 			
 			removal_cost = -1
+		}
+
+		GER_wilhelm_iv = {
+			allowed = {
+				OR = {
+					original_tag = GER
+					original_tag = ENG
+				}
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			picture = GER_wilhelm_iv
+
+			traits = { popular_figurehead2 }
+		}
+
+		PRE_eitel_friedrich = {
+			allowed = {
+				OR = {
+					original_tag = GER
+					original_tag = ENG
+					original_tag = PRE
+				}
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			picture = PRE_eitel_friedrich
+
+			traits = { popular_figurehead2 }
+		}
+
+		GER_hohenzollern_kaiser = {
+			allowed = {
+				OR = {
+					original_tag = GER
+					original_tag = ENG
+				}
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = ENG
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+
+			picture = generic_pp_unity_bonus
+			
+			removal_cost = -1
+			
+			traits = { kaiser_of_ENG_and_GER }
 		}
 	}
 }

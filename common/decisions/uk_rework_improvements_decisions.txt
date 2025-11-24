@@ -1,0 +1,59 @@
+debug_decisions = {
+	set_bop_decision = {
+		priority = 200
+		allowed = {
+			always = yes
+		}
+
+		visible = {
+			is_ai = no
+			is_debug = yes
+		}
+		complete_effect = {
+			set_power_balance = {
+				id = ENG_monarch_legitimacy_balance
+				left_side = low_legitimacy_side
+				right_side = high_legitimacy_side
+				set_value = 0
+			}
+		}
+	}
+}
+
+ENG_monarch_legitimacy_category = {
+	add_legitimacy = {
+		allowed = {
+			always = yes
+		}
+
+		visible = {
+			#is_ai = no
+			is_debug = yes
+		}
+		fire_only_once = no
+		complete_effect = {
+			add_power_balance_value = {
+				id = ENG_monarch_legitimacy_balance
+				value = 0.1
+				tooltip_side = high_legitimacy_side
+			}
+		}
+	}
+	remove_legitimacy = {
+		allowed = {
+			always = yes
+		}
+		fire_only_once = no
+		visible = {
+			#is_ai = no
+			is_debug = yes
+		}
+		complete_effect = {
+			add_power_balance_value = {
+				id = ENG_monarch_legitimacy_balance
+				value = -0.1
+				tooltip_side = low_legitimacy_side
+			}
+		}
+	}
+}

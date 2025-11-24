@@ -1,0 +1,127 @@
+ENG_wilhelm_iii_joins_effect = {
+		every_possible_country = {
+			limit = { has_character = GER_wilhelm_iii }
+			random_character = {
+				limit = { is_character = GER_wilhelm_iii }
+				set_nationality = ENG
+			}
+		}
+		GER_wilhelm_iii = {
+			#set_nationality = ENG
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1965.1.1"
+					ideology = despotism
+					traits = {
+						popular_figurehead2
+					}
+				}
+				promote_leader = yes
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+		ENG_hohenzollern_monarch_gained_effect = yes
+}
+ENG_wilhelm_iv_joins_effect = {
+		every_possible_country = {
+			limit = { has_character = GER_wilhelm_iv }
+			random_character = {
+				limit = { is_character = GER_wilhelm_iv }
+				set_nationality = ENG
+			}
+		}
+		GER_wilhelm_iv = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1965.1.1"
+					ideology = despotism
+					traits = {
+						popular_figurehead2
+					}
+				}
+				promote_leader = yes
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+		ENG_hohenzollern_monarch_gained_effect = yes
+}
+ENG_victoria_joins_effect = {
+		every_possible_country = {
+			limit = { has_character = GER_victoria }
+			random_character = {
+				limit = { is_character = GER_victoria }
+				set_nationality = ENG
+			}
+		}
+		GER_victoria = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1980.12.11"
+					ideology = despotism
+					traits = {
+						popular_figurehead2
+					}
+				}
+				promote_leader = yes
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+		ENG_hohenzollern_monarch_gained_effect = yes
+}
+ENG_eitel_friedrich_joins_effect = {
+		every_possible_country = {
+			limit = { has_character = PRE_eitel_friedrich }
+			random_character = {
+				limit = { is_character = PRE_eitel_friedrich }
+				set_nationality = ENG
+			}
+		}
+		PRE_eitel_friedrich = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1965.1.1"
+					ideology = despotism
+					traits = {
+						popular_figurehead2
+					}
+				}
+				promote_leader = yes
+			}
+		}
+		custom_effect_tooltip = generic_skip_one_line_tt
+		ENG_hohenzollern_monarch_gained_effect = yes
+}
+ENG_hohenzollern_monarch_gained_effect = {
+	THIS = {
+		set_party_name = {
+			ideology = neutrality
+			name = ENG_hohenzollern_haus
+			long_name = ENG_hohenzollern_haus
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_government = neutrality
+			}
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+	}
+	THIS = {
+		random_character = {
+			limit = {
+				is_country_leader = yes
+				OR = {
+					is_character = GER_wilhelm_iii
+					is_character = GER_wilhelm_iv
+					is_character = GER_victoria
+					is_character = PRE_eitel_friedrich
+				}
+			}
+			add_country_leader_trait = house_of_hohenzollern_member
+		}
+	}
+}
