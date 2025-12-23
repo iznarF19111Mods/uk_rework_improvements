@@ -3867,10 +3867,7 @@ UK_motorways = {
 		state_target = yes
 		target_trigger = {
 			FROM = {
-				OR = {
-					is_in_home_area = yes
-					is_core_of = IRE
-				}
+				is_core_of = ROOT
 				is_controlled_by = ROOT
 			}
 		}

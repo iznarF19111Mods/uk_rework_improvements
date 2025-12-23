@@ -1,4 +1,4 @@
-version="1.1"
+version="1.2"
 tags={
 	"Alternative History"
 	"Events"
@@ -9,4 +9,4 @@ tags={
 }
 name="UK Rework Improvements"
 dependencies = { "UK Rework" }
-supported_version="1.16.*"
+supported_version="1.17.3"

@@ -4246,10 +4246,7 @@ UK_motorways = {
 		state_target = yes
 		target_trigger = {
 			FROM = {
-				OR = {
-					is_in_home_area = yes
-					is_core_of = IRE
-				}
+				is_core_of = ROOT
 				is_controlled_by = ROOT
 			}
 		}
@@ -4757,10 +4754,10 @@ UK_nse_decisions = {
 			IF = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							has_cosmetic_tag = ENG_imperial_federation_unified
 							has_cosmetic_tag = ENG_imperial_federation_india_unified
-						}
+						#}
 					}
 				}
 				set_cosmetic_tag = ENG_NORTH_SEA_EMPIRE
