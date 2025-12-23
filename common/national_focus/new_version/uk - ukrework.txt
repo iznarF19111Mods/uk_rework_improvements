@@ -13489,7 +13489,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #danube dominance
 		id = ENG_danube_dominance
 		prerequisite = { focus = ENG_new_german_confederation focus = ENG_form_the_hre_hanover }
 		mutually_exclusive = {  }
@@ -13545,11 +13545,13 @@ focus_tree = {
 					every_country = {
 						limit = {
 							controls_state = PREV
-							controller = {
-								NOT = {
-									OR = {
-										is_in_faction_with = ROOT
-										is_subject_of = ROOT
+							PREV = {
+								controller = {
+									NOT = {
+										OR = {
+											is_in_faction_with = ROOT
+											is_subject_of = ROOT
+										}
 									}
 								}
 							}

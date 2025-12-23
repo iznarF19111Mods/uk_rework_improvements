@@ -4757,10 +4757,10 @@ UK_nse_decisions = {
 			IF = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							has_cosmetic_tag = ENG_imperial_federation_unified
 							has_cosmetic_tag = ENG_imperial_federation_india_unified
-						}
+						#}
 					}
 				}
 				set_cosmetic_tag = ENG_NORTH_SEA_EMPIRE

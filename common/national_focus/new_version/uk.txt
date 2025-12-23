@@ -99,7 +99,7 @@ focus_tree = {
 
 		available = {
 		}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 
 		search_filters = {FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL}	
 		completion_reward = {
@@ -277,7 +277,7 @@ focus_tree = {
 			if = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							123 = {
 								free_building_slots = {
 									building = anti_air_building
@@ -296,7 +296,7 @@ focus_tree = {
 									size > 1
 								}
 							}
-						}
+						#}
 					}
 					NOT = {
 						any_owned_state = {
@@ -344,7 +344,7 @@ focus_tree = {
 			if = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							123 = {
 								free_building_slots = {
 									building = anti_air_building
@@ -363,7 +363,7 @@ focus_tree = {
 									size > 1
 								}
 							}
-						}
+						#}
 					}
 				}
 				random_owned_controlled_state = {
@@ -2336,7 +2336,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #railway industry
 		id = ENG_the_railway_industry
 		prerequisite = { focus = ENG_industrial_legacy }
 		icon = GFX_focus_generic_railroad
@@ -2388,7 +2388,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #inspiration from autobahn
 		id = ENG_inspiration_from_autobahn
 		prerequisite = { focus = ENG_the_railway_industry focus = ENG_increased_infrastructure }
 		available = {
@@ -2442,7 +2442,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #increased infrastructure
 		id = ENG_increased_infrastructure
 		prerequisite = { focus = ENG_industrial_legacy }
 		icon = GFX_goal_generic_construct_infrastructure
@@ -2512,7 +2512,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #automobile investment
 		id = ENG_automobile_investment
 		prerequisite = { focus = ENG_increased_infrastructure }
 		icon = GFX_focus_GER_kdf_wagen
@@ -2564,7 +2564,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #encourage urban growth
 		id = ENG_encourage_urban_growth
 		prerequisite = { focus = ENG_industrial_legacy }
 		icon = GFX_focus_generic_low_cost_housing
@@ -2602,7 +2602,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #sterling area
 		id = ENG_sterling_area
 		prerequisite = { focus = ENG_encourage_urban_growth }
 		icon = GFX_focus_RAJ_issue_bonds_on_the_stock_market
@@ -2647,7 +2647,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #new roads
 		id = ENG_new_roads
 		prerequisite = { focus = ENG_encourage_urban_growth focus = ENG_the_railway_industry }
 		icon = GFX_focus_generic_road_investment
@@ -2730,7 +2730,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #motorways
 		id = ENG_motorways
 		prerequisite = { focus = ENG_new_roads }
 		prerequisite = { focus = ENG_automobile_investment }
@@ -2786,7 +2786,7 @@ focus_tree = {
 
 	### DEMOCRATIC BRANCH - STEADY AS SHE GOES ###
 
-	focus = {
+	focus = { #steady as she goes
 		id = ENG_steady_as_she_goes
 		mutually_exclusive = { focus = ENG_a_change_in_course }
 		icon = GFX_focus_ENG_british_democracy
@@ -2826,7 +2826,7 @@ focus_tree = {
 	
 	### EMPIRE ###
 
-	focus = {
+	focus = { #reinforce the empire
 		id = uk_empire_focus 
 		mutually_exclusive = { focus = ENG_revisit_colonial_policy }
 		prerequisite = { focus = ENG_steady_as_she_goes focus = ENG_a_change_in_course }
@@ -2861,7 +2861,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #service overseas
 		id = uk_service_focus 
 		prerequisite = { focus = uk_empire_focus }
 		available = {
@@ -2884,7 +2884,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #establish overseas territories
 		id = ENG_establish_the_overseas_territories
 		prerequisite = { focus = uk_service_focus }
 		available = {
@@ -2922,7 +2922,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #mediterranean bastion
 		id = uk_mediterranean_focus 
 		prerequisite = { focus = uk_service_focus }
 		available = {
@@ -3016,7 +3016,7 @@ focus_tree = {
 			}
 		}
 	}
-	focus = {
+	focus = { #fortify the rock
 		id = uk_rock_focus 
 		prerequisite = { focus = uk_mediterranean_focus }
 		mutually_exclusive = { focus = uk_spain_focus }
@@ -3104,7 +3104,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #coerce spain
 		id = uk_spain_focus
 
 		prerequisite = { focus = uk_mediterranean_focus }
@@ -3207,7 +3207,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #protect suez
 		id = uk_protect_suez
 		prerequisite = { focus = uk_mediterranean_focus }
 		icon = GFX_focus_ENG_defend_suez
@@ -3328,7 +3328,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #balkan strategy
 		id = uk_balkan_strategy
 		prerequisite = { focus = uk_protect_suez }
 		prerequisite = { focus = uk_malta_focus }
@@ -3362,7 +3362,7 @@ focus_tree = {
 						tag = ROM
 					}
 					NOT = {
-						OR = {
+						#OR = {
 							AND = {
 								is_in_faction_with = GER
 								GER = { has_government = fascism }
@@ -3374,7 +3374,7 @@ focus_tree = {
 							GRE = { 
 								has_country_flag = GRE_britain_rebuffed
 							}
-						}
+						#}
 					}
 				}
 				country_event = { id = generic.19 }
@@ -3404,7 +3404,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #sanction italy
 		id = uk_sanction_italy_focus
 		available = {
 			ITA = {
@@ -3431,7 +3431,7 @@ focus_tree = {
 			custom_effect_tooltip = embargo_relation_tt
 		}
 	}
-	focus = {
+	focus = { #war with italy
 		id = ENG_war_with_italy
 		available = {
 			has_offensive_war = no
@@ -3461,7 +3461,7 @@ focus_tree = {
 		}
 	}	
 
-	focus = {
+	focus = { #coerce turkey
 		id = uk_turkey_focus
 
 		prerequisite = { focus = uk_balkan_strategy }
@@ -3545,7 +3545,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #coerce greece
 		id = uk_greece_focus 
 
 		prerequisite = { focus = uk_balkan_strategy } 
@@ -3624,7 +3624,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #fortify malta
 		id = uk_malta_focus 
 		prerequisite = { focus = uk_mediterranean_focus }
 		available = {
@@ -3677,7 +3677,7 @@ focus_tree = {
 
 	### DECOLONIZATION ###
 
-	focus = {
+	focus = { #revisit colonial policy
 		id = ENG_revisit_colonial_policy
 		mutually_exclusive = { focus = uk_empire_focus }
 		prerequisite = { focus = ENG_a_change_in_course }
@@ -3717,7 +3717,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #guide the colonies
 		id = ENG_guide_the_colonies
 		prerequisite = { focus = ENG_revisit_colonial_policy }
 		available = { 
@@ -3811,7 +3811,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #towards dominion independence
 		id = ENG_towards_dominion_independence
 		prerequisite = { focus = ENG_guide_the_colonies }
 		available = { 
@@ -3904,7 +3904,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #foundations for an indian state
 		id = ENG_foundations_for_an_indian_state
 		prerequisite = { focus = ENG_towards_dominion_independence }
 		available = {
@@ -4063,7 +4063,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #the three nation solution
 		id = ENG_the_three_nation_solution
 		prerequisite = { focus = ENG_foundations_for_an_indian_state }
 		available = { 
@@ -4161,7 +4161,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #towards indian independence
 		id = ENG_towards_indian_independence
 		prerequisite = { focus = ENG_foundations_for_an_indian_state }
 		available = { 
@@ -4332,7 +4332,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #withdraw from contested territories
 		id = ENG_withdraw_from_contested_territories
 		prerequisite = { focus = ENG_guide_the_colonies }
 		available = { 
@@ -4532,7 +4532,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #self-government for mediterranean
 		id = ENG_self_government_for_the_mediterranean
 		prerequisite = { focus = ENG_withdraw_from_contested_territories }
 		available = { 
@@ -4624,7 +4624,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #self-government for africa
 		id = ENG_self_government_for_africa
 		prerequisite = { focus = ENG_self_government_for_the_mediterranean }
 		available = { 
@@ -5107,7 +5107,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #self-government for middle east
 		id = ENG_self_government_for_the_middle_east
 		prerequisite = { focus = ENG_withdraw_from_contested_territories }
 		available = { 
@@ -5434,7 +5434,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #self-government for americas
 		id = ENG_self_government_for_the_americas
 		prerequisite = { focus = ENG_self_government_for_the_middle_east }
 		available = { 
@@ -5652,7 +5652,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #self-government for asia
 		id = ENG_self_government_for_asia
 		prerequisite = { focus = ENG_self_government_for_the_middle_east }
 		available = { 
@@ -5888,7 +5888,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #decolonization
 		id = ENG_decolonization
 		prerequisite = { focus = ENG_self_government_for_africa }
 		prerequisite = { focus = ENG_self_government_for_asia }
@@ -6054,14 +6054,14 @@ focus_tree = {
 				limit = {
 					is_subject_of = ENG
 					NOT = {
-						OR = {
+						#OR = {
 							tag = CAN
 							tag = SAF
 							tag = RAJ
 							tag = AST
 							tag = NZL
 							tag = MAL
-						}
+						#}
 					}
 					OR = {
 						has_government = ROOT
@@ -6114,20 +6114,20 @@ focus_tree = {
 				limit = {
 					is_subject_of = ENG
 					NOT = {
-						OR = {
+						#OR = {
 							tag = CAN
 							tag = SAF
 							tag = RAJ
 							tag = AST
 							tag = NZL
 							tag = MAL
-						}
+						#}
 					}
 					NOT = {
-						OR = {
+						#OR = {
 							has_government = ROOT
 							has_government = neutrality
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -6193,7 +6193,13 @@ focus_tree = {
 							has_country_flag = ENG_decolonization_left_faction
 						}
 					}
-					CAN = { create_faction = ENG_coalition_of_free_commonwealth_states }
+					CAN = {
+						create_faction_from_template = {
+							template = faction_template_allies
+							name = ENG_coalition_of_free_commonwealth_states
+							icon = GFX_faction_logo_generic_2
+						}
+					}
 				}
 				else_if = {
 					limit = {
@@ -6202,7 +6208,13 @@ focus_tree = {
 							has_country_flag = ENG_decolonization_left_faction
 						}
 					}
-					AST = { create_faction = ENG_coalition_of_free_commonwealth_states }
+					AST = {
+						create_faction_from_template = {
+							template = faction_template_allies
+							name = ENG_coalition_of_free_commonwealth_states
+							icon = GFX_faction_logo_generic_2
+						}
+					}
 				}
 				else_if = {
 					limit = {
@@ -6211,7 +6223,13 @@ focus_tree = {
 							has_country_flag = ENG_decolonization_left_faction
 						}
 					}
-					RAJ = { create_faction = ENG_coalition_of_free_commonwealth_states }
+					RAJ = {
+						create_faction_from_template = {
+							template = faction_template_allies
+							name = ENG_coalition_of_free_commonwealth_states
+							icon = GFX_faction_logo_generic_2
+						}
+					}
 				}
 				else_if = {
 					limit = {
@@ -6220,7 +6238,13 @@ focus_tree = {
 							has_country_flag = ENG_decolonization_left_faction
 						}
 					}
-					SAF = { create_faction = ENG_coalition_of_free_commonwealth_states }
+					SAF = {
+						create_faction_from_template = {
+							template = faction_template_allies
+							name = ENG_coalition_of_free_commonwealth_states
+							icon = GFX_faction_logo_generic_2
+						}
+					}
 				}
 				else_if = {
 					limit = {
@@ -6229,7 +6253,13 @@ focus_tree = {
 							has_country_flag = ENG_decolonization_left_faction
 						}
 					}
-					NZL = { create_faction = ENG_coalition_of_free_commonwealth_states }
+					NZL = {
+						create_faction_from_template = {
+							template = faction_template_allies
+							name = ENG_coalition_of_free_commonwealth_states
+							icon = GFX_faction_logo_generic_2
+						}
+					}
 				}
 				else_if = {
 					limit = {
@@ -6267,17 +6297,21 @@ focus_tree = {
 					random_other_country = {
 						limit = {
 							NOT = {
-								OR = {
+								#OR = {
 									tag = CAN
 									tag = SAF
 									tag = RAJ
 									tag = AST
 									tag = NZL
-								}
+								#}
 							}
 							has_country_flag = ENG_decolonization_left_faction
 						}
-						create_faction = ENG_coalition_of_free_commonwealth_states
+						create_faction_from_template = {
+							template = faction_template_allies
+							name = ENG_coalition_of_free_commonwealth_states
+							icon = GFX_faction_logo_generic_2
+						}
 					}
 				}
 				every_other_country = {
@@ -9593,12 +9627,12 @@ focus_tree = {
 				limit = {
 					has_government = communism
 					NOT = {
-						OR = {
+						#OR = {
 							tag = ROOT
 							is_in_faction_with = ROOT
 							is_subject_of = ROOT
 							has_war_with = ROOT
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -9661,12 +9695,12 @@ focus_tree = {
 				limit = {
 					is_major = yes
 					NOT = {
-						OR = {
+						#OR = {
 							tag = ROOT
 							is_in_faction_with = ROOT
 							is_subject_of = ROOT
 							has_war_with = ROOT
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -11889,7 +11923,11 @@ focus_tree = {
 				limit = {
 					is_in_faction = no
 				}
-				create_faction = "Last Stand of Democracy"
+				create_faction_from_template = {
+					template = faction_template_allies
+					name = last_stand_of_democracy
+					icon = GFX_faction_logo_generic_2
+				}
 				IF = {
 					limit = {
 						USA = {
@@ -12738,10 +12776,10 @@ focus_tree = {
 						}
 					}
 					NOT = {
-						OR = {
+						#OR = {
 							tag = ROOT
 							is_subject_of = ROOT
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -12789,10 +12827,10 @@ focus_tree = {
 						is_core_of = SWE
 					}
 					NOT = {
-						OR = {
+						#OR = {
 							tag = ROOT
 							is_subject_of = ROOT
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -12828,10 +12866,10 @@ focus_tree = {
 					15 = {
 						controller = {
 							NOT = {
-								OR = {
+								#OR = {
 									tag = ROOT
 									is_subject_of = ROOT
-								}
+								#}
 							}
 						}
 					}
@@ -13181,7 +13219,11 @@ focus_tree = {
 				limit = {
 					is_in_faction = no
 				}
-				create_faction = "Pact of London"
+				create_faction_from_template = {
+					template = faction_template_allies
+					name = "Pact of London"
+					icon = GFX_faction_logo_generic_2
+				}
 			}
 			IF = {
 				limit = {
@@ -13468,9 +13510,9 @@ focus_tree = {
 					every_country = {
 						limit = {
 							controls_state = PREV
-							controller = {
-								NOT = {
-									OR = {
+							PREV = {
+								controller = {
+									NOT = {
 										is_in_faction_with = ROOT
 										is_subject_of = ROOT
 									}
@@ -16260,10 +16302,10 @@ focus_tree = {
 				limit = {
 					controller = {
 						NOT = {
-							OR = {
+							#OR = {
 								is_in_faction_with = ROOT
 								is_subject_of = ROOT
-							}
+							#}
 						}
 						OR = {
 							tag = SAU
@@ -16660,7 +16702,11 @@ focus_tree = {
 		completion_reward = {
 			add_stability = 0.05
 			dismantle_faction = yes
-			create_faction = "London Internationale"
+			create_faction_from_template = {
+				template = faction_template_allies
+				name = "London Internationale"
+				icon = GFX_faction_logo_generic_2
+			}
 			hidden_effect = { news_event = { id = mtg_news.36 days = 1 } }
 			if = {
 				limit = {
@@ -18811,10 +18857,10 @@ focus_tree = {
 					is_in_faction = yes
 					faction_leader = {
 						NOT = {
-							OR = {
+							#OR = {
 								tag = ROOT
 								tag = USA
-							}
+							#}
 						}
 					}
 				}
@@ -18842,11 +18888,11 @@ focus_tree = {
 				limit = {
 					is_in_faction_with = ROOT
 					NOT = {
-						OR = {
+						#OR = {
 							tag = ROOT
 							tag = USA
 							is_subject_of = ROOT
-						}
+						#}
 					}
 				}
 				leave_faction = yes
@@ -18910,7 +18956,11 @@ focus_tree = {
 				limit = {
 					is_in_faction = no
 				}
-				create_faction = "Atlantic Alliance"
+				create_faction_from_template = {
+					template = faction_template_allies
+					name = atlantic_alliance
+					icon = GFX_faction_logo_generic_2
+				}
 				USA = {
 					country_event = {
 						id = generic.5
@@ -19171,7 +19221,7 @@ focus_tree = {
 				limit = {
 					is_in_faction_with = ROOT
 					NOT = {
-						OR = {
+						#OR = {
 							AND = {
 								capital_scope = {
 									is_on_continent = europe
@@ -19179,7 +19229,7 @@ focus_tree = {
 								has_government = democratic
 							}
 							is_subject_of = ROOT
-						}
+						#}
 					}
 				}
 				leave_faction = yes
@@ -19243,7 +19293,11 @@ focus_tree = {
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = ENG_european_alliance_1_tt
 			effect_tooltip = {
-				create_faction = "Union of European States"
+				create_faction_from_template = {
+					template = faction_template_allies
+					name = EUR_UNIFIED_neutrality
+					icon = GFX_faction_logo_generic_2
+				}
 			}
 			custom_effect_tooltip = ENG_european_alliance_2_tt
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -19289,7 +19343,11 @@ focus_tree = {
 					}
 				}
 				else = {
-					create_faction = "Union of European States"
+					create_faction_from_template = {
+						template = faction_template_allies
+						name = EUR_UNIFIED_neutrality
+						icon = GFX_faction_logo_generic_2
+					}
 					every_country = {
 						limit = {
 							capital_scope = {
@@ -19614,12 +19672,12 @@ focus_tree = {
 						is_in_faction_with = ROOT
 						is_subject_of = ROOT
 						has_war_with = ROOT
-						OR = {
+						#OR = {
 							tag = JAP
 							tag = GER
 							tag = ITA
 							tag = SOV
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -19667,12 +19725,12 @@ focus_tree = {
 						is_in_faction_with = ROOT
 						is_subject_of = ROOT
 						has_war_with = ROOT
-						OR = {
+						#OR = {
 							tag = JAP
 							tag = GER
 							tag = ITA
 							tag = SOV
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -19753,7 +19811,7 @@ focus_tree = {
 			if = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							has_country_leader = {
 								character = BAY_rupprecht_of_bavaria
 								ruling_only = yes
@@ -19786,7 +19844,7 @@ focus_tree = {
 								character = ENG_parliament_german
 								ruling_only = yes
 							}
-						}
+						#}
 					}
 				}
 				custom_effect_tooltip = generic_skip_one_line_tt
@@ -19988,7 +20046,7 @@ focus_tree = {
 			IF = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							has_country_leader = {
 								character = BAY_rupprecht_of_bavaria
 								ruling_only = yes
@@ -19998,7 +20056,7 @@ focus_tree = {
 								ruling_only = yes
 							}
 							has_country_leader_with_trait = house_of_hohenzollern_member
-						}
+						#}
 					}
 				}
 				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
@@ -20212,7 +20270,7 @@ focus_tree = {
 			IF = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							has_country_leader = {
 								character = BAY_rupprecht_of_bavaria
 								ruling_only = yes
@@ -20222,7 +20280,7 @@ focus_tree = {
 								ruling_only = yes
 							}
 							has_country_leader_with_trait = house_of_hohenzollern_member
-						}
+						#}
 					}
 				}
 				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
@@ -20468,13 +20526,13 @@ focus_tree = {
 			IF = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							has_country_leader = {
 								character = HOL_wilhelmina
 								ruling_only = yes
 							}
 							has_country_leader_with_trait = house_of_hohenzollern_member
-						}
+						#}
 					}
 				}
 				custom_effect_tooltip = ENG_new_flag_over_london_1_tt
@@ -21860,11 +21918,11 @@ focus_tree = {
 			every_country = {
 				limit = {
 					NOT = {
-						OR = {
+						#OR = {
 							is_subject_of = ROOT
 							tag = ROOT
 							is_in_faction_with = ROOT
-						}
+						#}
 					}
 					any_controlled_state = {
 						OR = {
@@ -22601,10 +22659,10 @@ focus_tree = {
 					}
 					exists = yes
 					NOT = {
-						OR = {
+						#OR = {
 							has_war_with = ROOT
 							is_in_faction_with = ROOT
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -22683,10 +22741,10 @@ focus_tree = {
 						}
 					}
 					NOT = {
-						OR = {
+						#OR = {
 							tag = ROOT
 							is_in_faction_with = ROOT
-						}
+						#}
 					}
 				}
 				ROOT = {
@@ -22720,7 +22778,11 @@ focus_tree = {
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
-			create_faction = "Commonwealth of Nations"
+			create_faction_from_template = {
+				template = faction_template_allies
+				name = ENG_imperial_federation_unified_democratic
+				icon = GFX_faction_logo_generic_2
+			}
 		}
 	}
 
@@ -23522,10 +23584,10 @@ focus_tree = {
 					is_coastal = yes
 					controller = {
 						NOT = {
-							OR = {
+							#OR = {
 								tag = ROOT
 								is_subject_of = ROOT
-							}
+							#}
 						}
 					}
 				}
@@ -23559,10 +23621,10 @@ focus_tree = {
 						}
 					}
 					NOT = {
-						OR = {
+						#OR = {
 							is_subject_of = ROOT
 							tag = ROOT
-						}
+						#}
 					}
 				}
 				ROOT = {

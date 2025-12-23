@@ -698,11 +698,9 @@ country_event = {
 		name = ukrework.14.c
 		trigger = {
 			NOT = {
-				OR = {
 					has_country_flag = ENG_hohenzollern_declined_flag
 					has_global_flag = hohenzollern_family_dead
 					ENG_HAS_HOHENZOLLERN_MONARCH = yes # already has an Hohenzollern Monarch
-				}
 			}
 			IF = {
 				limit = {
@@ -1884,13 +1882,13 @@ country_event = {
     			states_filter = {
 					is_controlled_by = ROOT
 					NOT = {
-						OR = {
+						#OR = {
 							region = 1
 							region = 2
 							region = 3
 							region = 4
 							region = 16
-						}
+						#}
 					}
     			}
 				load_focus_tree = {
@@ -3234,13 +3232,13 @@ country_event = {
 							}
 						}
 						NOT = {
-							OR = {
+							#OR = {
 								tag = CAN
 								tag = AST
 								tag = NZL
 								tag = RAJ
 								tag = SAF
-							}
+							#}
 						}
 					}
 					ROOT = {
@@ -3261,10 +3259,10 @@ country_event = {
 					limit = {
 						is_on_continent = middle_east
 						NOT = {
-							OR = {
+							#OR = {
 								state = 446
 								state = 453
-							}
+							#}
 						}
 						is_controlled_by = ENG
 					}
@@ -3300,13 +3298,13 @@ country_event = {
 							}
 						}
 						NOT = {
-							OR = {
+							#OR = {
 								tag = CAN
 								tag = AST
 								tag = NZL
 								tag = RAJ
 								tag = SAF
-							}
+							#}
 						}
 					}
 					ROOT = {
@@ -3468,7 +3466,19 @@ country_event = {
 		set_rule = {
 			can_create_factions = yes
 		}
-		create_faction = "Commonwealth of Nations"
+		create_faction_from_template = {
+			template = faction_template_allies
+			name = ENG_commonwealth_of_nations
+		}
+		IF= {
+			limit = {
+				has_dlc = "No Compromise, No Surrender"
+			}
+			add_faction_goal_slot = {
+				category  = long_term
+				value = 1 
+			}
+		}
 		custom_effect_tooltip = generic_skip_one_line_tt
 		every_country = {
 			limit = {
@@ -4139,16 +4149,14 @@ country_event = {
 			IF = {
 				limit = {
 					NOT = {
-						OR = {
-							has_country_leader = {
-								character = ENG_stanley_baldwin
-							}
-							has_country_leader = {
-								character = ENG_neville_chamberlain
-							}
-							has_country_leader = {
-								name = "Lord Edward Halifax"
-							}
+						has_country_leader = {
+							character = ENG_stanley_baldwin
+						}
+						has_country_leader = {
+							character = ENG_neville_chamberlain
+						}
+						has_country_leader = {
+							name = "Lord Edward Halifax"
 						}
 					}
 				}

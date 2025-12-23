@@ -458,11 +458,11 @@ form_nordic_league_category = {
 				limit = {
 					933 = {
 						NOT = {
-							OR = {
+							#OR = {
 								is_owned_by = ROOT
 								is_claimed_by = ROOT
 								is_core_of = ROOT
-							}
+							#}
 						}
 					}
 				}
@@ -473,11 +473,11 @@ form_nordic_league_category = {
 				limit = {
 					213 = {
 						NOT = {
-							OR = {
+							#OR = {
 								is_owned_by = ROOT
 								is_claimed_by = ROOT
 								is_core_of = ROOT
-							}
+							#}
 						}
 					}
 				}
@@ -488,11 +488,11 @@ form_nordic_league_category = {
 				limit = {
 					215 = {
 						NOT = {
-							OR = {
+							#OR = {
 								is_owned_by = ROOT
 								is_claimed_by = ROOT
 								is_core_of = ROOT
-							}
+							#}
 						}
 					}
 				}
@@ -503,11 +503,11 @@ form_nordic_league_category = {
 				limit = {
 					216 = {
 						NOT = {
-							OR = {
+							#OR = {
 								is_owned_by = ROOT
 								is_claimed_by = ROOT
 								is_core_of = ROOT
-							}
+							#}
 						}
 					}
 				}
@@ -10530,7 +10530,7 @@ form_polynesia_category = {
 					NOT = { tag = ROOT }
 					is_in_faction_with = ROOT
 					NOT = {
-						OR = {
+						#OR = {
 							original_tag = HAW
 							original_tag = TAH
 							original_tag = GUM
@@ -10539,7 +10539,7 @@ form_polynesia_category = {
 							original_tag = SOL
 							original_tag = FIJ
 							original_tag = NZL
-						}
+						#}
 					}
 					OR = {
 						controls_state = 284
