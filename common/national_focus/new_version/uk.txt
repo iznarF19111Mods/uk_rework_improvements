@@ -13220,7 +13220,7 @@ focus_tree = {
 					is_in_faction = no
 				}
 				create_faction_from_template = {
-					template = faction_template_allies
+					template = faction_template_european_dominance_monarchist
 					name = "Pact of London"
 					icon = GFX_faction_logo_generic_2
 				}
@@ -16703,7 +16703,7 @@ focus_tree = {
 			add_stability = 0.05
 			dismantle_faction = yes
 			create_faction_from_template = {
-				template = faction_template_allies
+				template = faction_template_world_revolution
 				name = "London Internationale"
 				icon = GFX_faction_logo_generic_2
 			}
@@ -22779,7 +22779,7 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
 			create_faction_from_template = {
-				template = faction_template_allies
+				template = faction_template_european_dominance_monarchist
 				name = ENG_imperial_federation_unified_democratic
 				icon = GFX_faction_logo_generic_2
 			}
