@@ -25,6 +25,9 @@
   ENG_victoria_established_uk_german_democracy_tt: "Our Kaiserin Victoria established an Anglo-German democracy"
   ENG_has_hohenzollern_monarch_tt: "A member of the §HHouse of Hohenzollern§! is the current country leader."
   ENG_new_monarchy_possible_tt: "We have suitable candidates for our throne."
+  ENG_constitutional_monarchy_tt: "Has established a constitutional monarchy."
+  ENG_constitutional_monarchy_tt_NOT: "Not: Has established a constitutional monarchy."
+  ENG_allows_return_to_democracy_tt: "This will allow us to truly return to democracy."
   #this_will_happen_tt: ""
 
   # Character Traits
