@@ -1816,7 +1816,15 @@ characters={
 			available  = {
 				has_completed_focus = ENG_britannia_for_people
 				NOT = {
-					has_completed_focus = ENG_reopen_national_elections
+					AND = {
+						custom_trigger_tooltip = {
+							tooltip = ENG_constitutional_monarchy_tt
+							NOT = {
+								has_country_flag = ENG_constitutional_monarchy
+							}
+						}
+						has_completed_focus = ENG_reopen_national_elections
+					}
 				}
 			}
 			allowed  = {

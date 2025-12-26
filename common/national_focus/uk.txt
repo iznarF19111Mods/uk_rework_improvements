@@ -120,7 +120,7 @@ focus_tree = {
 
 	### Economy ###
 
-	focus = {
+	focus = { # Limited Rearmament
 		id = limited_rearmament_focus
 		icon = GFX_focus_generic_modernize_industry
 		prerequisite = { focus = ENG_national_government }
@@ -129,6 +129,39 @@ focus_tree = {
 		cost = 10
 		ai_will_do = {
 			factor = 1
+		}
+		offset = {
+			x = 39
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_eliminate_the_upper_class
+			}
+		}
+		offset = {
+			x = 27
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_organize_the_blackshirts
+			}
+		}
+		offset = {
+			x = 26
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_britannia_for_people
+			}
 		}
 
 		bypass = {
@@ -200,7 +233,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { # Air Defense
 		id = air_defense_focus
 		prerequisite = { focus = limited_rearmament_focus }
 		available = {
@@ -476,7 +509,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { # RADAR
 		id = radar_focus
 		prerequisite = { focus = air_defense_focus }
 		icon = GFX_goal_generic_radar
@@ -505,7 +538,7 @@ focus_tree = {
 		}
 	}
 	
-	focus = {
+	focus = { # Cryptologic Bomb
 		id = crypto_bomb_focus
 		available = {
 				has_war_with = GER
@@ -563,7 +596,7 @@ focus_tree = {
 		}
 	}
 	
-	focus = {
+	focus = { # Tizard Mission
 		id = tizard_mission_focus
 		available = {				
 			has_government = democratic
@@ -2305,7 +2338,40 @@ focus_tree = {
 		cost = 10
 		ai_will_do = {
 			factor = 1
-		}	
+		}
+		offset = {
+			x = 39
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_eliminate_the_upper_class
+			}
+		}
+		offset = {
+			x = 27
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_organize_the_blackshirts
+			}
+		}
+		offset = {
+			x = 26
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_britannia_for_people
+			}
+		}
 
 		available_if_capitulated = yes
 		search_filters = {FOCUS_FILTER_INDUSTRY}
@@ -2791,6 +2857,20 @@ focus_tree = {
 		mutually_exclusive = { focus = ENG_a_change_in_course }
 		icon = GFX_focus_ENG_british_democracy
 
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_a_change_in_course
+				}
+			}
+		}
+
 		x = -29
 		y = 1
 		relative_position_id = ENG_national_government
@@ -2837,6 +2917,34 @@ focus_tree = {
 				has_completed_focus = ENG_global_defense
 				has_completed_focus = ENG_home_defence
 				has_completed_focus = ENG_the_kings_party
+				has_completed_focus = ENG_organize_the_blackshirts
+				AND = {
+					has_completed_focus = ENG_britannia_for_people
+					has_completed_focus = ENG_greater_british_empire
+				}
+			}
+		}
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_eliminate_the_upper_class
+				}
+			}
+		}
+		offset = {
+			x = 1
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
 				has_completed_focus = ENG_organize_the_blackshirts
 			}
 		}
@@ -3686,11 +3794,38 @@ focus_tree = {
 			has_completed_focus = ENG_eliminate_the_upper_class
 			has_completed_focus = ENG_concessions_to_the_trade_unions
 		}
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_army_countercoup
+					has_completed_focus = ENG_the_kings_party
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_steady_as_she_goes
+				}
+			}
+		}
+		offset = {
+			x = -5
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_eliminate_the_upper_class
+			}
+		}
 
 		continue_if_invalid = yes
 		relative_position_id = uk_empire_focus
 		icon = GFX_focus_ENG_question_empire
-		x = 14
+		x = 14 # or x = 3 relative to ENG_national_government
 		y = 0
 
 		cost = 5
@@ -11998,8 +12133,59 @@ focus_tree = {
 		mutually_exclusive = { focus = ENG_steady_as_she_goes }
 
 		available = {
-
+			NOT = {
+				has_completed_focus = ENG_bastion_of_european_democracy
+			}
 		}
+
+		allow_branch = {
+			has_dlc = "Man the Guns"
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_steady_as_she_goes
+				}
+			}
+		}
+		offset = {
+			x = -20
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_eliminate_the_upper_class
+			}
+		}
+		offset = {
+			x = -22
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_britannia_for_people
+			}
+		}
+		offset = {
+			x = -29
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_organize_the_blackshirts
+			}
+		}
+
 		icon = GFX_focus_ENG_change_in_course
 		x = 58
 		y = 0
@@ -12158,6 +12344,22 @@ focus_tree = {
 		id = ENG_the_kings_party
 		prerequisite = { focus = ENG_a_change_in_course }
 		mutually_exclusive = { focus = ENG_organize_the_blackshirts focus = ENG_concessions_to_the_trade_unions focus = ENG_workers_revolution }
+
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_concessions_to_the_trade_unions
+					has_completed_focus = ENG_workers_revolution
+				}
+			}
+		}
 
 		available = {
 			has_country_flag = edward_viii_married_wallis_simpson
@@ -14106,6 +14308,33 @@ focus_tree = {
 		id = ENG_organize_the_blackshirts
 		prerequisite = { focus = ENG_a_change_in_course }
 		mutually_exclusive = { focus = ENG_the_kings_party focus = ENG_concessions_to_the_trade_unions focus = ENG_workers_revolution }
+
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_the_kings_party
+					has_completed_focus = ENG_concessions_to_the_trade_unions
+					has_completed_focus = ENG_workers_revolution
+				}
+			}
+		}
+		offset = {
+			x = -5
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_organize_the_blackshirts
+			}
+		}
 
 		available = {
 			is_subject = no
@@ -16400,6 +16629,21 @@ focus_tree = {
 		prerequisite = { focus = ENG_a_change_in_course }
 		mutually_exclusive = { focus = ENG_the_kings_party focus = ENG_organize_the_blackshirts focus = ENG_workers_revolution }
 
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_the_kings_party
+				}
+			}
+		}
+
 		available = {
 			is_subject = no
 			has_war = no
@@ -16414,6 +16658,28 @@ focus_tree = {
 		x = 46
 		y = 1
 		relative_position_id = ENG_a_change_in_course
+		offset = {
+			x = -47
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_eliminate_the_upper_class
+			}
+		}
+		offset = {
+			x = -47
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_britannia_for_people
+			}
+		}
 		cancel_if_invalid = yes
 		cost = 10
 		ai_will_do = {
@@ -16497,6 +16763,44 @@ focus_tree = {
 		prerequisite = { focus = ENG_a_change_in_course }
 		mutually_exclusive = { focus = ENG_the_kings_party focus = ENG_organize_the_blackshirts focus = ENG_concessions_to_the_trade_unions }
 
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_the_kings_party
+				}
+			}
+		}
+		
+		offset = {
+			x = -47
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_eliminate_the_upper_class
+			}
+		}
+		offset = {
+			x = -47
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_britannia_for_people
+			}
+		}
+
 		available = {
 			is_subject = no
 			has_war = no
@@ -16537,6 +16841,41 @@ focus_tree = {
 	focus = { #move to secure dominions
 		id = ENG_move_to_secure_the_dominions
 		prerequisite = { focus = ENG_organize_the_blackshirts focus = ENG_concessions_to_the_trade_unions }
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_army_countercoup
+				}
+			}
+		}
+		offset = {
+			x = 8
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_eliminate_the_upper_class
+			}
+		}
+		offset = {
+			x = -18
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_organize_the_blackshirts
+			}
+		}
 
 		available = {
 			is_subject = no
@@ -16638,6 +16977,33 @@ focus_tree = {
 	focus = { #eliminate upper class
 		id = ENG_eliminate_the_upper_class
 		prerequisite = { focus = ENG_the_fate_of_the_royal_family }
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_army_countercoup
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_the_kings_party
+					has_completed_focus = ENG_steady_as_she_goes
+				}
+			}
+		}
+		offset = {
+			x = 7
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_concessions_to_the_trade_unions
+			}
+		}
 		available = {
 			has_government = communism
 		}
@@ -18467,6 +18833,33 @@ focus_tree = {
 	focus = { #army countercoup
 		id = ENG_army_countercoup
 		prerequisite = { focus = ENG_the_fate_of_the_royal_family }
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_eliminate_the_upper_class
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_the_kings_party
+					has_completed_focus = ENG_steady_as_she_goes
+				}
+			}
+		}
+		offset = {
+			x = -7
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_britannia_for_people
+			}
+		}
 		available = {
 			has_government = communism
 			NOT = {
@@ -18570,6 +18963,34 @@ focus_tree = {
 	focus = { #britannia for people
 		id = ENG_britannia_for_people
 		prerequisite = { focus = ENG_secure_the_government }
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_eliminate_the_upper_class
+					has_completed_focus = ENG_britannia_for_glory
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_the_kings_party
+					has_completed_focus = ENG_steady_as_she_goes
+				}
+			}
+		}
+		offset = {
+			x = -10
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = ENG_britannia_for_people
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = ENG_mc_support_democracy_trigger_tt
@@ -19743,7 +20164,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { # Bastion of Democracy
 		id = ENG_bastion_of_european_democracy
 		prerequisite = { focus = ENG_destroy_communism focus = ENG_destroy_fascism }
 		available = {
@@ -19773,6 +20194,12 @@ focus_tree = {
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_ideas = ENG_bastion_of_democracy_idea
+			#custom_effect_tooltip = { # unused!
+				#tooltip = ENG_allows_return_to_democracy_tt
+				#uncomplete_national_focus = {
+				#	focus = ENG_a_change_in_course
+				#}
+			#}
 		}
 	}
 
@@ -19918,13 +20345,14 @@ focus_tree = {
 					character = HOL_wilhelmina
 					ruling_only = yes
 				}
-				has_country_leader = {
-					character = GER_wilhelm_iii
-					ruling_only = yes
-				}
-				has_country_leader = {
-					character = GER_victoria
-					ruling_only = yes
+				AND = {
+					ENG_HAS_HOHENZOLLERN_MONARCH = yes
+					NOT = {
+						has_country_leader = {
+							character = GER_wilhelm_iii
+							ruling_only = yes
+						}
+					}
 				}
 			}
 		}
@@ -21141,7 +21569,7 @@ focus_tree = {
 								#5 # Ermland-Masuren
 								#763 # Königsberg
 							#}
-							is_controlled_by = ROOT
+							is_controlled_by = PREV
 						}
 					}
 					AND = {
@@ -21205,6 +21633,38 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_POLITICAL}	
 		completion_reward = {
 			country_event = ukrework.42
+			hidden_effect = {
+				if = { #NORTH SUDETENLAND
+					limit = {
+						69 = {
+							is_claimed_by = GER
+						}
+					}
+					69 = {
+						add_core_of = ENG
+					}
+				}
+				if = { #SOUTH SUDETENLAND
+					limit = {
+						74 = {
+							is_claimed_by = GER
+						}
+					}
+					74 = {
+						add_core_of = ENG
+					}
+				}
+				if = { #EASTERN SUDETENLAND
+					limit = {
+						972 = {
+							is_claimed_by = GER
+						}
+					}
+					972 = {
+						add_core_of = ENG
+					}
+				}
+			}
 		}
 	}
 
@@ -22156,6 +22616,23 @@ focus_tree = {
 	focus = {
 		id = ENG_britannia_for_glory
 		prerequisite = { focus = ENG_secure_the_government }
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = ENG_eliminate_the_upper_class
+					has_completed_focus = ENG_britannia_for_people
+					has_completed_focus = ENG_organize_the_blackshirts
+					has_completed_focus = ENG_the_kings_party
+					has_completed_focus = ENG_steady_as_she_goes
+				}
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = ENG_mc_oppose_democracy_trigger_tt

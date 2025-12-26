@@ -9,4 +9,4 @@ tags={
 }
 name="UK Rework Improvements"
 dependencies = { "UK Rework" }
-supported_version="1.17.3"
+supported_version="1.17.3.*"

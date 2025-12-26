@@ -189,7 +189,12 @@ country_event = {
 	option = { # Good job, boys
 		name = ukrework.5.a
 		ai_chance = { factor = 10 }
-		dismantle_faction = yes
+		if = {
+			limit = {
+				num_faction_members < 2
+			}
+			dismantle_faction = yes
+		}
 		every_state = {
 			limit = {
 				is_demilitarized_zone = yes

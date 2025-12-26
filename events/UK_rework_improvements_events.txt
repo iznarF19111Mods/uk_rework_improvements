@@ -179,34 +179,47 @@ country_event = {
 						}
 						has_idea = GER_wilhelm_iii
 					}
+					has_war_with = ROOT
 				}
 			}
 		}
 		custom_effect_tooltip = ukrework_improvements.4.a.tt
 		custom_effect_tooltip = generic_skip_one_line_tt
-			IF = {
-				limit = {
-					GER = {
-						has_government = fascism
-						has_war_with = FRA
-						OR = {
-							has_war_with = POL
-							has_war_with = CZE
-						}
+		IF = { # Wilhelm_III refused before or died
+			limit = {
+				OR = {
+					has_global_flag = hohenzollern_family_dead
+					has_country_flag = ENG_wilhelm_iii_refused_throne
+				}
+			}
+			country_event = {
+				id = ukrework_improvements.5
+				days = 1
+			}
+		}
+		else_if = { # Nazi Germany started WW2
+			limit = {
+				GER = {
+					has_government = fascism
+					has_war_with = FRA
+					OR = {
+						has_war_with = POL
+						has_war_with = CZE
 					}
 				}
-				random_list = {
-					30 = { ENG_wilhelm_iii_joins_effect = yes } # Wilhelm agrees
-					70 = { country_event = { id = ukrework_improvements.5 days = 1 } } # Wilhelm refuses
-				}
 			}
-			ELSE = {
-				random_list = {
-					10 = { ENG_wilhelm_iii_joins_effect = yes } # Wilhelm agrees
-					90 = { country_event = { id = ukrework_improvements.5 days = 1 } } # Wilhelm refuses
-				}
+			random_list = {
+				30 = { ENG_wilhelm_iii_joins_effect = yes } # Wilhelm agrees
+				70 = {set_country_flag = ENG_wilhelm_iii_refused_throne country_event = { id = ukrework_improvements.5 days = 1 } } # Wilhelm refuses
 			}
-		#}
+		}
+		ELSE = {
+			random_list = {
+				10 = { ENG_wilhelm_iii_joins_effect = yes } # Wilhelm agrees
+				90 = { set_country_flag = ENG_wilhelm_iii_refused_throne country_event = { id = ukrework_improvements.5 days = 1 } } # Wilhelm refuses
+			}
+		}
+		
 	}
 
 	option = { # Don't bother him, we want a separate monarch!
@@ -271,8 +284,9 @@ country_event = {
 		name = ukrework_improvements.5.b
 		trigger = {
 			NOT = {
+				has_global_flag = hohenzollern_family_dead
 				has_country_flag = ENG_wilhelm_iv_refused_throne
-				any_country = {
+				any_country = { # already has Wilhelm IV as leader
 					exists = yes
 					has_country_leader = {
 						character = GER_wilhelm_iv
@@ -291,8 +305,8 @@ country_event = {
 			}
 		}
 		random_list = {
-			40 = { ENG_wilhelm_iv_joins_effect = yes } # Eitel Friedrich agrees
-			60 = { set_country_flag = ENG_wilhelm_iv_refused_throne country_event = { id = ukrework_improvements.5 days = 1 } } # Eitel Friedrich refuses
+			40 = { ENG_wilhelm_iv_joins_effect = yes } # Wilhelm IV agrees
+			60 = { set_country_flag = ENG_wilhelm_iv_refused_throne country_event = { id = ukrework_improvements.5 days = 1 } } # Wilhelm IV refuses
 		}
 	}
 	option = { # ask his sister
@@ -338,7 +352,7 @@ country_event = {
 	}
 	option = { # yes, we wanted to return to the Union Jack anyways
 		name = ukrework_improvements.6.a
-		custom_effect_tooltip = ukrework_improvements.6.a.tt
+		custom_effect_tooltip = ukrework_improvements.4.b.tt
 		custom_effect_tooltip = generic_skip_one_line_tt
 		ENG_victoria_joins_effect = yes
 		set_country_flag = ENG_promised_unionjack_return
@@ -375,7 +389,7 @@ country_event = {
 				has_completed_focus = ENG_the_union_jack_forever
 			}
 		}
-		#custom_effect_tooltip = this_will_happen_tt
+		custom_effect_tooltip = this_will_happen_tt
 		GER = {
 			country_event = {
 				id = ukrework_improvements.8
@@ -383,6 +397,7 @@ country_event = {
 			}
 		}
 		custom_effect_tooltip = generic_skip_one_line_tt
+		custom_effect_tooltip = if_they_accept_tt
 		effect_tooltip = {
 			ENG = {
 				hidden_effect = {
@@ -395,7 +410,7 @@ country_event = {
 				if = {
 					limit = {
 						NOT = {
-							ENG = { has_completed_focus = ENG_the_union_jack_forever }
+							ENG = { has_country_flag = ENG_promised_unionjack_return }
 						}
 					}
 					set_autonomy = {
@@ -485,7 +500,7 @@ country_event = {
 			if = {
 				limit = {
 					NOT = {
-						has_completed_focus = ENG_the_union_jack_forever
+						has_country_flag = ENG_promised_unionjack_return
 					}
 				}
 				set_autonomy = {
